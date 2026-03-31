@@ -10,7 +10,19 @@
 
 export BASE_SEED=${SLURM_ARRAY_TASK_ID}
 
+# Ensure logs directory exists so Slurm can write output files
+mkdir -p ${PWD}/logs
+
 module load anaconda3
+# Source conda initialization explicitly to ensure `conda activate` works
+if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+	source "$HOME/miniconda3/etc/profile.d/conda.sh"
+elif [ -f "/local/scratch/cfikes/miniconda3/etc/profile.d/conda.sh" ]; then
+	source "/local/scratch/cfikes/miniconda3/etc/profile.d/conda.sh"
+fi
+
+set -x
+echo "Starting job on $(hostname) at $(date); workdir=$(pwd); user=$(whoami)"
 conda activate cs_534_cuda
 
 # Run the experiment driver in small mode
