@@ -1,0 +1,25 @@
+# Data, results and artifacts
+results/
+data/
+models/
+*.png
+*.pdf
+*.csv
+*.npy
+*.npz
+
+# Python cache
+__pycache__/
+.pytest_cache/
+
+# Environment files
+env/
+venv/
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Keep scripts and source tracked; artifacts ignored above

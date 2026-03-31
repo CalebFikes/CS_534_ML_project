@@ -1,0 +1,28 @@
+name: cs_534_final
+channels:
+  - defaults
+  - conda-forge
+  - pytorch
+dependencies:
+  - python=3.10
+  - numpy=1.24.4
+  - scipy
+  - scikit-learn
+  - pandas
+  - matplotlib
+  - seaborn
+  - scikit-dimension
+  - pip
+  - pip:
+    - torch
+    - torchvision
+    - tqdm
+
+# Post-install notes (run on cluster after creating the env):
+# 1) Install PyTorch and CUDA build via conda following https://pytorch.org for the
+#    target CUDA version. Example (CUDA 12.7):
+#    conda install pytorch torchvision torchaudio pytorch-cuda -c pytorch -c nvidia
+# 2) Install FAISS via conda (match CPU/GPU):
+#    CPU:  conda install -c conda-forge faiss-cpu=1.7.3
+#    GPU:  conda install -c pytorch -c nvidia faiss-gpu=1.7.3
+# These conda installs ensure FAISS is built against the same NumPy ABI.
