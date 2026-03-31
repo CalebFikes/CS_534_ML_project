@@ -4,7 +4,7 @@ channels:
   - conda-forge
   - pytorch
 dependencies:
-  - python=3.10
+  - python=3.9
   - numpy=1.24.4
   - scipy
   - scikit-learn
@@ -14,15 +14,27 @@ dependencies:
   - scikit-dimension
   - pip
   - pip:
-    - torch
-    - torchvision
     - tqdm
 
-# Post-install notes (run on cluster after creating the env):
-# 1) Install PyTorch and CUDA build via conda following https://pytorch.org for the
-#    target CUDA version. Example (CUDA 12.7):
-#    conda install pytorch torchvision torchaudio pytorch-cuda -c pytorch -c nvidia
-# 2) Install FAISS via conda (match CPU/GPU):
-#    CPU:  conda install -c conda-forge faiss-cpu=1.7.3
-#    GPU:  conda install -c pytorch -c nvidia faiss-gpu=1.7.3
-# These conda installs ensure FAISS is built against the same NumPy ABI.
+# Post-install notes (tested sequence on this cluster):
+# The minimal reproducible sequence that worked here (Python 3.9, NumPy 1.24.4):
+# 1) Create the conda env (name optional):
+#    conda create -n cs_534_cuda python=3.9 numpy=1.24.4 -c conda-forge
+# 2) Activate the env:
+#    conda activate cs_534_cuda
+# 3) Install GPU PyTorch wheels (cu117) from the PyTorch index via pip:
+#    python -m pip install --upgrade pip setuptools wheel
+#    python -m pip install --index-url https://download.pytorch.org/whl/cu117 \
+#        "torch==2.0.1+cu117" "torchvision==0.15.2+cu117" "torchaudio==2.0.2+cu117"
+#    (The `+cu117` wheels provide a working CUDA-enabled PyTorch in this environment.)
+# 4) Install FAISS GPU build via conda-forge (matching NumPy ABI):
+#    mamba install -n cs_534_cuda -c conda-forge faiss-gpu=1.7.3
+#    (This will pull a compatible cudatoolkit / libfaiss build.)
+# 5) Validate the install:
+#    python -c "import torch,faiss; print(torch.__version__, torch.cuda.is_available(), torch.version.cuda, torch.cuda.device_count()); print('faiss gpus', faiss.get_num_gpus())"
+# Notes and rationale:
+# - We use Python 3.9 here because `faiss-gpu=1.7.3` and the NumPy ABI (1.24.4)
+#   resolved cleanly in our tests for this repository.
+# - Prefer conda for FAISS to ensure the binary is built against the same NumPy ABI.
+# - Avoid mixing unrelated pip-conda CUDA stacks; the above sequence keeps the
+#   CUDA runtime and FAISS consistent with the PyTorch wheel that was successfully tested.

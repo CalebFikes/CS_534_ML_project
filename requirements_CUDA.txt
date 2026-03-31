@@ -1,25 +1,30 @@
+```pip-requirements
 # Core Python deps (same as requirements.txt)
 numpy==1.24.4
 scipy
 scikit-learn
 scikit-dimension
-torchvision
 tqdm
 pandas
 
-# GPU packages (install via conda to match cluster CUDA runtime)
-# Note: Install PyTorch with the matching CUDA toolchain from PyTorch instructions.
-# Example (on cluster with CUDA 12.7 follow official instructions at https://pytorch.org):
-#   conda install pytorch torchvision torchaudio pytorch-cuda -c pytorch -c nvidia
-# FAISS (recommended via conda-forge or pytorch channels). Pin a version compatible
-# with `numpy==1.24.4` to avoid ABI mismatches. Examples:
-# CPU (conda-forge):
-#   conda install -c conda-forge faiss-cpu=1.7.3
-# GPU (pytorch + nvidia channels):
-#   conda install -c pytorch -c nvidia faiss-gpu=1.7.3
-# Note: prefer conda installs for FAISS to ensure the binary is built against
-# the same NumPy ABI as the rest of the environment. Do NOT install FAISS via
-# pip on the cluster unless you know the wheel was built for NumPy 1.24.x.
+# Tested GPU install steps (what we ran successfully):
+# 1) Create env and activate:
+#    conda create -n cs_534_cuda python=3.9 numpy=1.24.4 -c conda-forge
+#    conda activate cs_534_cuda
+# 2) Install PyTorch cu117 wheels via PyTorch index (pip):
+#    python -m pip install --upgrade pip setuptools wheel
+#    python -m pip install --index-url https://download.pytorch.org/whl/cu117 \
+#        "torch==2.0.1+cu117" "torchvision==0.15.2+cu117" "torchaudio==2.0.2+cu117"
+# 3) Install FAISS GPU via conda-forge:
+#    mamba install -n cs_534_cuda -c conda-forge faiss-gpu=1.7.3
+# 4) Validate:
+#    python -c "import torch,faiss; print(torch.__version__, torch.cuda.is_available(), torch.version.cuda, torch.cuda.device_count()); print('faiss gpus', faiss.get_num_gpus())"
 
-# Do NOT put a torch wheel here — pick the conda command above that matches the CUDA
-# version on the target machine (12.7). See README.md for more guidance.
+# Notes:
+# - We prefer conda for FAISS to ensure NumPy ABI compatibility. The PyTorch cu117
+#   pip wheels used here worked on this cluster; if you prefer conda-only, try
+#   `conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia`.
+# - Avoid mixing unrelated pip-conda CUDA stacks. If you previously installed
+#   PyTorch via conda and then pip-installed a CUDA wheel (or vice-versa), remove
+#   old packages and recreate the env to avoid ABI / NCCL symbol errors.
+```
