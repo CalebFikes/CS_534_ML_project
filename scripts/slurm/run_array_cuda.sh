@@ -26,4 +26,4 @@ echo "Starting job on $(hostname) at $(date); workdir=$(pwd); user=$(whoami)"
 conda activate cs_534_cuda
 
 # Run the experiment driver in small mode
-python -m src.experiments.run_experiments --mode small --workers 1 --base-seed ${BASE_SEED}
+python -m src.experiments.run_experiments --mode smoke --workers 1 --base-seed ${BASE_SEED}
