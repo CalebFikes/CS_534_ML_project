@@ -26,6 +26,23 @@ conda activate cs_534_cuda
 # ensure we run from the repository root so `python -m src...` works
 cd /local/scratch/cfikes/CS_534_ML_project || exit 1
 
+if [ "$1" = "--finalize" ]; then
+    echo "Finalize mode: aggregating per-task CSVs and regenerating plots"
+    # activate conda and aggregate
+    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+        source "$HOME/miniconda3/etc/profile.d/conda.sh"
+    elif [ -f "/local/scratch/cfikes/miniconda3/etc/profile.d/conda.sh" ]; then
+        source "/local/scratch/cfikes/miniconda3/etc/profile.d/conda.sh"
+    fi
+    conda activate cs_534_cuda
+    cd /local/scratch/cfikes/CS_534_ML_project || exit 1
+    python scripts/aggregate_results.py results/synthetic_small.task*.csv --out-raw results/synthetic_small_combined.csv --out-summary results/synthetic_small_summary.csv || true
+    python scripts/aggregate_results.py results/mnist_small.task*.csv --out-raw results/mnist_small_combined.csv --out-summary results/mnist_small_summary.csv || true
+    PYTHONPATH=. python scripts/regenerate_plots.py || true
+    echo "Finalize complete"
+    exit 0
+fi
+
 # remove old figures so small run overwrites them
 rm -rf results/figs || true
 

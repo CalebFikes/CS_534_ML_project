@@ -565,6 +565,10 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--mode', choices=['smoke', 'small', 'final'], default='smoke')
     parser.add_argument('--cpu', action='store_true', help='force CPU mode for training')
+    parser.add_argument('--dims', type=str, default=None, help='comma-separated list of intrinsic dims / bottleneck dims')
+    parser.add_argument('--ks', type=str, default=None, help='comma-separated list of neighbor k values')
+    parser.add_argument('--sigmas', type=str, default=None, help='comma-separated list of noise sigma values')
+    parser.add_argument('--paired', action='store_true', help='treat dims and sigmas as paired lists (zipped)')
     parser.add_argument('--workers', type=int, default=None)
     parser.add_argument('--base-seed', type=int, default=None, help='optional base seed override')
     args = parser.parse_args()
@@ -603,6 +607,7 @@ def main():
             'neighbor_grid_K': [5, 10, 20, 30],
             'methods': ['levina-bickel', 'twonn', 'corrint', 'danco', 'mind', 'fisher'],
             'base_seed': 0,
+            'paired': False,
         }
         mnist_config = {
             'mnist_subset_size': 60000,
@@ -615,6 +620,22 @@ def main():
             'data_dir': 'data',
             'base_seed': 0,
         }
+    # override configs from single-list CLI args (apply to both synthetic and MNIST)
+    def parse_list_int(s):
+        return [int(x) for x in s.split(',') if x.strip()!='']
+    if args.dims:
+        vals = parse_list_int(args.dims)
+        syn_config['intrinsic_dims'] = vals
+        mnist_config['bottleneck_dims'] = vals
+    if args.ks:
+        vals = parse_list_int(args.ks)
+        syn_config['neighbor_grid_K'] = vals
+        mnist_config['neighbor_grid_K'] = vals
+    if args.sigmas:
+        vals = [float(x) for x in args.sigmas.split(',') if x.strip()!='']
+        syn_config['noise_levels'] = vals
+    if args.paired:
+        syn_config['paired'] = True
     # allow environment or CLI override for base seed (useful for Slurm arrays)
     env_base = os.environ.get('BASE_SEED')
     if env_base is not None:
