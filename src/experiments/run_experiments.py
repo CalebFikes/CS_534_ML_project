@@ -7,6 +7,7 @@ diagnostic plots for the smoke test.
 import argparse
 import os
 import json
+import time
 import numpy as np
 import pandas as pd
 import traceback
@@ -26,6 +27,11 @@ def synthetic_worker(task):
     methods = task['methods']
     K = task['K']
     seed = task['seed']
+    import time
+    from datetime import datetime
+
+    start_t = time.time()
+    print(f"[TASK START] {datetime.now().isoformat()} manifold={manifold} d={d} sigma={sigma} n={n} seed={seed}")
 
     if manifold == 'sphere':
         X = sample_sphere(d, n, random_state=seed)
@@ -37,6 +43,7 @@ def synthetic_worker(task):
     records = []
     for m in methods:
         for k in K:
+            est_start = time.time()
             err_msg = ''
             try:
                 val = estimate(X, method=m, k=k)
@@ -50,6 +57,8 @@ def synthetic_worker(task):
             except Exception:
                 val = float('nan')
                 err_msg = traceback.format_exc()
+            est_dur = time.time() - est_start
+            print(f"[EST DONE] {datetime.now().isoformat()} estimator={m} k={k} dur={est_dur:.3f}s seed={seed}")
             records.append({
                 'estimator': m,
                 'manifold': manifold,
@@ -61,6 +70,9 @@ def synthetic_worker(task):
                 'seed': int(seed),
                 'error': err_msg.replace('\n', ' | '),
             })
+
+    dur = time.time() - start_t
+    print(f"[TASK END] {datetime.now().isoformat()} manifold={manifold} d={d} sigma={sigma} seed={seed} duration={dur:.3f}s")
     return records
 
 
@@ -112,14 +124,26 @@ def run_synthetic(config, out_csv, max_workers=None):
 
     os.makedirs(os.path.dirname(out_csv), exist_ok=True)
     records = []
+    # submit tasks and track submit time for progress logging
     with ProcessPoolExecutor(max_workers=max_workers) as ex:
-        futures = [ex.submit(synthetic_worker, t) for t in tasks]
-        for fut in as_completed(futures):
+        fut_to_meta = {}
+        for t in tasks:
+            fut = ex.submit(synthetic_worker, t)
+            fut_to_meta[fut] = (t, time.time())
+        for fut in as_completed(fut_to_meta):
+            t, t0 = fut_to_meta[fut]
+            manifold = t.get('manifold')
+            d = t.get('d')
+            sigma = t.get('sigma')
+            seed = t.get('seed')
             try:
                 rec = fut.result()
                 records.extend(rec)
+                elapsed = time.time() - t0
+                print(f"Completed synthetic task manifold={manifold} d={d} sigma={sigma} seed={seed} in {elapsed:.1f}s")
             except Exception as e:
-                print('Worker error', e)
+                elapsed = time.time() - t0
+                print(f"Worker error for manifold={manifold} d={d} sigma={sigma} seed={seed} after {elapsed:.1f}s: {e}")
 
     df = pd.DataFrame.from_records(records)
     # When running as a Slurm array task, avoid multiple processes overwriting
@@ -148,6 +172,8 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
 
     records = []
     data_dir = config.get('data_dir', 'data')
+    import time
+    from datetime import datetime
     for k in config['bottleneck_dims']:
         for r in range(config['R']):
             seed = config.get('base_seed', 0) + r
@@ -171,12 +197,24 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
                 ]
                 if 'cpu' in config and config['cpu']:
                     cmd.append('--cpu')
+                print(f"[MNIST TRAIN START] {datetime.now().isoformat()} bottleneck={k} seed={seed}", flush=True)
+                t0 = time.time()
                 subprocess.check_call(cmd)
+                t1 = time.time()
+                print(f"[MNIST TRAIN END] {datetime.now().isoformat()} bottleneck={k} seed={seed} dur={t1-t0:.3f}s", flush=True)
 
+            # load latents and run estimators; emit per-estimator start/end logs
             Z = np.load(latents_path)
+            try:
+                shape_info = getattr(Z, 'shape', None)
+            except Exception:
+                shape_info = None
+            print(f"[MNIST LATENTS LOADED] {datetime.now().isoformat()} path={latents_path} shape={shape_info}", flush=True)
             for m in config['methods']:
                 for k_n in config['neighbor_grid_K']:
                     err_msg = ''
+                    est_t0 = time.time()
+                    print(f"[MNIST EST START] {datetime.now().isoformat()} estimator={m} k_n={k_n} bottleneck={k} seed={seed}", flush=True)
                     try:
                         val = estimate(Z, method=m, k=k_n)
                     except TypeError:
@@ -188,6 +226,8 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
                     except Exception:
                         val = float('nan')
                         err_msg = traceback.format_exc()
+                    est_dur = time.time() - est_t0
+                    print(f"[MNIST EST DONE] {datetime.now().isoformat()} estimator={m} k_n={k_n} dur={est_dur:.3f}s bottleneck={k} seed={seed}", flush=True)
                     records.append({
                         'estimator': m,
                         'bottleneck': k,
@@ -565,6 +605,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--mode', choices=['smoke', 'small', 'final'], default='smoke')
     parser.add_argument('--cpu', action='store_true', help='force CPU mode for training')
+    parser.add_argument('--skip-corrint', action='store_true', help='skip corrint estimator (very slow on full MNIST)')
     parser.add_argument('--dims', type=str, default=None, help='comma-separated list of intrinsic dims / bottleneck dims')
     parser.add_argument('--ks', type=str, default=None, help='comma-separated list of neighbor k values')
     parser.add_argument('--sigmas', type=str, default=None, help='comma-separated list of noise sigma values')
@@ -613,7 +654,8 @@ def main():
             'mnist_subset_size': 60000,
             'bottleneck_dims': [5, 10, 20, 40],
             'R': 3,
-            'epochs': 25,
+            # increase epochs 5x for more thorough AE training (user request)
+            'epochs': 125,
             'batch_size': 128,
             'neighbor_grid_K': [5, 10, 20],
             'methods': ['levina-bickel', 'twonn', 'corrint', 'danco', 'mind', 'fisher'],
@@ -651,31 +693,45 @@ def main():
     else:
         raise NotImplementedError('Only smoke mode implemented in this script')
 
-    # choose output filenames; write figures into results/figs (overwrite existing figs)
+    # optionally skip corrint (very slow on full MNIST). Remove from method lists.
+    if getattr(args, 'skip_corrint', False):
+        def _filter_methods(lst):
+            return [m for m in lst if m != 'corrint']
+        syn_config['methods'] = _filter_methods(syn_config.get('methods', []))
+        mnist_config['methods'] = _filter_methods(mnist_config.get('methods', []))
+
+    # choose output filenames; write figures into results/figs_<mode> (overwrite existing figs)
     synthetic_out = f'results/synthetic_{args.mode}.csv'
     mnist_out = f'results/mnist_{args.mode}.csv'
+    figs_out_dir = f'results/figs_{args.mode}'
 
-    print(f'Running synthetic {args.mode} experiments...')
+    print(f'Running synthetic {args.mode} experiments...', flush=True)
     df_syn = run_synthetic(syn_config, out_csv=synthetic_out, max_workers=args.workers)
     print(f'Saved {synthetic_out}')
 
-    print(f'Running MNIST autoencoder {args.mode} experiments...')
-    df_mnist = run_mnist_autoencoder(mnist_config, out_csv=mnist_out, run_train=True)
-    print(f'Saved {mnist_out}')
+    print(f'Running MNIST autoencoder {args.mode} experiments...', flush=True)
+    try:
+        df_mnist = run_mnist_autoencoder(mnist_config, out_csv=mnist_out, run_train=True)
+        print(f'Saved {mnist_out}', flush=True)
+    except Exception:
+        import traceback as _tb
+        print('MNIST autoencoder step failed with exception:', flush=True)
+        print(_tb.format_exc(), flush=True)
+        df_mnist = None
 
     print('Making basic plots...')
-    # overwrite figures in results/figs
-    make_basic_plots(df_syn, out_dir='results/figs')
+    # write figures into a mode-specific folder (easier to inspect small vs final)
+    make_basic_plots(df_syn, out_dir=figs_out_dir)
     # full suite
     try:
-        make_full_synthetic_plots(df_syn, out_dir='results/figs')
+        make_full_synthetic_plots(df_syn, out_dir=figs_out_dir)
     except Exception as e:
         print('Failed to make full synthetic plots:', e)
     try:
-        make_full_mnist_plots(df_mnist, out_dir='results/figs')
+        make_full_mnist_plots(df_mnist, out_dir=figs_out_dir)
     except Exception as e:
         print('Failed to make full MNIST plots:', e)
-    print('Saved plots under results/figs')
+    print(f'Saved plots under {figs_out_dir}')
 
 
 if __name__ == '__main__':

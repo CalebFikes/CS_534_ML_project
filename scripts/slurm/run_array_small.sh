@@ -6,7 +6,8 @@
 #SBATCH --mem=16G
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
-#SBATCH --array=0-9
+#SBATCH --gres=gpu:1
+#SBATCH --array=0-9%4
 
 export BASE_SEED=${SLURM_ARRAY_TASK_ID}
 
@@ -45,5 +46,6 @@ fi
 
 # remove old figures so small run overwrites them
 rm -rf results/figs || true
+rm -rf results/figs_small || true
 
-python -m src.experiments.run_experiments --mode small --workers 1 --base-seed ${BASE_SEED}
+python -m src.experiments.run_experiments --mode small --skip-corrint --workers ${SLURM_CPUS_PER_TASK} --base-seed ${BASE_SEED}
