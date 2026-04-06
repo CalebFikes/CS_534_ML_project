@@ -182,26 +182,27 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
             os.makedirs(os.path.dirname(model_path) or '.', exist_ok=True)
             os.makedirs(os.path.dirname(latents_path) or '.', exist_ok=True)
             if run_train:
-                cmd = [
-                    'python', '-m', 'src.models.train_autoencoder',
+                # run the LR tuning wrapper per replicate (use the replicate's seed only)
+                tune_cmd = [
+                    'python', 'scripts/tune_ae_grid.py',
+                    '--bottleneck', str(k),
+                    '--r', str(r),
                     '--data-dir', data_dir,
+                    '--epochs', str(config['epochs']),
                     '--batch-size', str(config['batch_size']),
                     '--hidden-dim', str(config.get('hidden_dim', 400)),
-                    '--bottleneck', str(k),
-                    '--epochs', str(config['epochs']),
-                    '--save-model', model_path,
-                    '--save-latents', latents_path,
-                    '--subset-size', str(config.get('mnist_subset_size', 0)),
                     '--num-workers', str(config.get('num_workers', 0)),
-                    '--seed', str(seed),
+                    '--lr-grid', '1e-3,5e-4,1e-4',
+                    '--seeds', str(seed),
                 ]
                 if 'cpu' in config and config['cpu']:
-                    cmd.append('--cpu')
-                print(f"[MNIST TRAIN START] {datetime.now().isoformat()} bottleneck={k} seed={seed}", flush=True)
+                    tune_cmd.append('--data-dir')
+                    tune_cmd.append(data_dir)
+                print(f"[MNIST TUNE START] {datetime.now().isoformat()} bottleneck={k} seed={seed}", flush=True)
                 t0 = time.time()
-                subprocess.check_call(cmd)
+                subprocess.check_call(tune_cmd)
                 t1 = time.time()
-                print(f"[MNIST TRAIN END] {datetime.now().isoformat()} bottleneck={k} seed={seed} dur={t1-t0:.3f}s", flush=True)
+                print(f"[MNIST TUNE END] {datetime.now().isoformat()} bottleneck={k} seed={seed} dur={t1-t0:.3f}s", flush=True)
 
             # load latents and run estimators; emit per-estimator start/end logs
             Z = np.load(latents_path)
