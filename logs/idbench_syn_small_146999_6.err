@@ -1,0 +1,115 @@
+++ hostname
+++ date
+++ pwd
+++ whoami
++ echo 'Starting small job on zuber at Wed Apr  1 12:54:40 PM EDT 2026; workdir=/local/scratch/cfikes/CS_534_ML_project; user=cfikes'
++ conda activate cs_534_cuda
++ local cmd=activate
++ case "$cmd" in
++ __conda_activate activate cs_534_cuda
++ '[' -n '' ']'
++ local ask_conda
+++ PS1=
+++ __conda_exe shell.posix activate cs_534_cuda
+++ '[' -n '' ']'
+++ /local/scratch/cfikes/miniconda3/bin/conda shell.posix activate cs_534_cuda
++ ask_conda='export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+PS1='\''(cs_534_cuda) '\''
+export PATH='\''/local/scratch/cfikes/miniconda3/envs/cs_534_cuda/bin:/local/scratch/cfikes/miniconda3/condabin:/local/scratch/cfikes/PtyCoDiff/.venv/bin:/usr/local/cuda/bin:/local/scratch/cfikes/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/local/scratch/cfikes/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/local/scratch/cfikes/.vscode-server/cli/servers/Stable-94e8ae2b28cb5cc932b86e1070569c4463565c37/server/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'\''
+export CONDA_PREFIX='\''/local/scratch/cfikes/miniconda3/envs/cs_534_cuda'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''cs_534_cuda'\''
+export CONDA_PROMPT_MODIFIER='\''(cs_534_cuda) '\''
+export CONDA_EXE='\''/local/scratch/cfikes/miniconda3/bin/conda'\''
+export _CONDA_EXE='\''/local/scratch/cfikes/miniconda3/bin/conda'\''
+export CONDA_PYTHON_EXE='\''/local/scratch/cfikes/miniconda3/bin/python'\''
+export _CONDA_ROOT='\''/local/scratch/cfikes/miniconda3'\''
+. "/local/scratch/cfikes/miniconda3/envs/cs_534_cuda/etc/conda/activate.d/libblas_mkl_activate.sh"
+. "/local/scratch/cfikes/miniconda3/envs/cs_534_cuda/etc/conda/activate.d/libglib_activate.sh"
+. "/local/scratch/cfikes/miniconda3/envs/cs_534_cuda/etc/conda/activate.d/libxml2_activate.sh"'
++ eval 'export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+PS1='\''(cs_534_cuda) '\''
+export PATH='\''/local/scratch/cfikes/miniconda3/envs/cs_534_cuda/bin:/local/scratch/cfikes/miniconda3/condabin:/local/scratch/cfikes/PtyCoDiff/.venv/bin:/usr/local/cuda/bin:/local/scratch/cfikes/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/local/scratch/cfikes/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/local/scratch/cfikes/.vscode-server/cli/servers/Stable-94e8ae2b28cb5cc932b86e1070569c4463565c37/server/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'\''
+export CONDA_PREFIX='\''/local/scratch/cfikes/miniconda3/envs/cs_534_cuda'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''cs_534_cuda'\''
+export CONDA_PROMPT_MODIFIER='\''(cs_534_cuda) '\''
+export CONDA_EXE='\''/local/scratch/cfikes/miniconda3/bin/conda'\''
+export _CONDA_EXE='\''/local/scratch/cfikes/miniconda3/bin/conda'\''
+export CONDA_PYTHON_EXE='\''/local/scratch/cfikes/miniconda3/bin/python'\''
+export _CONDA_ROOT='\''/local/scratch/cfikes/miniconda3'\''
+. "/local/scratch/cfikes/miniconda3/envs/cs_534_cuda/etc/conda/activate.d/libblas_mkl_activate.sh"
+. "/local/scratch/cfikes/miniconda3/envs/cs_534_cuda/etc/conda/activate.d/libglib_activate.sh"
+. "/local/scratch/cfikes/miniconda3/envs/cs_534_cuda/etc/conda/activate.d/libxml2_activate.sh"'
+++ export _CE_M=
+++ _CE_M=
+++ export _CE_CONDA=
+++ _CE_CONDA=
+++ PS1='(cs_534_cuda) '
+++ export PATH=/local/scratch/cfikes/miniconda3/envs/cs_534_cuda/bin:/local/scratch/cfikes/miniconda3/condabin:/local/scratch/cfikes/PtyCoDiff/.venv/bin:/usr/local/cuda/bin:/local/scratch/cfikes/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/local/scratch/cfikes/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/local/scratch/cfikes/.vscode-server/cli/servers/Stable-94e8ae2b28cb5cc932b86e1070569c4463565c37/server/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ PATH=/local/scratch/cfikes/miniconda3/envs/cs_534_cuda/bin:/local/scratch/cfikes/miniconda3/condabin:/local/scratch/cfikes/PtyCoDiff/.venv/bin:/usr/local/cuda/bin:/local/scratch/cfikes/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/local/scratch/cfikes/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/local/scratch/cfikes/.vscode-server/cli/servers/Stable-94e8ae2b28cb5cc932b86e1070569c4463565c37/server/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ export CONDA_PREFIX=/local/scratch/cfikes/miniconda3/envs/cs_534_cuda
+++ CONDA_PREFIX=/local/scratch/cfikes/miniconda3/envs/cs_534_cuda
+++ export CONDA_SHLVL=1
+++ CONDA_SHLVL=1
+++ export CONDA_DEFAULT_ENV=cs_534_cuda
+++ CONDA_DEFAULT_ENV=cs_534_cuda
+++ export 'CONDA_PROMPT_MODIFIER=(cs_534_cuda) '
+++ CONDA_PROMPT_MODIFIER='(cs_534_cuda) '
+++ export CONDA_EXE=/local/scratch/cfikes/miniconda3/bin/conda
+++ CONDA_EXE=/local/scratch/cfikes/miniconda3/bin/conda
+++ export _CONDA_EXE=/local/scratch/cfikes/miniconda3/bin/conda
+++ _CONDA_EXE=/local/scratch/cfikes/miniconda3/bin/conda
+++ export CONDA_PYTHON_EXE=/local/scratch/cfikes/miniconda3/bin/python
+++ CONDA_PYTHON_EXE=/local/scratch/cfikes/miniconda3/bin/python
+++ export _CONDA_ROOT=/local/scratch/cfikes/miniconda3
+++ _CONDA_ROOT=/local/scratch/cfikes/miniconda3
+++ . /local/scratch/cfikes/miniconda3/envs/cs_534_cuda/etc/conda/activate.d/libblas_mkl_activate.sh
++++ export CONDA_MKL_INTERFACE_LAYER_BACKUP=
++++ CONDA_MKL_INTERFACE_LAYER_BACKUP=
++++ export MKL_INTERFACE_LAYER=LP64,GNU
++++ MKL_INTERFACE_LAYER=LP64,GNU
+++ . /local/scratch/cfikes/miniconda3/envs/cs_534_cuda/etc/conda/activate.d/libglib_activate.sh
++++ export GSETTINGS_SCHEMA_DIR_CONDA_BACKUP=
++++ GSETTINGS_SCHEMA_DIR_CONDA_BACKUP=
++++ export GSETTINGS_SCHEMA_DIR=/local/scratch/cfikes/miniconda3/envs/cs_534_cuda/share/glib-2.0/schemas
++++ GSETTINGS_SCHEMA_DIR=/local/scratch/cfikes/miniconda3/envs/cs_534_cuda/share/glib-2.0/schemas
+++ . /local/scratch/cfikes/miniconda3/envs/cs_534_cuda/etc/conda/activate.d/libxml2_activate.sh
++++ test -n ''
++++ xml_catalog_files_libxml2=
++++ XML_CATALOG_FILES=
++++ conda_catalog_files=
++++ ifs_libxml2=' 	
+'
++++ IFS=' '
++++ rem=/local/scratch/cfikes/miniconda3/envs/cs_534_cuda
++++ for pre in ${rem}
++++ test '' = /local/scratch/cfikes/miniconda3/envs/cs_534_cuda
++++ conda_catalog_files=/local/scratch/cfikes/miniconda3/envs/cs_534_cuda
++++ rem=
++++ IFS=' 	
+'
++++ conda_catalog_files='file:///local/scratch/cfikes/miniconda3/envs/cs_534_cuda/etc/xml/catalog file:///etc/xml/catalog'
++++ export 'XML_CATALOG_FILES=file:///local/scratch/cfikes/miniconda3/envs/cs_534_cuda/etc/xml/catalog file:///etc/xml/catalog'
++++ XML_CATALOG_FILES='file:///local/scratch/cfikes/miniconda3/envs/cs_534_cuda/etc/xml/catalog file:///etc/xml/catalog'
++++ unset conda_catalog_files ifs_libxml2 rem
++ __conda_hashr
++ '[' -n '' ']'
++ '[' -n '' ']'
++ hash -r
++ cd /local/scratch/cfikes/CS_534_ML_project
++ rm -rf results/figs
++ python -m src.experiments.run_experiments --mode small --workers 1 --base-seed 6
+Traceback (most recent call last):
+  File "/local/scratch/cfikes/miniconda3/envs/cs_534_cuda/lib/python3.9/runpy.py", line 188, in _run_module_as_main
+    mod_name, mod_spec, code = _get_module_details(mod_name, _Error)
+  File "/local/scratch/cfikes/miniconda3/envs/cs_534_cuda/lib/python3.9/runpy.py", line 158, in _get_module_details
+    code = loader.get_code(mod_name)
+  File "<frozen importlib._bootstrap_external>", line 983, in get_code
+  File "<frozen importlib._bootstrap_external>", line 913, in source_to_code
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/local/scratch/cfikes/CS_534_ML_project/src/experiments/run_experiments.py", line 249
+    for est in ests:
+IndentationError: unexpected indent

@@ -7,8 +7,10 @@ diagnostic plots for the smoke test.
 import argparse
 import os
 import json
+import time
 import numpy as np
 import pandas as pd
+import traceback
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from src.data.generators import sample_sphere, sample_torus, embed_via_random_orthonormal, add_orthogonal_noise
 from src.estimators.estimators import estimate
@@ -25,6 +27,11 @@ def synthetic_worker(task):
     methods = task['methods']
     K = task['K']
     seed = task['seed']
+    import time
+    from datetime import datetime
+
+    start_t = time.time()
+    print(f"[TASK START] {datetime.now().isoformat()} manifold={manifold} d={d} sigma={sigma} n={n} seed={seed}")
 
     if manifold == 'sphere':
         X = sample_sphere(d, n, random_state=seed)
@@ -36,16 +43,22 @@ def synthetic_worker(task):
     records = []
     for m in methods:
         for k in K:
+            est_start = time.time()
+            err_msg = ''
             try:
                 val = estimate(X, method=m, k=k)
             except TypeError:
-                # some estimators don't accept k; ignore
+                # some estimators don't accept k; try without
                 try:
                     val = estimate(X, method=m)
                 except Exception:
                     val = float('nan')
+                    err_msg = traceback.format_exc()
             except Exception:
                 val = float('nan')
+                err_msg = traceback.format_exc()
+            est_dur = time.time() - est_start
+            print(f"[EST DONE] {datetime.now().isoformat()} estimator={m} k={k} dur={est_dur:.3f}s seed={seed}")
             records.append({
                 'estimator': m,
                 'manifold': manifold,
@@ -55,19 +68,47 @@ def synthetic_worker(task):
                 'n': n,
                 'estimate': float(val),
                 'seed': int(seed),
+                'error': err_msg.replace('\n', ' | '),
             })
+
+    dur = time.time() - start_t
+    print(f"[TASK END] {datetime.now().isoformat()} manifold={manifold} d={d} sigma={sigma} seed={seed} duration={dur:.3f}s")
     return records
 
 
 def run_synthetic(config, out_csv, max_workers=None):
     tasks = []
     methods = config['methods']
+    paired = config.get('paired', False)
     for manifold in config['manifolds']:
-        for d in config['intrinsic_dims']:
-            D = config.get('ambient_dim')
-            if D is None:
-                D = d + 1 if manifold == 'sphere' else 2 * d
-            for sigma in config['noise_levels']:
+        if not paired:
+            for d in config['intrinsic_dims']:
+                D = config.get('ambient_dim')
+                if D is None:
+                    D = d + 1 if manifold == 'sphere' else 2 * d
+                for sigma in config['noise_levels']:
+                    for r in range(config['R']):
+                        seed = config.get('base_seed', 0) + r
+                        tasks.append({
+                            'manifold': manifold,
+                            'd': d,
+                            'n': config['n_samples'],
+                            'D': D,
+                            'sigma': sigma,
+                            'methods': methods,
+                            'K': config['neighbor_grid_K'],
+                            'seed': seed,
+                        })
+        else:
+            # paired mode: iterate zipped lists of same length (intrinsic_dims, noise_levels)
+            dims = config['intrinsic_dims']
+            noises = config['noise_levels']
+            if len(dims) != len(noises):
+                raise ValueError('paired mode requires intrinsic_dims and noise_levels of same length')
+            for d, sigma in zip(dims, noises):
+                D = config.get('ambient_dim')
+                if D is None:
+                    D = d + 1 if manifold == 'sphere' else 2 * d
                 for r in range(config['R']):
                     seed = config.get('base_seed', 0) + r
                     tasks.append({
@@ -83,17 +124,40 @@ def run_synthetic(config, out_csv, max_workers=None):
 
     os.makedirs(os.path.dirname(out_csv), exist_ok=True)
     records = []
+    # submit tasks and track submit time for progress logging
     with ProcessPoolExecutor(max_workers=max_workers) as ex:
-        futures = [ex.submit(synthetic_worker, t) for t in tasks]
-        for fut in as_completed(futures):
+        fut_to_meta = {}
+        for t in tasks:
+            fut = ex.submit(synthetic_worker, t)
+            fut_to_meta[fut] = (t, time.time())
+        for fut in as_completed(fut_to_meta):
+            t, t0 = fut_to_meta[fut]
+            manifold = t.get('manifold')
+            d = t.get('d')
+            sigma = t.get('sigma')
+            seed = t.get('seed')
             try:
                 rec = fut.result()
                 records.extend(rec)
+                elapsed = time.time() - t0
+                print(f"Completed synthetic task manifold={manifold} d={d} sigma={sigma} seed={seed} in {elapsed:.1f}s")
             except Exception as e:
-                print('Worker error', e)
+                elapsed = time.time() - t0
+                print(f"Worker error for manifold={manifold} d={d} sigma={sigma} seed={seed} after {elapsed:.1f}s: {e}")
 
     df = pd.DataFrame.from_records(records)
-    df.to_csv(out_csv, index=False)
+    # When running as a Slurm array task, avoid multiple processes overwriting
+    # the same output file. If `SLURM_ARRAY_TASK_ID` is present, write a
+    # per-task file (caller can aggregate later).
+    task_id = os.environ.get('SLURM_ARRAY_TASK_ID') or os.environ.get('SLURM_ARRAY_TASK_INDEX')
+    if task_id:
+        base, ext = os.path.splitext(out_csv)
+        out_task = f"{base}.task{task_id}{ext}"
+        df.to_csv(out_task, index=False)
+        print(f'Wrote per-task synthetic results to {out_task}')
+    else:
+        df.to_csv(out_csv, index=False)
+        print(f'Wrote synthetic results to {out_csv}')
     return df
 
 
@@ -105,63 +169,63 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
     data_dir = config.get('data_dir', 'data')
 
     for k in config['bottleneck_dims']:
-        for noise in config['noise-levels']:   # NEW LOOP
-            for r in range(config['R']):
-                seed = config.get('base_seed', 0) + r
+        for r in range(config['R']):
+            seed = config.get('base_seed', 0) + r
+            model_path = f'models/ae_k{k}_r{r}.pth'
+            latents_path = f'data/mnist_latents_k{k}_r{r}.npy'
+            os.makedirs(os.path.dirname(model_path) or '.', exist_ok=True)
+            os.makedirs(os.path.dirname(latents_path) or '.', exist_ok=True)
+            if run_train:
+                cmd = [
+                    'python', '-m', 'src.models.train_autoencoder',
+                    '--data-dir', data_dir,
+                    '--batch-size', str(config['batch_size']),
+                    '--hidden-dim', str(config.get('hidden_dim', 400)),
+                    '--bottleneck', str(k),
+                    '--epochs', str(config['epochs']),
+                    '--save-model', model_path,
+                    '--save-latents', latents_path,
+                    '--subset-size', str(config.get('mnist_subset_size', 0)),
+                    '--num-workers', str(config.get('num_workers', 0)),
+                    '--seed', str(seed),
+                ]
+                if 'cpu' in config and config['cpu']:
+                    cmd.append('--cpu')
+                subprocess.check_call(cmd)
 
-                model_path = f'models/ae_k{k}_n{noise}_r{r}.pth'
-                latents_path = f'data/mnist_latents_k{k}_n{noise}_r{r}.npy'
-
-                os.makedirs(os.path.dirname(model_path) or '.', exist_ok=True)
-                os.makedirs(os.path.dirname(latents_path) or '.', exist_ok=True)
-
-                if run_train:
-                    cmd = [
-                        'python', '-m', 'src.models.train_autoencoder',
-                        '--data-dir', data_dir,
-                        '--batch-size', str(config['batch_size']),
-                        '--hidden-dim', str(config.get('hidden_dim', 400)),
-                        '--bottleneck', str(k),
-                        '--epochs', str(config['epochs']),
-                        '--save-model', model_path,
-                        '--save-latents', latents_path,
-                        '--subset-size', str(config.get('mnist_subset_size', 0)),
-                        '--num-workers', str(config.get('num_workers', 0)),
-                        '--seed', str(seed),
-                        '--noise-levels', str(noise),   # NEW ARG
-                    ]
-                    print("NOISE DEBUG")
-                    print(noise)
-                    if config.get('cpu', False):
-                        cmd.append('--cpu')
-
-                    subprocess.check_call(cmd)
-
-                Z = np.load(latents_path)
-
-                for m in config['methods']:
-                    for k_n in config['neighbor_grid_K']:
+            Z = np.load(latents_path)
+            for m in config['methods']:
+                for k_n in config['neighbor_grid_K']:
+                    try:
+                        val = estimate(Z, method=m, k=k_n)
+                    except TypeError:
                         try:
-                            val = estimate(Z, method=m, k=k_n)
-                        except TypeError:
-                            try:
-                                val = estimate(Z, method=m)
-                            except Exception:
-                                val = float('nan')
+                            val = estimate(Z, method=m)
                         except Exception:
                             val = float('nan')
-
-                        records.append({
-                            'estimator': m,
-                            'bottleneck': k,
-                            'noise': noise,   # NEW FIELD
-                            'k_n': k_n,
-                            'estimate': float(val),
-                            'seed': int(seed),
-                        })
+                    except Exception:
+                        val = float('nan')
+                    records.append({
+                        'estimator': m,
+                        'bottleneck': k,
+                        'k_n': k_n,
+                        'estimate': float(val),
+                        'seed': int(seed),
+                    })
 
     df = pd.DataFrame.from_records(records)
-    df.to_csv(out_csv, index=False)
+    # See comment above in `run_synthetic` — write per-task CSV when inside
+    # an array so concurrent tasks don't collide; aggregation can be run
+    # after the array completes.
+    task_id = os.environ.get('SLURM_ARRAY_TASK_ID') or os.environ.get('SLURM_ARRAY_TASK_INDEX')
+    if task_id:
+        base, ext = os.path.splitext(out_csv)
+        out_task = f"{base}.task{task_id}{ext}"
+        df.to_csv(out_task, index=False)
+        print(f'Wrote per-task mnist results to {out_task}')
+    else:
+        df.to_csv(out_csv, index=False)
+        print(f'Wrote mnist results to {out_csv}')
     return df
 
 
@@ -170,11 +234,13 @@ def make_basic_plots(df_syn, out_dir):
     # plot mean estimate vs true d for each estimator (spheres only)
     plt.figure()
     syn = df_syn[df_syn['manifold'] == 'sphere']
-    grouped = syn.groupby(['estimator', 'd'])['estimate'].agg(['mean', 'std']).reset_index()
+    grouped = syn.groupby(['estimator', 'd'])['estimate'].agg(['mean', 'std', 'count']).reset_index()
+    # compute SEM where possible
+    grouped['sem'] = grouped['std'] / (grouped['count'].replace(0, 1) ** 0.5)
     estimators = grouped['estimator'].unique()
     for est in estimators:
         g = grouped[grouped['estimator'] == est]
-        plt.errorbar(g['d'], g['mean'], yerr=g['std'], label=est)
+        plt.errorbar(g['d'], g['mean'], yerr=g['sem'], label=est, capsize=3, marker='o')
     # identity line for reference (y = x)
     min_d = grouped['d'].min()
     max_d = grouped['d'].max()
@@ -230,10 +296,11 @@ def make_full_synthetic_plots(df_syn, out_dir):
             # 1. Estimate vs true d
             plt.figure()
             for est in ests:
-                g = sub_ms[sub_ms['estimator'] == est].groupby('d')['estimate'].agg(['mean', 'std']).reset_index()
+                g = sub_ms[sub_ms['estimator'] == est].groupby('d')['estimate'].agg(['mean', 'std', 'count']).reset_index()
                 if g.empty:
                     continue
-                plt.errorbar(g['d'], g['mean'], yerr=g['std'], label=est, color=colors[est])
+                g['sem'] = g['std'] / (g['count'].replace(0, 1) ** 0.5)
+                plt.errorbar(g['d'], g['mean'], yerr=g['sem'], label=est, color=colors[est], capsize=3, marker='o')
             xs = np.linspace(sub_ms['d'].min(), sub_ms['d'].max(), 100)
             plt.plot(xs, xs, linestyle=':', color='k', label='y = x')
             plt.xlabel('true d')
@@ -264,7 +331,7 @@ def make_full_synthetic_plots(df_syn, out_dir):
             plt.figure(figsize=(10, 4))
             plt.subplot(1, 2, 1)
             for est in ests:
-                g = sub_ms[sub_ms['estimator'] == est].groupby('d')['estimate'].agg(['mean']).reset_index()
+                g = sub_ms[sub_ms['estimator'] == est].groupby('d')['estimate'].agg(['mean', 'std', 'count']).reset_index()
                 if g.empty:
                     continue
                 bias = g['mean'] - g['d']
@@ -275,9 +342,10 @@ def make_full_synthetic_plots(df_syn, out_dir):
             plt.legend()
             plt.subplot(1, 2, 2)
             for est in ests:
-                g = sub_ms[sub_ms['estimator'] == est].groupby('d')['estimate'].agg(['std']).reset_index()
+                g = sub_ms[sub_ms['estimator'] == est].groupby('d')['estimate'].agg(['std', 'count']).reset_index()
                 if g.empty:
                     continue
+                # show standard deviation as variance measure
                 plt.plot(g['d'], g['std'], marker='o', label=est, color=colors[est])
             plt.xlabel('true d')
             plt.ylabel('std')
@@ -296,10 +364,11 @@ def make_full_synthetic_plots(df_syn, out_dir):
                     continue
                 plt.figure()
                 for est in ests:
-                    tmp = sel[sel['estimator'] == est].groupby('k')['estimate'].agg(['mean', 'std']).reset_index()
+                    tmp = sel[sel['estimator'] == est].groupby('k')['estimate'].agg(['mean', 'std', 'count']).reset_index()
                     if tmp.empty:
                         continue
-                    plt.errorbar(tmp['k'], tmp['mean'], yerr=tmp['std'], marker='o', label=est, color=colors[est])
+                    tmp['sem'] = tmp['std'] / (tmp['count'].replace(0, 1) ** 0.5)
+                    plt.errorbar(tmp['k'], tmp['mean'], yerr=tmp['sem'], marker='o', label=est, color=colors[est], capsize=3)
                 plt.xlabel('k')
                 plt.ylabel('estimate')
                 plt.title(f'k sensitivity — {manifold}, d={d}, sigma={sigma}')
@@ -512,6 +581,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--mode', choices=['smoke', 'small', 'final'], default='smoke')
     parser.add_argument('--cpu', action='store_true', help='force CPU mode for training')
+    parser.add_argument('--skip-corrint', action='store_true', help='skip corrint estimator (very slow on full MNIST)')
+    parser.add_argument('--dims', type=str, default=None, help='comma-separated list of intrinsic dims / bottleneck dims')
+    parser.add_argument('--ks', type=str, default=None, help='comma-separated list of neighbor k values')
+    parser.add_argument('--sigmas', type=str, default=None, help='comma-separated list of noise sigma values')
+    parser.add_argument('--paired', action='store_true', help='treat dims and sigmas as paired lists (zipped)')
     parser.add_argument('--workers', type=int, default=None)
     parser.add_argument('--base-seed', type=int, default=None, help='optional base seed override')
     args = parser.parse_args()
@@ -579,26 +653,45 @@ def main():
     else:
         raise NotImplementedError('Only smoke mode implemented in this script')
 
-    print('Running synthetic smoke experiments...')
-    df_syn = run_synthetic(syn_config, out_csv='results/synthetic_smoke.csv', max_workers=args.workers)
-    print('Saved results/synthetic_smoke.csv')
+    # optionally skip corrint (very slow on full MNIST). Remove from method lists.
+    if getattr(args, 'skip_corrint', False):
+        def _filter_methods(lst):
+            return [m for m in lst if m != 'corrint']
+        syn_config['methods'] = _filter_methods(syn_config.get('methods', []))
+        mnist_config['methods'] = _filter_methods(mnist_config.get('methods', []))
 
-    print('Running MNIST autoencoder smoke experiments...')
-    df_mnist = run_mnist_autoencoder(mnist_config, out_csv='results/mnist_smoke.csv', run_train=True)
-    print('Saved results/mnist_smoke.csv')
+    # choose output filenames; write figures into results/figs_<mode> (overwrite existing figs)
+    synthetic_out = f'results/synthetic_{args.mode}.csv'
+    mnist_out = f'results/mnist_{args.mode}.csv'
+    figs_out_dir = f'results/figs_{args.mode}'
+
+    print(f'Running synthetic {args.mode} experiments...', flush=True)
+    df_syn = run_synthetic(syn_config, out_csv=synthetic_out, max_workers=args.workers)
+    print(f'Saved {synthetic_out}')
+
+    print(f'Running MNIST autoencoder {args.mode} experiments...', flush=True)
+    try:
+        df_mnist = run_mnist_autoencoder(mnist_config, out_csv=mnist_out, run_train=True)
+        print(f'Saved {mnist_out}', flush=True)
+    except Exception:
+        import traceback as _tb
+        print('MNIST autoencoder step failed with exception:', flush=True)
+        print(_tb.format_exc(), flush=True)
+        df_mnist = None
 
     print('Making basic plots...')
-    make_basic_plots(df_syn, out_dir='results/figs')
+    # write figures into a mode-specific folder (easier to inspect small vs final)
+    make_basic_plots(df_syn, out_dir=figs_out_dir)
     # full suite
     try:
-        make_full_synthetic_plots(df_syn, out_dir='results/figs')
+        make_full_synthetic_plots(df_syn, out_dir=figs_out_dir)
     except Exception as e:
         print('Failed to make full synthetic plots:', e)
     try:
-        make_full_mnist_plots(df_mnist, out_dir='results/figs')
+        make_full_mnist_plots(df_mnist, out_dir=figs_out_dir)
     except Exception as e:
         print('Failed to make full MNIST plots:', e)
-    print('Saved plots under results/figs')
+    print(f'Saved plots under {figs_out_dir}')
 
 
 if __name__ == '__main__':

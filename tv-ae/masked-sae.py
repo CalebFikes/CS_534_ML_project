@@ -222,7 +222,6 @@ if __name__ == "__main__":
 
 
 
-
 # model = AE(nlatent=64).to(device)
 # optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 

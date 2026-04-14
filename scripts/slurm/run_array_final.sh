@@ -1,0 +1,34 @@
+#!/bin/bash
+#SBATCH --job-name=idbench_syn_final
+#SBATCH --output=logs/idbench_syn_final_%A_%a.out
+#SBATCH --error=logs/idbench_syn_final_%A_%a.err
+#SBATCH --time=12:00:00
+#SBATCH --mem=32G
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --gres=gpu:1
+#SBATCH --array=0-9
+
+export BASE_SEED=${SLURM_ARRAY_TASK_ID}
+
+# Ensure logs directory exists so Slurm can write output files
+mkdir -p ${PWD}/logs
+
+# Source conda initialization explicitly to ensure `conda activate` works
+if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+    source "$HOME/miniconda3/etc/profile.d/conda.sh"
+elif [ -f "/local/scratch/cfikes/miniconda3/etc/profile.d/conda.sh" ]; then
+    source "/local/scratch/cfikes/miniconda3/etc/profile.d/conda.sh"
+fi
+
+set -x
+echo "Starting final job on $(hostname) at $(date); workdir=$(pwd); user=$(whoami)"
+conda activate cs_534_cuda
+# ensure we run from the repository root so `python -m src...` works
+cd /local/scratch/cfikes/CS_534_ML_project || exit 1
+
+# remove old figures so final run overwrites them
+rm -rf results/figs || true
+
+# Run the experiment driver in final (full) mode
+python -m src.experiments.run_experiments --mode final --workers 1 --base-seed ${BASE_SEED}
