@@ -1,7 +1,5 @@
 # Data, results and artifacts
 results/
-data/
-models/
 *.png
 *.pdf
 *.csv

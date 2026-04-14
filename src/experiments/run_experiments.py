@@ -98,60 +98,67 @@ def run_synthetic(config, out_csv, max_workers=None):
 
 
 def run_mnist_autoencoder(config, out_csv, run_train=True):
-    """Train small autoencoders and compute estimates on latent representations.
-
-    For the smoke test we train on a subset of MNIST using the training script
-    in `src.models.train_autoencoder.py` and load the saved latents.
-    """
     import subprocess
     import numpy as np
 
     records = []
     data_dir = config.get('data_dir', 'data')
-    for k in config['bottleneck_dims']:
-        for r in range(config['R']):
-            seed = config.get('base_seed', 0) + r
-            model_path = f'models/ae_k{k}_r{r}.pth'
-            latents_path = f'data/mnist_latents_k{k}_r{r}.npy'
-            os.makedirs(os.path.dirname(model_path) or '.', exist_ok=True)
-            os.makedirs(os.path.dirname(latents_path) or '.', exist_ok=True)
-            if run_train:
-                cmd = [
-                    'python', '-m', 'src.models.train_autoencoder',
-                    '--data-dir', data_dir,
-                    '--batch-size', str(config['batch_size']),
-                    '--hidden-dim', str(config.get('hidden_dim', 400)),
-                    '--bottleneck', str(k),
-                    '--epochs', str(config['epochs']),
-                    '--save-model', model_path,
-                    '--save-latents', latents_path,
-                    '--subset-size', str(config.get('mnist_subset_size', 0)),
-                    '--num-workers', str(config.get('num_workers', 0)),
-                    '--seed', str(seed),
-                ]
-                if 'cpu' in config and config['cpu']:
-                    cmd.append('--cpu')
-                subprocess.check_call(cmd)
 
-            Z = np.load(latents_path)
-            for m in config['methods']:
-                for k_n in config['neighbor_grid_K']:
-                    try:
-                        val = estimate(Z, method=m, k=k_n)
-                    except TypeError:
+    for k in config['bottleneck_dims']:
+        for noise in config['noise-levels']:   # NEW LOOP
+            for r in range(config['R']):
+                seed = config.get('base_seed', 0) + r
+
+                model_path = f'models/ae_k{k}_n{noise}_r{r}.pth'
+                latents_path = f'data/mnist_latents_k{k}_n{noise}_r{r}.npy'
+
+                os.makedirs(os.path.dirname(model_path) or '.', exist_ok=True)
+                os.makedirs(os.path.dirname(latents_path) or '.', exist_ok=True)
+
+                if run_train:
+                    cmd = [
+                        'python', '-m', 'src.models.train_autoencoder',
+                        '--data-dir', data_dir,
+                        '--batch-size', str(config['batch_size']),
+                        '--hidden-dim', str(config.get('hidden_dim', 400)),
+                        '--bottleneck', str(k),
+                        '--epochs', str(config['epochs']),
+                        '--save-model', model_path,
+                        '--save-latents', latents_path,
+                        '--subset-size', str(config.get('mnist_subset_size', 0)),
+                        '--num-workers', str(config.get('num_workers', 0)),
+                        '--seed', str(seed),
+                        '--noise-levels', str(noise),   # NEW ARG
+                    ]
+                    print("NOISE DEBUG")
+                    print(noise)
+                    if config.get('cpu', False):
+                        cmd.append('--cpu')
+
+                    subprocess.check_call(cmd)
+
+                Z = np.load(latents_path)
+
+                for m in config['methods']:
+                    for k_n in config['neighbor_grid_K']:
                         try:
-                            val = estimate(Z, method=m)
+                            val = estimate(Z, method=m, k=k_n)
+                        except TypeError:
+                            try:
+                                val = estimate(Z, method=m)
+                            except Exception:
+                                val = float('nan')
                         except Exception:
                             val = float('nan')
-                    except Exception:
-                        val = float('nan')
-                    records.append({
-                        'estimator': m,
-                        'bottleneck': k,
-                        'k_n': k_n,
-                        'estimate': float(val),
-                        'seed': int(seed),
-                    })
+
+                        records.append({
+                            'estimator': m,
+                            'bottleneck': k,
+                            'noise': noise,   # NEW FIELD
+                            'k_n': k_n,
+                            'estimate': float(val),
+                            'seed': int(seed),
+                        })
 
     df = pd.DataFrame.from_records(records)
     df.to_csv(out_csv, index=False)
@@ -510,6 +517,7 @@ def main():
     args = parser.parse_args()
 
     # default configurations (mirror the provided config)
+    print(args.mode)
     if args.mode == 'smoke':
         syn_config = {
             'n_samples': 300,
@@ -523,7 +531,7 @@ def main():
         }
         mnist_config = {
             'mnist_subset_size': 2000,
-            'bottleneck_dims': [5, 10],
+            'bottleneck_dims': [2, 5, 10, 15, 20],
             'R': 1,
             'epochs': 5,
             'batch_size': 128,
@@ -531,7 +539,31 @@ def main():
             'methods': ['levina-bickel', 'twonn', 'corrint', 'danco', 'mind', 'fisher'],
             'data_dir': 'data',
             'base_seed': 0,
+            'noise-levels': [0.0, 0.1, 0.2, 0.3]
         }
+        # noisy_mnist_config = {
+        #     'mnist_subset_size': 2000,
+        #     'bottleneck_dims': [10],
+        #     'R': 1,
+        #     'epochs': 5,
+        #     'batch_size': 128,
+        #     'neighbor_grid_K': [5, 10],
+        #     'methods': ['levina-bickel', 'twonn', 'corrint', 'danco', 'mind', 'fisher'],
+        #     'data_dir': 'data',
+        #     'base_seed': 0,
+        #     'noise_levels': [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3]
+        # }
+        # mnist_faces_config = {
+        #     'mnist_subset_size': 2000,
+        #     'bottleneck_dims': [2, 5, 10, 15, 20],
+        #     'R': 1,
+        #     'epochs': 5,
+        #     'batch_size': 128,
+        #     'neighbor_grid_K': [5, 10],
+        #     'methods': ['levina-bickel', 'twonn', 'corrint', 'danco', 'mind', 'fisher'],
+        #     'data_dir': 'data',
+        #     'base_seed': 0,
+        # }
     # allow environment or CLI override for base seed (useful for Slurm arrays)
     env_base = os.environ.get('BASE_SEED')
     if env_base is not None:
