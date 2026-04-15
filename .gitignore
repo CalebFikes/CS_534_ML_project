@@ -1,8 +1,16 @@
 # Data, results and artifacts
-results/
-*.png
-*.pdf
-*.csv
+# keep the results/ folder but ignore generated CSVs, figures, and aggregates
+results/*.csv
+results/*.png
+results/*.pdf
+results/figs_
+# model weights and reconstructions (may be large)
+models/
+*.pth
+recons/
+datasets/
+data/*_recon*.npy
+# numpy arrays produced by runs
 *.npy
 *.npz
 
