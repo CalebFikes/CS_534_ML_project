@@ -23,7 +23,7 @@ fi
 
 set -x
 echo "Starting job on $(hostname) at $(date); workdir=$(pwd); user=$(whoami)"
-conda activate cs_534_cuda
+conda activate cs_534_gpu
 # ensure we run from the repository root so `python -m src...` works
 cd /local/scratch/cfikes/CS_534_ML_project || exit 1
 

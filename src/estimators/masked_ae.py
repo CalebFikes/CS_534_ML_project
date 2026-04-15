@@ -1,4 +1,5 @@
 import numpy as np
+import logging
 try:
     import torch
     import torch.nn as nn
@@ -91,7 +92,13 @@ else:
         return float(xs_s[idx])
 
 
-    def masked_ae_estimate(X, nlatent=64, nhidden=256, lambdas=None, lr=1e-3, epochs=5, batch_size=128, device=None, threshold=1e-3, **kwargs):
+    def masked_ae_estimate(X, nlatent=64, nhidden=256, lambdas=None,
+                          lr=1e-3, epochs=10, batch_size=128, device=None,
+                          threshold=1e-3,
+                          pretrain_epochs=50, pretrain_lr=1e-4,
+                          sweep_epochs=25, sweep_lr=1e-5,
+                          return_debug=False,
+                          **kwargs):
         """Estimate intrinsic dimension via masked AE lambda-sweep and 1-breakpiece fit.
 
         Returns: float (estimated dimension = number of active latents at fitted breakpoint)
@@ -100,11 +107,12 @@ else:
             device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
         if lambdas is None:
-            # wider lambda sweep (log-spaced-ish) to ensure we reach strong sparsity
-            lambdas = [1e-4, 5e-4, 1e-3, 5e-3, 1e-2, 5e-2, 1e-1, 5e-1, 1.0, 5.0]
+            # 10 lambdas spaced log-uniformly between 0.1 and 10 (user spec)
+            lambdas = list(np.logspace(np.log10(0.1), np.log10(10.0), 10))
 
+        logger = logging.getLogger(__name__)
         # DEBUG: report lambda sweep we're using
-        print(f"[masked-ae DEBUG] lambda_grid={lambdas} nlatent={nlatent} nhidden={nhidden} epochs={epochs} lr={lr} threshold={threshold}")
+        logger.debug(f"[masked-ae DEBUG] lambda_grid={lambdas} nlatent={nlatent} nhidden={nhidden} epochs={epochs} lr={lr} threshold={threshold}")
 
         X = np.asarray(X)
         if X.ndim != 2:
@@ -116,23 +124,44 @@ else:
 
         results = []  # list of (lambda, recon, active)
 
-        for lam in lambdas:
-            model = AE(nambient=D, nlatent=nlatent, nhidden=nhidden).to(device)
-            opt = torch.optim.Adam(model.parameters(), lr=lr)
+        # Pretrain without sparsity to obtain good recon baseline (warm start)
+        logger.debug(f"[masked-ae DEBUG] Pretraining {pretrain_epochs} epochs lr={pretrain_lr} (no sparsity)")
+        base_model = AE(nambient=D, nlatent=nlatent, nhidden=nhidden).to(device)
+        opt_pre = torch.optim.Adam(base_model.parameters(), lr=pretrain_lr)
+        for ep in range(pretrain_epochs):
+            base_model.train()
+            for (batch,) in dl:
+                batch = batch.to(device)
+                opt_pre.zero_grad()
+                x_hat, z = base_model(batch)
+                recon = F.mse_loss(x_hat, batch.view(batch.size(0), -1), reduction='mean')
+                loss = recon
+                loss.backward()
+                opt_pre.step()
 
-            for ep in range(epochs):
+        # save pretrained state
+        pretrained_state = base_model.state_dict()
+
+        # Sweep lambdas warm-starting from pretrained weights
+        logger.debug(f"[masked-ae DEBUG] Sweeping {len(lambdas)} lambdas warm-starting from pretrained checkpoint; sweep_epochs={sweep_epochs} sweep_lr={sweep_lr}")
+        for lam in lambdas:
+            # restore model to pretrained state for each lambda
+            model = AE(nambient=D, nlatent=nlatent, nhidden=nhidden).to(device)
+            model.load_state_dict(pretrained_state)
+            opt = torch.optim.Adam(model.parameters(), lr=sweep_lr)
+
+            for ep in range(sweep_epochs):
                 model.train()
-                total_loss = 0.0
                 for (batch,) in dl:
                     batch = batch.to(device)
                     opt.zero_grad()
                     x_hat, z = model(batch)
                     recon = F.mse_loss(x_hat, batch.view(batch.size(0), -1), reduction='mean')
-                    spars = torch.norm(model.w, 1)
+                    # penalize the masked activations (mean L1 over batch and latents)
+                    spars = torch.mean(torch.abs(z * model.w))
                     loss = recon + lam * spars
                     loss.backward()
                     opt.step()
-                    total_loss += float(loss.item()) * batch.size(0)
 
             # evaluate reconstruction error (mean per-sample MSE)
             model.eval()
@@ -141,7 +170,7 @@ else:
                 for (batch,) in dl:
                     batch = batch.to(device)
                     x_hat, _ = model(batch)
-                    recon = F.mse_loss(x_hat, batch.view(batch.size(0), -1), reduction='sum')
+                    recon = F.mse_loss(x_hat, batch.view(batch.size(0), -1), reduction='mean')
                     total_recon += float(recon.item())
             total_recon /= float(n)
 
@@ -153,7 +182,7 @@ else:
                 w_min, w_max, w_mean = float(w.min()), float(w.max()), float(w.mean())
             except Exception:
                 w_min = w_max = w_mean = None
-            print(f"[masked-ae DEBUG] lam={lam} recon_mean_per_sample={total_recon:.6g} active={active} w_min={w_min} w_max={w_max} w_mean={w_mean}")
+            logger.debug(f"[masked-ae DEBUG] lam={lam} recon_mean_per_sample={total_recon:.6g} active={active} w_min={w_min} w_max={w_max} w_mean={w_mean}")
 
         # unpack
         lams, recons, acts = zip(*results)
@@ -162,30 +191,36 @@ else:
         recons = np.asarray(recons)
 
         # DEBUG: report arrays that go into Kneedle
-        print(f"[masked-ae DEBUG] lams={lams.tolist()} acts={acts.tolist()} recons={recons.tolist()}")
+        logger.debug(f"[masked-ae DEBUG] lams={lams.tolist()} acts={acts.tolist()} recons={recons.tolist()}")
 
         # Use log(lambda) -> active for elbow detection (more sensitive)
         log_lams = np.log10(lams)
         try:
             bp_log = _kneedle(log_lams, acts)
             lam_bp = float(10 ** bp_log)
-            print(f"[masked-ae DEBUG] kneedle_bp_log={bp_log} lam_bp={lam_bp}")
+            logger.debug(f"[masked-ae DEBUG] kneedle_bp_log={bp_log} lam_bp={lam_bp}")
         except Exception as e:
-            print(f"[masked-ae DEBUG] kneedle exception: {e}")
+            logger.debug(f"[masked-ae DEBUG] kneedle exception: {e}")
             lam_bp = float(lams[int(len(lams) // 2)])
 
-        # Retrain once at the selected lambda (possibly interpolated) to get final active count
-        print(f"[masked-ae DEBUG] Retraining at selected lambda={lam_bp}")
+
+        # Retrain once at the selected lambda (warm-start from pretrained) to get final active count
+        logger.debug(f"[masked-ae DEBUG] Retraining at selected lambda={lam_bp} from pretrained checkpoint, epochs={sweep_epochs}, lr={sweep_lr}")
         model = AE(nambient=D, nlatent=nlatent, nhidden=nhidden).to(device)
-        opt = torch.optim.Adam(model.parameters(), lr=lr)
-        for ep in range(epochs):
+        # use pretrained_state saved above if available
+        try:
+            model.load_state_dict(pretrained_state)
+        except Exception:
+            pass
+        opt = torch.optim.Adam(model.parameters(), lr=sweep_lr)
+        for ep in range(sweep_epochs):
             model.train()
             for (batch,) in dl:
                 batch = batch.to(device)
                 opt.zero_grad()
                 x_hat, z = model(batch)
                 recon = F.mse_loss(x_hat, batch.view(batch.size(0), -1), reduction='mean')
-                spars = torch.norm(model.w, 1)
+                spars = torch.mean(torch.abs(z * model.w))
                 loss = recon + lam_bp * spars
                 loss.backward()
                 opt.step()
@@ -199,8 +234,36 @@ else:
             w_min, w_max, w_mean = float(w_final.min()), float(w_final.max()), float(w_final.mean())
         except Exception:
             w_min = w_max = w_mean = None
-        print(f"[masked-ae DEBUG] final lam={lam_bp} active_final={active_final} w_min={w_min} w_max={w_max} w_mean={w_mean}")
+        logger.debug(f"[masked-ae DEBUG] final lam={lam_bp} active_final={active_final} w_min={w_min} w_max={w_max} w_mean={w_mean}")
 
         d_hat = float(max(0, min(nlatent, int(active_final))))
-        print(f"[masked-ae DEBUG] d_hat={d_hat}")
+        logger.debug(f"[masked-ae DEBUG] d_hat={d_hat}")
+
+        if return_debug:
+            # package diagnostics for plotting / inspection
+            w_sorted = np.sort(w_final)[::-1]
+            meta = {
+                'lam_bp': float(lam_bp),
+                'bp_log': float(bp_log),
+                'active_final': int(active_final),
+                'threshold': float(threshold),
+                'nlatent': int(nlatent),
+                'nhidden': int(nhidden),
+                'pretrain_epochs': int(pretrain_epochs),
+                'sweep_epochs': int(sweep_epochs),
+                'pretrain_lr': float(pretrain_lr),
+                'sweep_lr': float(sweep_lr),
+            }
+            return {
+                'd_hat': d_hat,
+                'lams': lams,
+                'acts': acts,
+                'recons': recons,
+                'lam_bp': lam_bp,
+                'bp_log': bp_log,
+                'w_final': w_final,
+                'w_sorted': w_sorted,
+                'meta': meta,
+            }
+
         return d_hat

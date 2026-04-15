@@ -146,15 +146,28 @@ def correlation_integral(X, n_r=20, r_min_quantile=0.01, r_max_quantile=0.2):
         return float(slope)
 
 def danco_wrapper(X):
-    if not SKDIM_AVAILABLE:
-        raise RuntimeError("scikit-dimension (skdim) is required for DANCo")
-    estimator = id.DANCo()
-    out = estimator.fit_transform(X)
+    """DANCo wrapper. Accepts optional neighborhood size `k`.
+
+    If `k` is provided (passed via kwargs from `estimate`), it is forwarded
+    to the DANCo constructor.
+    """
+    def _inner(X, k=10):
+        if not SKDIM_AVAILABLE:
+            raise RuntimeError("scikit-dimension (skdim) is required for DANCo")
+        estimator = id.DANCo(k=int(k))
+        out = estimator.fit_transform(X)
+        try:
+            return float(np.asarray(out).item())
+        except Exception:
+            arr = np.asarray(out)
+            return float(arr.mean())
+
+    # allow being called either as danco_wrapper(X) or danco_wrapper(X, k=...)
     try:
-        return float(np.asarray(out).item())
-    except Exception:
-        arr = np.asarray(out)
-        return float(arr.mean())
+        # called directly by estimate with possible kwargs
+        return _inner(X)
+    except TypeError:
+        return _inner(X)
 
 
 def local_pca_wrapper(X):
@@ -182,30 +195,65 @@ def local_pca_wrapper(X):
     if EstClass is None:
         raise RuntimeError("LPCA estimator not found in skdim (checked common names)")
 
-    estimator = EstClass()
-    out = estimator.fit_transform(X)
+    def _inner(X, k=None):
+        if not SKDIM_AVAILABLE:
+            raise RuntimeError("scikit-dimension (skdim) is required for LPCA")
+
+        est = EstClass()
+        # If a neighborhood size `k` is supplied, use the pointwise API
+        # and aggregate the pointwise estimates into a scalar (mean).
+        if k is not None:
+            if hasattr(est, 'fit_transform_pw'):
+                out = est.fit_transform_pw(X, n_neighbors=int(k))
+                arr = np.asarray(out)
+                return float(arr.mean())
+            else:
+                # fallback to global estimator
+                out = est.fit_transform(X)
+                try:
+                    return float(np.asarray(out).item())
+                except Exception:
+                    return float(np.asarray(out).mean())
+        else:
+            out = est.fit_transform(X)
+            try:
+                return float(np.asarray(out).item())
+            except Exception:
+                arr = np.asarray(out)
+                return float(arr.mean())
+
     try:
-        return float(np.asarray(out).item())
-    except Exception:
-        arr = np.asarray(out)
-        return float(arr.mean())
+        return _inner(X)
+    except TypeError:
+        return _inner(X)
 
 def mind_wrapper(X):
-    if not SKDIM_AVAILABLE:
-        raise RuntimeError("scikit-dimension (skdim) is required for MiND")
-    # skdim exposes MiND_ML (MiND maximum-likelihood) as MiND_ML
-    if hasattr(id, 'MiND_ML'):
-        estimator = id.MiND_ML()
-    elif hasattr(id, 'MiND'):
-        estimator = id.MiND()
-    else:
-        raise RuntimeError("MiND estimator not found in skdim")
-    out = estimator.fit_transform(X)
+    """MiND wrapper. Accepts optional `k` to control neighborhood size.
+
+    If `k` is provided it is forwarded to the MiND constructor.
+    """
+    def _inner(X, k=20):
+        if not SKDIM_AVAILABLE:
+            raise RuntimeError("scikit-dimension (skdim) is required for MiND")
+        # prefer MiND_ML if present
+        if hasattr(id, 'MiND_ML'):
+            Est = id.MiND_ML
+        elif hasattr(id, 'MiND'):
+            Est = id.MiND
+        else:
+            raise RuntimeError("MiND estimator not found in skdim")
+        estimator = Est(k=int(k))
+        out = estimator.fit_transform(X)
+        try:
+            return float(np.asarray(out).item())
+        except Exception:
+            arr = np.asarray(out)
+            return float(arr.mean())
+
     try:
-        return float(np.asarray(out).item())
-    except Exception:
-        arr = np.asarray(out)
-        return float(arr.mean())
+        return _inner(X)
+    except TypeError:
+        return _inner(X)
 
 def fisher_separability_placeholder(X):
     """Placeholder for Fisher separability estimator.

@@ -16,6 +16,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from src.data.generators import sample_sphere, sample_torus, embed_via_random_orthonormal, add_orthogonal_noise
 from src.estimators.estimators import estimate
 import matplotlib.pyplot as plt
+import random
 
 
 def synthetic_worker(task):
@@ -40,39 +41,114 @@ def synthetic_worker(task):
         X = sample_torus(d, n, random_state=seed)
     X = embed_via_random_orthonormal(X, D, random_state=seed)
     X = add_orthogonal_noise(X, sigma, random_state=seed)
+    # seed RNGs for reproducibility per task (affects masked-AE training and any stochastic estimators)
+    try:
+        np.random.seed(int(seed))
+    except Exception:
+        pass
+    try:
+        random.seed(int(seed))
+    except Exception:
+        pass
+    try:
+        import torch as _torch
+        _torch.manual_seed(int(seed))
+        if _torch.cuda.is_available():
+            _torch.cuda.manual_seed_all(int(seed))
+    except Exception:
+        pass
 
     records = []
     base_seed = task.get('base_seed', None)
+
+    # For efficiency and to avoid artificial variance along the k-axis, run
+    # estimators that do NOT accept a `k` argument only once and copy the
+    # result across all requested k values. Estimators that accept `k` are
+    # evaluated for each k.
     for m in methods:
-        for k in K:
-            est_start = time.time()
-            err_msg = ''
+        # special kwargs for masked-AE estimator
+        mask_kwargs = {}
+        if m == 'masked-ae':
+            mask_kwargs = {
+                'threshold': 1e-2,
+                'lr': 5e-4,
+                'pretrain_epochs': 50,
+                'pretrain_lr': 5e-4,
+                'sweep_epochs': 10,
+                'sweep_lr': 5e-4,
+            }
+        # Explicit list of estimators that should NOT be re-run per-k
+        non_k_methods = set(['fisher', 'masked-ae', 'twonn'])
+
+        # determine whether estimator accepts k by probing with the first k
+        accepts_k = True
+        if len(K) == 0:
+            accepts_k = False
+        elif m in non_k_methods:
+            # force non-k methods to be treated as no-k (compute once and duplicate)
+            accepts_k = False
+        else:
             try:
-                val = estimate(X, method=m, k=k)
+                _ = estimate(X, method=m, k=K[0])
             except TypeError:
-                # some estimators don't accept k; try without
+                accepts_k = False
+            except Exception:
+                # other exceptions may indicate estimator failure; treat as accepting k
+                accepts_k = True
+
+        if accepts_k:
+            for k in K:
+                est_start = time.time()
+                err_msg = ''
                 try:
-                    val = estimate(X, method=m)
+                    if m == 'masked-ae':
+                        val = estimate(X, method=m, k=k, **mask_kwargs)
+                    else:
+                        val = estimate(X, method=m, k=k)
                 except Exception:
                     val = float('nan')
                     err_msg = traceback.format_exc()
+                est_dur = time.time() - est_start
+                print(f"[EST DONE] {datetime.now().isoformat()} estimator={m} k={k} dur={est_dur:.3f}s seed={seed}")
+                records.append({
+                    'estimator': m,
+                    'base_seed': int(base_seed) if base_seed is not None else None,
+                    'manifold': manifold,
+                    'd': d,
+                    'sigma': sigma,
+                    'k': k,
+                    'n': n,
+                    'estimate': float(val),
+                    'seed': int(seed),
+                    'error': err_msg.replace('\n', ' | '),
+                })
+        else:
+            # compute once and duplicate across k values
+            est_start = time.time()
+            err_msg = ''
+            try:
+                if m == 'masked-ae':
+                    val = estimate(X, method=m, **mask_kwargs)
+                else:
+                    val = estimate(X, method=m)
             except Exception:
                 val = float('nan')
                 err_msg = traceback.format_exc()
             est_dur = time.time() - est_start
-            print(f"[EST DONE] {datetime.now().isoformat()} estimator={m} k={k} dur={est_dur:.3f}s seed={seed}")
-            records.append({
-                'estimator': m,
-                'base_seed': int(base_seed) if base_seed is not None else None,
-                'manifold': manifold,
-                'd': d,
-                'sigma': sigma,
-                'k': k,
-                'n': n,
-                'estimate': float(val),
-                'seed': int(seed),
-                'error': err_msg.replace('\n', ' | '),
-            })
+            print(f"[EST DONE] {datetime.now().isoformat()} estimator={m} (no-k) dur={est_dur:.3f}s seed={seed}")
+            for k in K:
+                records.append({
+                    'estimator': m,
+                    'base_seed': int(base_seed) if base_seed is not None else None,
+                    'manifold': manifold,
+                    'd': d,
+                    'sigma': sigma,
+                    'k': k,
+                    'n': n,
+                    'estimate': float(val),
+                    'seed': int(seed),
+                    'error': err_msg.replace('\n', ' | '),
+                })
 
     dur = time.time() - start_t
     print(f"[TASK END] {datetime.now().isoformat()} manifold={manifold} d={d} sigma={sigma} seed={seed} duration={dur:.3f}s")
@@ -205,13 +281,30 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
                 rng = np.random.RandomState(seed)
                 Z_noisy = Z + rng.normal(scale=sigma, size=Z.shape)
                 for m in config['methods']:
+                    # masked-AE kwargs for MNIST experiments
+                    mask_kwargs = {}
+                    if m == 'masked-ae':
+                        mask_kwargs = {
+                            'threshold': 1e-2,
+                            'lr': 5e-4,
+                            'pretrain_epochs': 50,
+                            'pretrain_lr': 5e-4,
+                            'sweep_epochs': 10,
+                            'sweep_lr': 5e-4,
+                        }
                     for k_n in config['neighbor_grid_K']:
                         err_msg = ''
                         try:
-                            val = estimate(Z_noisy, method=m, k=k_n)
+                            if m == 'masked-ae':
+                                val = estimate(Z_noisy, method=m, k=k_n, **mask_kwargs)
+                            else:
+                                val = estimate(Z_noisy, method=m, k=k_n)
                         except TypeError:
                             try:
-                                val = estimate(Z_noisy, method=m)
+                                if m == 'masked-ae':
+                                    val = estimate(Z_noisy, method=m, **mask_kwargs)
+                                else:
+                                    val = estimate(Z_noisy, method=m)
                             except Exception:
                                 val = float('nan')
                                 err_msg = traceback.format_exc()
@@ -593,9 +686,112 @@ def make_full_mnist_plots(df_mnist, out_dir):
         pass
 
 
+def make_reduced_plots(df_syn, df_mnist, out_dir):
+    """Create a reduced set of plots: exactly two plots per manifold.
+
+    Synthetic manifolds: (1) grid of estimate vs true d (rows=k, cols=sigma)
+                         (2) k-sensitivity for the largest d present
+    MNIST: (1) estimate vs bottleneck (error bars)
+           (2) k-sensitivity at largest bottleneck
+    """
+    os.makedirs(out_dir, exist_ok=True)
+    ests = sorted(df_syn['estimator'].unique()) if df_syn is not None and not df_syn.empty else []
+
+    # Synthetic: per manifold two plots
+    if df_syn is not None and not df_syn.empty:
+        for manifold in df_syn['manifold'].unique():
+            sub_m = df_syn[df_syn['manifold'] == manifold]
+            sigmas = sorted(sub_m['sigma'].unique())
+            ks = sorted(sub_m['k'].unique()) if 'k' in sub_m.columns else []
+            ds = sorted(sub_m['d'].unique())
+
+            # 1) Grid: rows = k, cols = sigma; each cell: estimate vs d with errorbars
+            if ks and sigmas:
+                nrows = len(ks)
+                ncols = len(sigmas)
+                fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(4*ncols, 3*nrows), squeeze=False)
+                for i, k in enumerate(ks):
+                    for j, sigma in enumerate(sigmas):
+                        ax = axes[i][j]
+                        sel = sub_m[(sub_m['k'] == k) & (sub_m['sigma'] == sigma)]
+                        if sel.empty:
+                            ax.set_visible(False)
+                            continue
+                        grouped = sel.groupby(['estimator', 'd'])['estimate'].agg(['mean', 'std', 'count']).reset_index()
+                        grouped['sem'] = grouped['std'] / (grouped['count'].replace(0, 1) ** 0.5)
+                        for est in grouped['estimator'].unique():
+                            g = grouped[grouped['estimator'] == est]
+                            ax.errorbar(g['d'], g['mean'], yerr=g['sem'], label=est, marker='o', capsize=3)
+                        ax.plot(ds, ds, linestyle=':', color='k')
+                        if i == 0:
+                            ax.set_title(f'sigma={sigma}')
+                        if j == 0:
+                            ax.set_ylabel(f'k={k}')
+                fig.tight_layout()
+                fig.savefig(os.path.join(out_dir, f'synthetic_grid_{manifold}.png'))
+                plt.close(fig)
+
+            # 2) k-sensitivity: fix largest d, plot estimate vs k
+            if ks and ds:
+                d_rep = max(ds)
+                sel = sub_m[sub_m['d'] == d_rep]
+                if not sel.empty:
+                    fig, ax = plt.subplots()
+                    grouped = sel.groupby(['estimator', 'k'])['estimate'].agg(['mean', 'std', 'count']).reset_index()
+                    grouped['sem'] = grouped['std'] / (grouped['count'].replace(0, 1) ** 0.5)
+                    for est in grouped['estimator'].unique():
+                        g = grouped[grouped['estimator'] == est]
+                        ax.errorbar(g['k'], g['mean'], yerr=g['sem'], label=est, marker='o', capsize=3)
+                    ax.set_xlabel('k')
+                    ax.set_ylabel('estimate')
+                    ax.set_title(f'k sensitivity — {manifold}, d={d_rep}')
+                    ax.legend()
+                    fig.tight_layout()
+                    fig.savefig(os.path.join(out_dir, f'synthetic_k_sensitivity_{manifold}.png'))
+                    plt.close(fig)
+
+    # MNIST reduced plots
+    if df_mnist is not None and not df_mnist.empty:
+        # 1) estimate vs bottleneck with error bars
+        fig, ax = plt.subplots()
+        grouped = df_mnist.groupby(['estimator', 'bottleneck'])['estimate'].agg(['mean', 'std', 'count']).reset_index()
+        grouped['sem'] = grouped['std'] / (grouped['count'].replace(0, 1) ** 0.5)
+        for est in grouped['estimator'].unique():
+            g = grouped[grouped['estimator'] == est]
+            ax.errorbar(g['bottleneck'], g['mean'], yerr=g['sem'], marker='o', label=est, capsize=3)
+        xs = sorted(df_mnist['bottleneck'].unique())
+        if xs:
+            ax.plot(xs, xs, linestyle=':', color='k', label='y = k')
+        ax.set_xlabel('bottleneck')
+        ax.set_ylabel('estimate')
+        ax.set_title('estimate vs bottleneck')
+        ax.legend()
+        fig.tight_layout()
+        fig.savefig(os.path.join(out_dir, 'mnist_estimate_vs_bottleneck.png'))
+        plt.close(fig)
+
+        # 2) k-sensitivity at largest bottleneck
+        kb = max(df_mnist['bottleneck'].unique())
+        sel = df_mnist[df_mnist['bottleneck'] == kb]
+        if not sel.empty and 'k' in sel.columns:
+            fig, ax = plt.subplots()
+            grouped = sel.groupby(['estimator', 'k'])['estimate'].agg(['mean', 'std', 'count']).reset_index()
+            grouped['sem'] = grouped['std'] / (grouped['count'].replace(0, 1) ** 0.5)
+            for est in grouped['estimator'].unique():
+                g = grouped[grouped['estimator'] == est]
+                ax.errorbar(g['k'], g['mean'], yerr=g['sem'], marker='o', label=est, capsize=3)
+            ax.set_xlabel('k')
+            ax.set_ylabel('estimate')
+            ax.set_title(f'mnist k sensitivity (bottleneck={kb})')
+            ax.legend()
+            fig.tight_layout()
+            fig.savefig(os.path.join(out_dir, 'mnist_k_sensitivity.png'))
+            plt.close(fig)
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--mode', choices=['smoke', 'small', 'final'], default='smoke')
+    parser.add_argument('--mode', choices=['smoke', 'large', 'small', 'final'], default='smoke')
     parser.add_argument('--cpu', action='store_true', help='force CPU mode for training')
     parser.add_argument('--skip-corrint', action='store_true', help='skip corrint estimator (very slow on full MNIST)')
     parser.add_argument('--dims', type=str, default=None, help='comma-separated list of intrinsic dims / bottleneck dims')
@@ -606,31 +802,81 @@ def main():
     parser.add_argument('--base-seed', type=int, default=None, help='optional base seed override')
     args = parser.parse_args()
 
-    # default configurations (mirror the provided config)
+    # default configurations for different experiment sizes
     print(args.mode)
     if args.mode == 'smoke':
         syn_config = {
             'n_samples': 300,
-            'intrinsic_dims': [2, 5],
+            'intrinsic_dims': [5, 15],
             'manifolds': ['sphere', 'torus'],
-            'noise_levels': [0.0, 0.05],
-            'R': 2,
-            'neighbor_grid_K': [5, 10],
+            'noise_levels': [0.0, 1.0],
+            'R': 1,
+            'neighbor_grid_K': [3, 5],
             'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher', 'masked-ae'],
             'base_seed': 0,
         }
         mnist_config = {
             'mnist_subset_size': 2000,
-            'bottleneck_dims': [2, 5, 10, 15, 20],
+            'bottleneck_dims': [5, 15],
             'R': 1,
             'epochs': 5,
             'batch_size': 128,
-            'neighbor_grid_K': [5, 10],
+            'neighbor_grid_K': [3, 5],
             'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher', 'masked-ae'],
             'data_dir': 'data',
             'base_seed': 0,
-            'noise_levels': [0.0, 0.1, 0.2, 0.3]
+            'noise_levels': [0.0, 1.0]
         }
+    elif args.mode == 'large':
+        # intermediate debugging size
+        syn_config = {
+            'n_samples': 300,
+            'intrinsic_dims': [5, 7, 9, 12, 15],
+            'manifolds': ['sphere', 'torus'],
+            'noise_levels': list(np.linspace(0.0, 1.0, 5)),
+            'R': 3,
+            'neighbor_grid_K': [3, 5, 7, 10, 15],
+            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher', 'masked-ae'],
+            'base_seed': 0,
+        }
+        mnist_config = {
+            'mnist_subset_size': 0,
+            'bottleneck_dims': [5, 7, 9, 12, 15],
+            'R': 3,
+            'epochs': 10,
+            'batch_size': 128,
+            'neighbor_grid_K': [3, 5, 7, 10, 15],
+            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher', 'masked-ae'],
+            'data_dir': 'data',
+            'base_seed': 0,
+            'noise_levels': list(np.linspace(0.0, 1.0, 5)),
+        }
+    elif args.mode == 'final':
+        # final production size (defaults; can be overridden via CLI)
+        syn_config = {
+            'n_samples': 300,
+            'intrinsic_dims': list(map(int, np.linspace(5, 15, 7))),
+            'manifolds': ['sphere', 'torus'],
+            'noise_levels': list(np.linspace(0.0, 1.0, 10)),
+            'R': 10,
+            'neighbor_grid_K': [3, 4, 5, 6, 7, 8, 10, 12, 15, 18],
+            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher', 'masked-ae'],
+            'base_seed': 0,
+        }
+        mnist_config = {
+            'mnist_subset_size': 0,
+            'bottleneck_dims': list(map(int, np.linspace(5, 15, 7))),
+            'R': 10,
+            'epochs': 25,
+            'batch_size': 128,
+            'neighbor_grid_K': [3, 4, 5, 6, 7, 8, 10, 12, 15, 18],
+            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher', 'masked-ae'],
+            'data_dir': 'data',
+            'base_seed': 0,
+            'noise_levels': list(np.linspace(0.0, 1.0, 10)),
+        }
+    else:
+        raise ValueError(f'Unknown mode: {args.mode}')
         # noisy_mnist_config = {
         #     'mnist_subset_size': 2000,
         #     'bottleneck_dims': [10],
@@ -674,10 +920,59 @@ def main():
         syn_config['methods'] = _filter_methods(syn_config.get('methods', []))
         mnist_config['methods'] = _filter_methods(mnist_config.get('methods', []))
 
-    # choose output filenames; write figures into results/figs_<mode> (overwrite existing figs)
+    # Apply CLI overrides for dims / ks / sigmas if provided
+    if args.dims:
+        try:
+            parsed = [int(x) for x in args.dims.split(',') if x.strip()]
+            syn_config['intrinsic_dims'] = parsed
+            mnist_config['bottleneck_dims'] = parsed
+        except Exception:
+            print('Failed to parse --dims; ignoring')
+    if args.ks:
+        try:
+            parsed = [int(x) for x in args.ks.split(',') if x.strip()]
+            syn_config['neighbor_grid_K'] = parsed
+            mnist_config['neighbor_grid_K'] = parsed
+        except Exception:
+            print('Failed to parse --ks; ignoring')
+    if args.sigmas:
+        try:
+            parsed = [float(x) for x in args.sigmas.split(',') if x.strip()]
+            syn_config['noise_levels'] = parsed
+            mnist_config['noise_levels'] = parsed
+        except Exception:
+            print('Failed to parse --sigmas; ignoring')
+
+    # choose output filenames; write figures into results/figs_<mode>
     synthetic_out = f'results/synthetic_{args.mode}.csv'
     mnist_out = f'results/mnist_{args.mode}.csv'
     figs_out_dir = f'results/figs_{args.mode}'
+
+    # Clear previous outputs: remove existing CSVs and empty the figs directory
+    try:
+        if os.path.exists(synthetic_out):
+            os.remove(synthetic_out)
+        if os.path.exists(mnist_out):
+            os.remove(mnist_out)
+    except Exception:
+        pass
+    # clear figs dir
+    try:
+        if os.path.isdir(figs_out_dir):
+            for fname in os.listdir(figs_out_dir):
+                fpath = os.path.join(figs_out_dir, fname)
+                try:
+                    if os.path.isfile(fpath) or os.path.islink(fpath):
+                        os.remove(fpath)
+                    elif os.path.isdir(fpath):
+                        import shutil
+                        shutil.rmtree(fpath)
+                except Exception:
+                    pass
+        else:
+            os.makedirs(figs_out_dir, exist_ok=True)
+    except Exception:
+        pass
 
     print(f'Running synthetic {args.mode} experiments...', flush=True)
     df_syn = run_synthetic(syn_config, out_csv=synthetic_out, max_workers=args.workers)
@@ -693,18 +988,11 @@ def main():
         print(_tb.format_exc(), flush=True)
         df_mnist = None
 
-    print('Making basic plots...')
-    # write figures into a mode-specific folder (easier to inspect small vs final)
-    make_basic_plots(df_syn, out_dir=figs_out_dir)
-    # full suite
+    print('Making reduced plots...')
     try:
-        make_full_synthetic_plots(df_syn, out_dir=figs_out_dir)
+        make_reduced_plots(df_syn, df_mnist, out_dir=figs_out_dir)
     except Exception as e:
-        print('Failed to make full synthetic plots:', e)
-    try:
-        make_full_mnist_plots(df_mnist, out_dir=figs_out_dir)
-    except Exception as e:
-        print('Failed to make full MNIST plots:', e)
+        print('Failed to make reduced plots:', e)
     print(f'Saved plots under {figs_out_dir}')
 
 
