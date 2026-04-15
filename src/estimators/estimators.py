@@ -27,6 +27,11 @@ try:
 except Exception:
     SKDIM_AVAILABLE = False
 
+try:
+    from .masked_ae import masked_ae_estimate
+except Exception:
+    masked_ae_estimate = None
+
 def _kneighbors_distances(X, k):
     # Prefer FAISS if available for speed
     if FAISS_AVAILABLE and faiss_knn_distances is not None:
@@ -151,6 +156,40 @@ def danco_wrapper(X):
         arr = np.asarray(out)
         return float(arr.mean())
 
+
+def local_pca_wrapper(X):
+    """Wrapper for scikit-dimension's local PCA (LPCA) estimator.
+
+    Tries multiple common attribute names for the estimator class exposed by
+    `skdim.id`. Returns a scalar estimate.
+    """
+    if not SKDIM_AVAILABLE:
+        raise RuntimeError("scikit-dimension (skdim) is required for LPCA")
+
+    # possible attribute names in different skdim versions
+    candidates = ['LPCA', 'lPCA', 'LocalPCA', 'Local_PCA']
+    EstClass = None
+    for name in candidates:
+        if hasattr(id, name):
+            EstClass = getattr(id, name)
+            break
+    if EstClass is None:
+        # fallback: try to find any class with 'LPCA' in its name
+        for attr in dir(id):
+            if 'LPCA' in attr.upper() or 'LOCAL' in attr.upper() and 'PCA' in attr.upper():
+                EstClass = getattr(id, attr)
+                break
+    if EstClass is None:
+        raise RuntimeError("LPCA estimator not found in skdim (checked common names)")
+
+    estimator = EstClass()
+    out = estimator.fit_transform(X)
+    try:
+        return float(np.asarray(out).item())
+    except Exception:
+        arr = np.asarray(out)
+        return float(arr.mean())
+
 def mind_wrapper(X):
     if not SKDIM_AVAILABLE:
         raise RuntimeError("scikit-dimension (skdim) is required for MiND")
@@ -188,10 +227,12 @@ def estimate(X, method='levina-bickel', **kwargs):
     methods = {
         'levina-bickel': levina_bickel_mle,
         'twonn': twonn,
-        'corrint': correlation_integral,
+        'local-pca': local_pca_wrapper,
+        'lPCA': local_pca_wrapper,
         'danco': danco_wrapper,
         'mind': mind_wrapper,
         'fisher': fisher_separability_placeholder,
+        'masked-ae': masked_ae_estimate,
     }
     if method not in methods:
         raise ValueError(f"Unknown method: {method}")

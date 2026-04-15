@@ -182,10 +182,9 @@ def main():
         X_recon = np.concatenate(X_recon, axis=0)
         
     #Michael: ChatGPT helped write this save
-    base_dir = os.path.dirname(args.save_dataset) or '.'
-    base_name = os.path.splitext(os.path.basename(args.save_dataset))[0]
-
-    save_name = f"{base_name}/b{args.bottleneck}_n{args.noise_levels}.npy"
+    # ensure a directory is used for saving reconstructions
+    base_dir = args.save_dataset or '.'
+    save_name = f"b{args.bottleneck}_n{args.noise_levels}.npy"
     save_path = os.path.join(base_dir, save_name)
 
     os.makedirs(base_dir, exist_ok=True)

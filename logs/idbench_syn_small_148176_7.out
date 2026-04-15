@@ -1,0 +1,7 @@
+Starting small job on zuber at Mon Apr  6 12:58:42 PM EDT 2026; workdir=/local/scratch/cfikes/CS_534_ML_project; user=cfikes
+Finalize mode: aggregating per-task CSVs and regenerating plots
+Wrote combined raw CSV to results/synthetic_small_combined.csv
+Wrote aggregated summary CSV to results/synthetic_small_summary.csv
+Wrote combined raw CSV to results/mnist_small_combined.csv
+Wrote aggregated summary CSV to results/mnist_small_summary.csv
+Finalize complete

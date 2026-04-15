@@ -1,0 +1,9 @@
+Starting smoke job on zuber at Thu Apr  2 01:17:37 PM EDT 2026; workdir=/local/scratch/cfikes/CS_534_ML_project; user=cfikes
+Running synthetic smoke experiments...
+Wrote per-task synthetic results to results/synthetic_smoke.task5.csv
+Saved results/synthetic_smoke.csv
+Running MNIST autoencoder smoke experiments...
+Wrote per-task mnist results to results/mnist_smoke.task5.csv
+Saved results/mnist_smoke.csv
+Making basic plots...
+Saved plots under results/figs

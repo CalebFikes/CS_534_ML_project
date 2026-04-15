@@ -11,6 +11,7 @@ import time
 import numpy as np
 import pandas as pd
 import traceback
+import sys
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from src.data.generators import sample_sphere, sample_torus, embed_via_random_orthonormal, add_orthogonal_noise
 from src.estimators.estimators import estimate
@@ -41,6 +42,7 @@ def synthetic_worker(task):
     X = add_orthogonal_noise(X, sigma, random_state=seed)
 
     records = []
+    base_seed = task.get('base_seed', None)
     for m in methods:
         for k in K:
             est_start = time.time()
@@ -61,6 +63,7 @@ def synthetic_worker(task):
             print(f"[EST DONE] {datetime.now().isoformat()} estimator={m} k={k} dur={est_dur:.3f}s seed={seed}")
             records.append({
                 'estimator': m,
+                'base_seed': int(base_seed) if base_seed is not None else None,
                 'manifold': manifold,
                 'd': d,
                 'sigma': sigma,
@@ -87,18 +90,19 @@ def run_synthetic(config, out_csv, max_workers=None):
                 if D is None:
                     D = d + 1 if manifold == 'sphere' else 2 * d
                 for sigma in config['noise_levels']:
-                    for r in range(config['R']):
-                        seed = config.get('base_seed', 0) + r
-                        tasks.append({
-                            'manifold': manifold,
-                            'd': d,
-                            'n': config['n_samples'],
-                            'D': D,
-                            'sigma': sigma,
-                            'methods': methods,
-                            'K': config['neighbor_grid_K'],
-                            'seed': seed,
-                        })
+                        for r in range(config['R']):
+                            seed = config.get('base_seed', 0) + r
+                            tasks.append({
+                                'manifold': manifold,
+                                'd': d,
+                                'n': config['n_samples'],
+                                'D': D,
+                                'sigma': sigma,
+                                'methods': methods,
+                                'K': config['neighbor_grid_K'],
+                                'seed': seed,
+                                'base_seed': config.get('base_seed', None),
+                            })
         else:
             # paired mode: iterate zipped lists of same length (intrinsic_dims, noise_levels)
             dims = config['intrinsic_dims']
@@ -120,6 +124,7 @@ def run_synthetic(config, out_csv, max_workers=None):
                         'methods': methods,
                         'K': config['neighbor_grid_K'],
                         'seed': seed,
+                        'base_seed': config.get('base_seed', None),
                     })
 
     os.makedirs(os.path.dirname(out_csv), exist_ok=True)
@@ -177,7 +182,7 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
             os.makedirs(os.path.dirname(latents_path) or '.', exist_ok=True)
             if run_train:
                 cmd = [
-                    'python', '-m', 'src.models.train_autoencoder',
+                    sys.executable, '-m', 'src.models.train_autoencoder',
                     '--data-dir', data_dir,
                     '--batch-size', str(config['batch_size']),
                     '--hidden-dim', str(config.get('hidden_dim', 400)),
@@ -194,24 +199,35 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
                 subprocess.check_call(cmd)
 
             Z = np.load(latents_path)
-            for m in config['methods']:
-                for k_n in config['neighbor_grid_K']:
-                    try:
-                        val = estimate(Z, method=m, k=k_n)
-                    except TypeError:
+            noise_levels = config.get('noise_levels', [0.0])
+            for sigma in noise_levels:
+                # deterministic per-replicate noise using base seed
+                rng = np.random.RandomState(seed)
+                Z_noisy = Z + rng.normal(scale=sigma, size=Z.shape)
+                for m in config['methods']:
+                    for k_n in config['neighbor_grid_K']:
+                        err_msg = ''
                         try:
-                            val = estimate(Z, method=m)
+                            val = estimate(Z_noisy, method=m, k=k_n)
+                        except TypeError:
+                            try:
+                                val = estimate(Z_noisy, method=m)
+                            except Exception:
+                                val = float('nan')
+                                err_msg = traceback.format_exc()
                         except Exception:
                             val = float('nan')
-                    except Exception:
-                        val = float('nan')
-                    records.append({
-                        'estimator': m,
-                        'bottleneck': k,
-                        'k_n': k_n,
-                        'estimate': float(val),
-                        'seed': int(seed),
-                    })
+                            err_msg = traceback.format_exc()
+                        records.append({
+                            'estimator': m,
+                            'base_seed': int(config.get('base_seed', None)) if config.get('base_seed', None) is not None else None,
+                            'bottleneck': k,
+                            'k': k_n,
+                            'sigma': float(sigma),
+                            'estimate': float(val),
+                            'seed': int(seed),
+                            'error': err_msg.replace('\n', ' | '),
+                        })
 
     df = pd.DataFrame.from_records(records)
     # See comment above in `run_synthetic` — write per-task CSV when inside
@@ -600,7 +616,7 @@ def main():
             'noise_levels': [0.0, 0.05],
             'R': 2,
             'neighbor_grid_K': [5, 10],
-            'methods': ['levina-bickel', 'twonn', 'corrint', 'danco', 'mind', 'fisher'],
+            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher', 'masked-ae'],
             'base_seed': 0,
         }
         mnist_config = {
@@ -610,10 +626,10 @@ def main():
             'epochs': 5,
             'batch_size': 128,
             'neighbor_grid_K': [5, 10],
-            'methods': ['levina-bickel', 'twonn', 'corrint', 'danco', 'mind', 'fisher'],
+            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher', 'masked-ae'],
             'data_dir': 'data',
             'base_seed': 0,
-            'noise-levels': [0.0, 0.1, 0.2, 0.3]
+            'noise_levels': [0.0, 0.1, 0.2, 0.3]
         }
         # noisy_mnist_config = {
         #     'mnist_subset_size': 2000,
@@ -650,13 +666,11 @@ def main():
     if args.base_seed is not None:
         syn_config['base_seed'] = args.base_seed
         mnist_config['base_seed'] = args.base_seed
-    else:
-        raise NotImplementedError('Only smoke mode implemented in this script')
 
     # optionally skip corrint (very slow on full MNIST). Remove from method lists.
     if getattr(args, 'skip_corrint', False):
         def _filter_methods(lst):
-            return [m for m in lst if m != 'corrint']
+            return [m for m in lst if m not in ('corrint', 'lPCA')]
         syn_config['methods'] = _filter_methods(syn_config.get('methods', []))
         mnist_config['methods'] = _filter_methods(mnist_config.get('methods', []))
 
