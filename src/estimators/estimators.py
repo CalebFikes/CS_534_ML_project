@@ -6,12 +6,6 @@ when available for more advanced estimators (DANCo, MiND). The API is a
 simple `estimate(X, method, **kwargs)` function.
 """
 import numpy as np
-try:
-    import torch
-    TORCH_AVAILABLE = True
-except Exception:
-    torch = None
-    TORCH_AVAILABLE = False
 from sklearn.neighbors import NearestNeighbors
 try:
     from .faiss_helpers import FAISS_AVAILABLE, faiss_knn_distances
@@ -31,8 +25,7 @@ def _kneighbors_distances(X, k):
     # Prefer FAISS if available for speed
     if FAISS_AVAILABLE and faiss_knn_distances is not None:
         try:
-            use_gpu = TORCH_AVAILABLE and torch.cuda.is_available()
-            D, I = faiss_knn_distances(X.astype('float32'), k + 1, use_gpu=use_gpu)
+            D, I = faiss_knn_distances(X.astype('float32'), k + 1)
             # D is squared L2 distances from FAISS; convert to sqrt
             D = np.sqrt(np.maximum(D, 0.0))
             return D[:, 1:]
@@ -104,8 +97,7 @@ def correlation_integral(X, n_r=20, r_min_quantile=0.01, r_max_quantile=0.2):
     if FAISS_AVAILABLE and 'faiss_knn_distances' in globals():
         try:
             from .faiss_helpers import faiss_range_counts
-            use_gpu = TORCH_AVAILABLE and torch.cuda.is_available()
-            counts = faiss_range_counts(X, rs, use_gpu=use_gpu)
+            counts = faiss_range_counts(X, rs)
             for c in counts:
                 C = (2.0 * c) / (n * (n - 1))
                 ns.append(C)

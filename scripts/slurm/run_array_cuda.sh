@@ -24,8 +24,6 @@ fi
 set -x
 echo "Starting job on $(hostname) at $(date); workdir=$(pwd); user=$(whoami)"
 conda activate cs_534_cuda
-# ensure we run from the repository root so `python -m src...` works
-cd /local/scratch/cfikes/CS_534_ML_project || exit 1
 
-# Run the experiment driver in smoke mode
+# Run the experiment driver in small mode
 python -m src.experiments.run_experiments --mode smoke --workers 1 --base-seed ${BASE_SEED}

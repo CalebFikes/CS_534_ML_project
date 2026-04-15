@@ -47,16 +47,6 @@ Notes on estimators and GPU
 - For large-scale experiments on the cluster we will parallelize across Monte Carlo replicates and reuse precomputed nearest-neighbor structures.
 - If you want GPU-accelerated nearest-neighbor computations, I recommend integrating FAISS (faiss-gpu) or using PyTorch/Cupy implementations for pairwise distances. I can add optional hooks for FAISS later.
 
-Quick collaborator notes
-------------------------
-- **Dependencies:** `requirements.txt` already lists `scikit-dimension`; use `requirements_CUDA.txt` for cluster setup and follow the `conda`/`faiss-gpu` notes there.
-- **MNIST / AE:** the driver trains AEs on the full MNIST subset (60000 examples) by default. Expect one AE training to take ~30s on an A6000 when using CUDA (25 epochs in current config).
-- **Estimators runtime:** some estimators (notably `corrint` and parts of `fisher`) are very slow on full MNIST latents (per-k runtimes measured in hundreds-to-thousands of seconds). Consider:
-	- running MNIST estimator jobs as separate GPU/CPU jobs per seed or bottleneck (use the Slurm templates in `scripts/slurm/`), or
-	- excluding `corrint` from large full-array runs and computing it selectively for a subset of seeds, or
-	- precomputing and reusing latents in `data/mnist_latents_*.npy` to avoid retraining.
-- **CSV outputs:** per-task CSVs are written under `results/` (synthetic CSVs are present already). If MNIST per-task CSVs are missing, the MNIST estimator stage may still be running or was interrupted; check `logs/idbench_syn_small_*.out` for per-estimator timing markers like `[MNIST EST DONE]`.
-
 ```
 
 GPU (CUDA 12.7, example using conda):
