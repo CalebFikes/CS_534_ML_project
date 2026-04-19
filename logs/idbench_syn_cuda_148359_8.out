@@ -1,0 +1,112 @@
+Starting job on zuber at Wed Apr 15 06:15:29 PM EDT 2026; workdir=/local/scratch/cfikes/CS_534_ML_project; user=cfikes
+smoke
+Running synthetic smoke experiments...
+[TASK START] 2026-04-15T18:15:32.904417 manifold=sphere d=5 sigma=0.0 n=300 seed=8
+[EST DONE] 2026-04-15T18:15:32.915740 estimator=levina-bickel k=3 dur=0.003s seed=8
+[EST DONE] 2026-04-15T18:15:32.918415 estimator=levina-bickel k=5 dur=0.003s seed=8
+[EST DONE] 2026-04-15T18:15:32.921140 estimator=twonn (no-k) dur=0.003s seed=8
+[EST DONE] 2026-04-15T18:15:32.923705 estimator=lPCA (no-k) dur=0.003s seed=8
+[EST DONE] 2026-04-15T18:15:36.515632 estimator=danco (no-k) dur=3.592s seed=8
+[EST DONE] 2026-04-15T18:15:36.520895 estimator=mind (no-k) dur=0.005s seed=8
+[EST DONE] 2026-04-15T18:15:38.922362 estimator=fisher (no-k) dur=2.401s seed=8
+[EST DONE] 2026-04-15T18:15:41.420514 estimator=masked-ae (no-k) dur=2.498s seed=8
+[TASK END] 2026-04-15T18:15:41.420556 manifold=sphere d=5 sigma=0.0 seed=8 duration=8.516s
+[TASK START] 2026-04-15T18:15:41.421250 manifold=sphere d=5 sigma=1.0 n=300 seed=8
+[EST DONE] 2026-04-15T18:15:41.429770 estimator=levina-bickel k=3 dur=0.003s seed=8
+[EST DONE] 2026-04-15T18:15:41.432799 estimator=levina-bickel k=5 dur=0.003s seed=8
+[EST DONE] 2026-04-15T18:15:41.435455 estimator=twonn (no-k) dur=0.003s seed=8
+[EST DONE] 2026-04-15T18:15:41.436660 estimator=lPCA (no-k) dur=0.001s seed=8
+[EST DONE] 2026-04-15T18:15:41.829008 estimator=danco (no-k) dur=0.392s seed=8
+[EST DONE] 2026-04-15T18:15:41.833967 estimator=mind (no-k) dur=0.005s seed=8
+[EST DONE] 2026-04-15T18:15:41.841043 estimator=fisher (no-k) dur=0.007s seed=8
+[EST DONE] 2026-04-15T18:15:43.286432 estimator=masked-ae (no-k) dur=1.445s seed=8
+[TASK END] 2026-04-15T18:15:43.286462 manifold=sphere d=5 sigma=1.0 seed=8 duration=1.865s
+[TASK START] 2026-04-15T18:15:43.287212 manifold=sphere d=15 sigma=0.0 n=300 seed=8
+[EST DONE] 2026-04-15T18:15:43.360354 estimator=levina-bickel k=3 dur=0.008s seed=8
+[EST DONE] 2026-04-15T18:15:43.366872 estimator=levina-bickel k=5 dur=0.006s seed=8
+[EST DONE] 2026-04-15T18:15:43.372206 estimator=twonn (no-k) dur=0.005s seed=8
+[EST DONE] 2026-04-15T18:15:43.373685 estimator=lPCA (no-k) dur=0.001s seed=8
+[EST DONE] 2026-04-15T18:15:44.431217 estimator=danco (no-k) dur=1.058s seed=8
+[EST DONE] 2026-04-15T18:15:44.445030 estimator=mind (no-k) dur=0.014s seed=8
+[EST DONE] 2026-04-15T18:15:44.456881 estimator=fisher (no-k) dur=0.012s seed=8
+[EST DONE] 2026-04-15T18:15:45.943240 estimator=masked-ae (no-k) dur=1.486s seed=8
+[TASK END] 2026-04-15T18:15:45.943294 manifold=sphere d=15 sigma=0.0 seed=8 duration=2.656s
+[TASK START] 2026-04-15T18:15:45.944136 manifold=sphere d=15 sigma=1.0 n=300 seed=8
+[EST DONE] 2026-04-15T18:15:45.952316 estimator=levina-bickel k=3 dur=0.003s seed=8
+[EST DONE] 2026-04-15T18:15:45.955067 estimator=levina-bickel k=5 dur=0.003s seed=8
+[EST DONE] 2026-04-15T18:15:45.957411 estimator=twonn (no-k) dur=0.002s seed=8
+[EST DONE] 2026-04-15T18:15:45.958675 estimator=lPCA (no-k) dur=0.001s seed=8
+[EST DONE] 2026-04-15T18:15:46.857267 estimator=danco (no-k) dur=0.899s seed=8
+[EST DONE] 2026-04-15T18:15:46.865107 estimator=mind (no-k) dur=0.008s seed=8
+[EST DONE] 2026-04-15T18:15:46.870987 estimator=fisher (no-k) dur=0.006s seed=8
+[EST DONE] 2026-04-15T18:15:48.340898 estimator=masked-ae (no-k) dur=1.470s seed=8
+[TASK END] 2026-04-15T18:15:48.340929 manifold=sphere d=15 sigma=1.0 seed=8 duration=2.397s
+[TASK START] 2026-04-15T18:15:48.341512 manifold=torus d=5 sigma=0.0 n=300 seed=8
+[EST DONE] 2026-04-15T18:15:48.350832 estimator=levina-bickel k=3 dur=0.004s seed=8
+[EST DONE] 2026-04-15T18:15:48.354746 estimator=levina-bickel k=5 dur=0.004s seed=8
+[EST DONE] 2026-04-15T18:15:48.358344 estimator=twonn (no-k) dur=0.004s seed=8
+[EST DONE] 2026-04-15T18:15:48.359351 estimator=lPCA (no-k) dur=0.001s seed=8
+[EST DONE] 2026-04-15T18:15:48.866821 estimator=danco (no-k) dur=0.507s seed=8
+[EST DONE] 2026-04-15T18:15:48.871264 estimator=mind (no-k) dur=0.004s seed=8
+[EST DONE] 2026-04-15T18:15:48.877054 estimator=fisher (no-k) dur=0.006s seed=8
+[EST DONE] 2026-04-15T18:15:50.342709 estimator=masked-ae (no-k) dur=1.466s seed=8
+[TASK END] 2026-04-15T18:15:50.342744 manifold=torus d=5 sigma=0.0 seed=8 duration=2.001s
+[TASK START] 2026-04-15T18:15:50.343558 manifold=torus d=5 sigma=1.0 n=300 seed=8
+[EST DONE] 2026-04-15T18:15:50.353802 estimator=levina-bickel k=3 dur=0.004s seed=8
+[EST DONE] 2026-04-15T18:15:50.357703 estimator=levina-bickel k=5 dur=0.004s seed=8
+[EST DONE] 2026-04-15T18:15:50.361357 estimator=twonn (no-k) dur=0.004s seed=8
+[EST DONE] 2026-04-15T18:15:50.362568 estimator=lPCA (no-k) dur=0.001s seed=8
+[EST DONE] 2026-04-15T18:15:50.967437 estimator=danco (no-k) dur=0.605s seed=8
+[EST DONE] 2026-04-15T18:15:50.971896 estimator=mind (no-k) dur=0.004s seed=8
+[EST DONE] 2026-04-15T18:15:50.977478 estimator=fisher (no-k) dur=0.006s seed=8
+[EST DONE] 2026-04-15T18:15:52.472157 estimator=masked-ae (no-k) dur=1.495s seed=8
+[TASK END] 2026-04-15T18:15:52.472192 manifold=torus d=5 sigma=1.0 seed=8 duration=2.129s
+[TASK START] 2026-04-15T18:15:52.472780 manifold=torus d=15 sigma=0.0 n=300 seed=8
+[EST DONE] 2026-04-15T18:15:52.485147 estimator=levina-bickel k=3 dur=0.008s seed=8
+[EST DONE] 2026-04-15T18:15:52.491797 estimator=levina-bickel k=5 dur=0.007s seed=8
+[EST DONE] 2026-04-15T18:15:52.493785 estimator=twonn (no-k) dur=0.002s seed=8
+[EST DONE] 2026-04-15T18:15:52.495389 estimator=lPCA (no-k) dur=0.002s seed=8
+[EST DONE] 2026-04-15T18:15:54.024821 estimator=danco (no-k) dur=1.529s seed=8
+[EST DONE] 2026-04-15T18:15:54.028474 estimator=mind (no-k) dur=0.004s seed=8
+[EST DONE] 2026-04-15T18:15:54.034808 estimator=fisher (no-k) dur=0.006s seed=8
+[EST DONE] 2026-04-15T18:15:55.547043 estimator=masked-ae (no-k) dur=1.512s seed=8
+[TASK END] 2026-04-15T18:15:55.547077 manifold=torus d=15 sigma=0.0 seed=8 duration=3.074s
+[TASK START] 2026-04-15T18:15:55.547842 manifold=torus d=15 sigma=1.0 n=300 seed=8
+[EST DONE] 2026-04-15T18:15:55.554270 estimator=levina-bickel k=3 dur=0.002s seed=8
+[EST DONE] 2026-04-15T18:15:55.556286 estimator=levina-bickel k=5 dur=0.002s seed=8
+[EST DONE] 2026-04-15T18:15:55.557959 estimator=twonn (no-k) dur=0.002s seed=8
+[EST DONE] 2026-04-15T18:15:55.559323 estimator=lPCA (no-k) dur=0.001s seed=8
+[EST DONE] 2026-04-15T18:15:56.906813 estimator=danco (no-k) dur=1.347s seed=8
+[EST DONE] 2026-04-15T18:15:56.910636 estimator=mind (no-k) dur=0.004s seed=8
+[EST DONE] 2026-04-15T18:15:56.916718 estimator=fisher (no-k) dur=0.006s seed=8
+[EST DONE] 2026-04-15T18:15:58.409051 estimator=masked-ae (no-k) dur=1.492s seed=8
+[TASK END] 2026-04-15T18:15:58.409080 manifold=torus d=15 sigma=1.0 seed=8 duration=2.861s
+Completed synthetic task manifold=sphere d=5 sigma=0.0 seed=8 in 8.5s
+Completed synthetic task manifold=sphere d=5 sigma=1.0 seed=8 in 10.4s
+Completed synthetic task manifold=sphere d=15 sigma=0.0 seed=8 in 13.0s
+Completed synthetic task manifold=sphere d=15 sigma=1.0 seed=8 in 15.4s
+Completed synthetic task manifold=torus d=5 sigma=0.0 seed=8 in 17.4s
+Completed synthetic task manifold=torus d=5 sigma=1.0 seed=8 in 19.6s
+Completed synthetic task manifold=torus d=15 sigma=0.0 seed=8 in 22.6s
+Completed synthetic task manifold=torus d=15 sigma=1.0 seed=8 in 25.5s
+Wrote per-task synthetic results to results/synthetic_smoke.task8.csv
+Saved results/synthetic_smoke.csv
+Running MNIST autoencoder smoke experiments...
+[AE START] seed=8 bottleneck=5 epochs=5 subset=2000
+[AE EPOCH] epoch=1/5 loss=0.126552 epoch_time=0.18s device=cpu
+[AE EPOCH] epoch=2/5 loss=0.070624 epoch_time=0.13s device=cpu
+[AE EPOCH] epoch=3/5 loss=0.065507 epoch_time=0.13s device=cpu
+[AE EPOCH] epoch=4/5 loss=0.059420 epoch_time=0.13s device=cpu
+[AE EPOCH] epoch=5/5 loss=0.054915 epoch_time=0.13s device=cpu
+[AE TRAIN COMPLETE] total_time=0.71s
+[AE START] seed=8 bottleneck=15 epochs=5 subset=2000
+[AE EPOCH] epoch=1/5 loss=0.136211 epoch_time=0.17s device=cpu
+[AE EPOCH] epoch=2/5 loss=0.072093 epoch_time=0.13s device=cpu
+[AE EPOCH] epoch=3/5 loss=0.066530 epoch_time=0.13s device=cpu
+[AE EPOCH] epoch=4/5 loss=0.060077 epoch_time=0.13s device=cpu
+[AE EPOCH] epoch=5/5 loss=0.054522 epoch_time=0.13s device=cpu
+[AE TRAIN COMPLETE] total_time=0.70s
+Wrote per-task mnist results to results/mnist_smoke.task8.csv
+Saved results/mnist_smoke.csv
+Making reduced plots...
+Saved plots under results/figs_smoke

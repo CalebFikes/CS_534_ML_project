@@ -1,0 +1,2130 @@
+Starting large job on zuber at Wed Apr 15 06:25:23 PM EDT 2026; workdir=/local/scratch/cfikes/CS_534_ML_project; user=cfikes
+large
+Running synthetic large experiments...
+[TASK START] 2026-04-15T18:25:26.700875 manifold=sphere d=5 sigma=0.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:25:26.752744 estimator=levina-bickel k=3 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:25:26.755306 estimator=levina-bickel k=5 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:26.757971 estimator=levina-bickel k=7 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:26.760817 estimator=levina-bickel k=10 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:26.763885 estimator=levina-bickel k=15 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:26.766174 estimator=twonn (no-k) dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:25:26.768522 estimator=lPCA (no-k) dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:25:30.276891 estimator=danco (no-k) dur=3.508s seed=1
+[EST DONE] 2026-04-15T18:25:30.281758 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:25:33.018787 estimator=fisher (no-k) dur=2.737s seed=1
+[EST DONE] 2026-04-15T18:25:35.778692 estimator=masked-ae (no-k) dur=2.760s seed=1
+[TASK END] 2026-04-15T18:25:35.778729 manifold=sphere d=5 sigma=0.0 seed=1 duration=9.078s
+[TASK START] 2026-04-15T18:25:35.779534 manifold=sphere d=5 sigma=0.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:25:35.786806 estimator=levina-bickel k=3 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:25:35.789294 estimator=levina-bickel k=5 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:25:35.791932 estimator=levina-bickel k=7 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:35.794740 estimator=levina-bickel k=10 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:35.797801 estimator=levina-bickel k=15 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:35.800199 estimator=twonn (no-k) dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:25:35.801207 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:25:36.079509 estimator=danco (no-k) dur=0.278s seed=2
+[EST DONE] 2026-04-15T18:25:36.084461 estimator=mind (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:25:36.108549 estimator=fisher (no-k) dur=0.024s seed=2
+[EST DONE] 2026-04-15T18:25:37.162634 estimator=masked-ae (no-k) dur=1.054s seed=2
+[TASK END] 2026-04-15T18:25:37.162679 manifold=sphere d=5 sigma=0.0 seed=2 duration=1.383s
+[TASK START] 2026-04-15T18:25:37.163453 manifold=sphere d=5 sigma=0.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:25:37.170243 estimator=levina-bickel k=3 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:37.173238 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:37.176338 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:37.179725 estimator=levina-bickel k=10 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:37.183477 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:25:37.186079 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:37.186933 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:25:37.571485 estimator=danco (no-k) dur=0.385s seed=3
+[EST DONE] 2026-04-15T18:25:37.576570 estimator=mind (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:25:37.592347 estimator=fisher (no-k) dur=0.016s seed=3
+[EST DONE] 2026-04-15T18:25:38.631658 estimator=masked-ae (no-k) dur=1.039s seed=3
+[TASK END] 2026-04-15T18:25:38.631685 manifold=sphere d=5 sigma=0.0 seed=3 duration=1.468s
+[TASK START] 2026-04-15T18:25:38.632268 manifold=sphere d=5 sigma=0.25 n=300 seed=1
+[EST DONE] 2026-04-15T18:25:38.638244 estimator=levina-bickel k=3 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:38.641092 estimator=levina-bickel k=5 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:38.643730 estimator=levina-bickel k=7 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:38.646312 estimator=levina-bickel k=10 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:38.648656 estimator=levina-bickel k=15 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:25:38.650477 estimator=twonn (no-k) dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:25:38.651262 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:25:39.016785 estimator=danco (no-k) dur=0.365s seed=1
+[EST DONE] 2026-04-15T18:25:39.021553 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:25:39.028622 estimator=fisher (no-k) dur=0.007s seed=1
+[EST DONE] 2026-04-15T18:25:40.109232 estimator=masked-ae (no-k) dur=1.081s seed=1
+[TASK END] 2026-04-15T18:25:40.109258 manifold=sphere d=5 sigma=0.25 seed=1 duration=1.477s
+[TASK START] 2026-04-15T18:25:40.109850 manifold=sphere d=5 sigma=0.25 n=300 seed=2
+[EST DONE] 2026-04-15T18:25:40.116738 estimator=levina-bickel k=3 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:40.119725 estimator=levina-bickel k=5 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:40.122932 estimator=levina-bickel k=7 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:40.126238 estimator=levina-bickel k=10 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:40.129874 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:25:40.132550 estimator=twonn (no-k) dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:40.133409 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:25:40.536921 estimator=danco (no-k) dur=0.403s seed=2
+[EST DONE] 2026-04-15T18:25:40.541596 estimator=mind (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:25:40.572490 estimator=fisher (no-k) dur=0.031s seed=2
+[EST DONE] 2026-04-15T18:25:41.894662 estimator=masked-ae (no-k) dur=1.322s seed=2
+[TASK END] 2026-04-15T18:25:41.894688 manifold=sphere d=5 sigma=0.25 seed=2 duration=1.785s
+[TASK START] 2026-04-15T18:25:41.895410 manifold=sphere d=5 sigma=0.25 n=300 seed=3
+[EST DONE] 2026-04-15T18:25:41.902395 estimator=levina-bickel k=3 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:41.905380 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:41.908535 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:41.911920 estimator=levina-bickel k=10 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:41.915592 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:25:41.918200 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:41.919124 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:25:42.193660 estimator=danco (no-k) dur=0.275s seed=3
+[EST DONE] 2026-04-15T18:25:42.198795 estimator=mind (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:25:42.224816 estimator=fisher (no-k) dur=0.026s seed=3
+[EST DONE] 2026-04-15T18:25:43.276147 estimator=masked-ae (no-k) dur=1.051s seed=3
+[TASK END] 2026-04-15T18:25:43.276178 manifold=sphere d=5 sigma=0.25 seed=3 duration=1.381s
+[TASK START] 2026-04-15T18:25:43.276760 manifold=sphere d=5 sigma=0.5 n=300 seed=1
+[EST DONE] 2026-04-15T18:25:43.283169 estimator=levina-bickel k=3 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:43.286034 estimator=levina-bickel k=5 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:43.289020 estimator=levina-bickel k=7 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:43.292130 estimator=levina-bickel k=10 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:43.295658 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:25:43.298138 estimator=twonn (no-k) dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:25:43.298990 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:25:43.595236 estimator=danco (no-k) dur=0.296s seed=1
+[EST DONE] 2026-04-15T18:25:43.600170 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:25:43.608703 estimator=fisher (no-k) dur=0.009s seed=1
+[EST DONE] 2026-04-15T18:25:44.660309 estimator=masked-ae (no-k) dur=1.052s seed=1
+[TASK END] 2026-04-15T18:25:44.660336 manifold=sphere d=5 sigma=0.5 seed=1 duration=1.384s
+[TASK START] 2026-04-15T18:25:44.660968 manifold=sphere d=5 sigma=0.5 n=300 seed=2
+[EST DONE] 2026-04-15T18:25:44.667593 estimator=levina-bickel k=3 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:44.670557 estimator=levina-bickel k=5 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:44.673741 estimator=levina-bickel k=7 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:44.677177 estimator=levina-bickel k=10 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:44.680881 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:25:44.683541 estimator=twonn (no-k) dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:44.684373 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:25:45.036279 estimator=danco (no-k) dur=0.352s seed=2
+[EST DONE] 2026-04-15T18:25:45.040986 estimator=mind (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:25:45.064507 estimator=fisher (no-k) dur=0.023s seed=2
+[EST DONE] 2026-04-15T18:25:46.106915 estimator=masked-ae (no-k) dur=1.042s seed=2
+[TASK END] 2026-04-15T18:25:46.106942 manifold=sphere d=5 sigma=0.5 seed=2 duration=1.446s
+[TASK START] 2026-04-15T18:25:46.107540 manifold=sphere d=5 sigma=0.5 n=300 seed=3
+[EST DONE] 2026-04-15T18:25:46.113298 estimator=levina-bickel k=3 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:25:46.115820 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:46.118478 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:46.121279 estimator=levina-bickel k=10 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:46.124349 estimator=levina-bickel k=15 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:46.126573 estimator=twonn (no-k) dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:25:46.127353 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:25:46.463768 estimator=danco (no-k) dur=0.336s seed=3
+[EST DONE] 2026-04-15T18:25:46.468467 estimator=mind (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:25:46.484518 estimator=fisher (no-k) dur=0.016s seed=3
+[EST DONE] 2026-04-15T18:25:47.530830 estimator=masked-ae (no-k) dur=1.046s seed=3
+[TASK END] 2026-04-15T18:25:47.530858 manifold=sphere d=5 sigma=0.5 seed=3 duration=1.423s
+[TASK START] 2026-04-15T18:25:47.531540 manifold=sphere d=5 sigma=0.75 n=300 seed=1
+[EST DONE] 2026-04-15T18:25:47.538645 estimator=levina-bickel k=3 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:47.541650 estimator=levina-bickel k=5 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:47.544870 estimator=levina-bickel k=7 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:47.548265 estimator=levina-bickel k=10 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:47.551938 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:25:47.554686 estimator=twonn (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:47.555590 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:25:47.838614 estimator=danco (no-k) dur=0.283s seed=1
+[EST DONE] 2026-04-15T18:25:47.844015 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:25:47.855177 estimator=fisher (no-k) dur=0.011s seed=1
+[EST DONE] 2026-04-15T18:25:48.922270 estimator=masked-ae (no-k) dur=1.067s seed=1
+[TASK END] 2026-04-15T18:25:48.922306 manifold=sphere d=5 sigma=0.75 seed=1 duration=1.391s
+[TASK START] 2026-04-15T18:25:48.922981 manifold=sphere d=5 sigma=0.75 n=300 seed=2
+[EST DONE] 2026-04-15T18:25:48.929272 estimator=levina-bickel k=3 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:25:48.931809 estimator=levina-bickel k=5 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:48.934493 estimator=levina-bickel k=7 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:48.937339 estimator=levina-bickel k=10 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:48.940407 estimator=levina-bickel k=15 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:48.942656 estimator=twonn (no-k) dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:25:48.943499 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:25:49.296496 estimator=danco (no-k) dur=0.353s seed=2
+[EST DONE] 2026-04-15T18:25:49.301906 estimator=mind (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:25:49.308251 estimator=fisher (no-k) dur=0.006s seed=2
+[EST DONE] 2026-04-15T18:25:50.411149 estimator=masked-ae (no-k) dur=1.103s seed=2
+[TASK END] 2026-04-15T18:25:50.411183 manifold=sphere d=5 sigma=0.75 seed=2 duration=1.488s
+[TASK START] 2026-04-15T18:25:50.411817 manifold=sphere d=5 sigma=0.75 n=300 seed=3
+[EST DONE] 2026-04-15T18:25:50.417782 estimator=levina-bickel k=3 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:25:50.420598 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:50.423686 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:50.426507 estimator=levina-bickel k=10 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:50.429588 estimator=levina-bickel k=15 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:50.431807 estimator=twonn (no-k) dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:25:50.432659 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:25:50.787295 estimator=danco (no-k) dur=0.355s seed=3
+[EST DONE] 2026-04-15T18:25:50.792675 estimator=mind (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:25:50.856639 estimator=fisher (no-k) dur=0.064s seed=3
+[EST DONE] 2026-04-15T18:25:51.994613 estimator=masked-ae (no-k) dur=1.138s seed=3
+[TASK END] 2026-04-15T18:25:51.994640 manifold=sphere d=5 sigma=0.75 seed=3 duration=1.583s
+[TASK START] 2026-04-15T18:25:51.995360 manifold=sphere d=5 sigma=1.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:25:52.001251 estimator=levina-bickel k=3 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:25:52.003815 estimator=levina-bickel k=5 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:52.006487 estimator=levina-bickel k=7 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:52.009342 estimator=levina-bickel k=10 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:52.012427 estimator=levina-bickel k=15 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:52.014685 estimator=twonn (no-k) dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:25:52.015462 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:25:52.298399 estimator=danco (no-k) dur=0.283s seed=1
+[EST DONE] 2026-04-15T18:25:52.303854 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:25:52.312357 estimator=fisher (no-k) dur=0.008s seed=1
+[EST DONE] 2026-04-15T18:25:53.484402 estimator=masked-ae (no-k) dur=1.172s seed=1
+[TASK END] 2026-04-15T18:25:53.484428 manifold=sphere d=5 sigma=1.0 seed=1 duration=1.489s
+[TASK START] 2026-04-15T18:25:53.485054 manifold=sphere d=5 sigma=1.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:25:53.491179 estimator=levina-bickel k=3 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:25:53.493710 estimator=levina-bickel k=5 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:53.496362 estimator=levina-bickel k=7 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:53.499178 estimator=levina-bickel k=10 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:53.502272 estimator=levina-bickel k=15 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:53.504572 estimator=twonn (no-k) dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:25:53.505442 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:25:53.889495 estimator=danco (no-k) dur=0.384s seed=2
+[EST DONE] 2026-04-15T18:25:53.894392 estimator=mind (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:25:53.908411 estimator=fisher (no-k) dur=0.014s seed=2
+[EST DONE] 2026-04-15T18:25:54.946714 estimator=masked-ae (no-k) dur=1.038s seed=2
+[TASK END] 2026-04-15T18:25:54.946741 manifold=sphere d=5 sigma=1.0 seed=2 duration=1.462s
+[TASK START] 2026-04-15T18:25:54.947321 manifold=sphere d=5 sigma=1.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:25:54.953112 estimator=levina-bickel k=3 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:25:54.955649 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:54.958343 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:54.961159 estimator=levina-bickel k=10 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:54.964546 estimator=levina-bickel k=15 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:54.967135 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:54.967999 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:25:55.391434 estimator=danco (no-k) dur=0.423s seed=3
+[EST DONE] 2026-04-15T18:25:55.396051 estimator=mind (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:25:55.432290 estimator=fisher (no-k) dur=0.036s seed=3
+[EST DONE] 2026-04-15T18:25:56.490197 estimator=masked-ae (no-k) dur=1.058s seed=3
+[TASK END] 2026-04-15T18:25:56.490222 manifold=sphere d=5 sigma=1.0 seed=3 duration=1.543s
+[TASK START] 2026-04-15T18:25:56.490793 manifold=sphere d=7 sigma=0.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:25:56.497434 estimator=levina-bickel k=3 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:56.500406 estimator=levina-bickel k=5 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:56.503458 estimator=levina-bickel k=7 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:56.506851 estimator=levina-bickel k=10 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:56.510287 estimator=levina-bickel k=15 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:56.512970 estimator=twonn (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:25:56.513785 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:25:57.010045 estimator=danco (no-k) dur=0.496s seed=1
+[EST DONE] 2026-04-15T18:25:57.014989 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:25:57.092191 estimator=fisher (no-k) dur=0.077s seed=1
+[EST DONE] 2026-04-15T18:25:58.217059 estimator=masked-ae (no-k) dur=1.125s seed=1
+[TASK END] 2026-04-15T18:25:58.217086 manifold=sphere d=7 sigma=0.0 seed=1 duration=1.726s
+[TASK START] 2026-04-15T18:25:58.217392 manifold=sphere d=7 sigma=0.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:25:58.224828 estimator=levina-bickel k=3 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:58.228306 estimator=levina-bickel k=5 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:58.232029 estimator=levina-bickel k=7 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:25:58.235954 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:25:58.240079 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:25:58.243394 estimator=twonn (no-k) dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:25:58.244275 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:25:58.677965 estimator=danco (no-k) dur=0.434s seed=2
+[EST DONE] 2026-04-15T18:25:58.682911 estimator=mind (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:25:58.689612 estimator=fisher (no-k) dur=0.007s seed=2
+[EST DONE] 2026-04-15T18:25:59.815444 estimator=masked-ae (no-k) dur=1.126s seed=2
+[TASK END] 2026-04-15T18:25:59.815469 manifold=sphere d=7 sigma=0.0 seed=2 duration=1.598s
+[TASK START] 2026-04-15T18:25:59.816067 manifold=sphere d=7 sigma=0.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:25:59.822740 estimator=levina-bickel k=3 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:59.825758 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:59.828848 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:59.832061 estimator=levina-bickel k=10 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:59.835526 estimator=levina-bickel k=15 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:59.838227 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:25:59.839001 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:26:00.239307 estimator=danco (no-k) dur=0.400s seed=3
+[EST DONE] 2026-04-15T18:26:00.244240 estimator=mind (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:26:00.267410 estimator=fisher (no-k) dur=0.023s seed=3
+[EST DONE] 2026-04-15T18:26:01.335406 estimator=masked-ae (no-k) dur=1.068s seed=3
+[TASK END] 2026-04-15T18:26:01.335435 manifold=sphere d=7 sigma=0.0 seed=3 duration=1.519s
+[TASK START] 2026-04-15T18:26:01.336048 manifold=sphere d=7 sigma=0.25 n=300 seed=1
+[EST DONE] 2026-04-15T18:26:01.342892 estimator=levina-bickel k=3 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:01.345853 estimator=levina-bickel k=5 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:01.349221 estimator=levina-bickel k=7 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:01.352456 estimator=levina-bickel k=10 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:01.355884 estimator=levina-bickel k=15 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:01.358702 estimator=twonn (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:01.359532 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:26:01.826327 estimator=danco (no-k) dur=0.467s seed=1
+[EST DONE] 2026-04-15T18:26:01.832180 estimator=mind (no-k) dur=0.006s seed=1
+[EST DONE] 2026-04-15T18:26:01.840223 estimator=fisher (no-k) dur=0.008s seed=1
+[EST DONE] 2026-04-15T18:26:02.875142 estimator=masked-ae (no-k) dur=1.035s seed=1
+[TASK END] 2026-04-15T18:26:02.875181 manifold=sphere d=7 sigma=0.25 seed=1 duration=1.539s
+[TASK START] 2026-04-15T18:26:02.875932 manifold=sphere d=7 sigma=0.25 n=300 seed=2
+[EST DONE] 2026-04-15T18:26:02.882736 estimator=levina-bickel k=3 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:02.885650 estimator=levina-bickel k=5 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:02.888740 estimator=levina-bickel k=7 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:02.891939 estimator=levina-bickel k=10 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:02.895368 estimator=levina-bickel k=15 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:02.898060 estimator=twonn (no-k) dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:02.898847 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:26:03.546250 estimator=danco (no-k) dur=0.647s seed=2
+[EST DONE] 2026-04-15T18:26:03.551251 estimator=mind (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:26:03.574507 estimator=fisher (no-k) dur=0.023s seed=2
+[EST DONE] 2026-04-15T18:26:04.618310 estimator=masked-ae (no-k) dur=1.044s seed=2
+[TASK END] 2026-04-15T18:26:04.618337 manifold=sphere d=7 sigma=0.25 seed=2 duration=1.742s
+[TASK START] 2026-04-15T18:26:04.619041 manifold=sphere d=7 sigma=0.25 n=300 seed=3
+[EST DONE] 2026-04-15T18:26:04.625858 estimator=levina-bickel k=3 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:04.628835 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:04.631962 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:04.635188 estimator=levina-bickel k=10 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:04.638622 estimator=levina-bickel k=15 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:04.641301 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:04.642097 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:26:05.189851 estimator=danco (no-k) dur=0.548s seed=3
+[EST DONE] 2026-04-15T18:26:05.195544 estimator=mind (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:26:05.228250 estimator=fisher (no-k) dur=0.033s seed=3
+[EST DONE] 2026-04-15T18:26:06.342392 estimator=masked-ae (no-k) dur=1.114s seed=3
+[TASK END] 2026-04-15T18:26:06.342424 manifold=sphere d=7 sigma=0.25 seed=3 duration=1.723s
+[TASK START] 2026-04-15T18:26:06.343008 manifold=sphere d=7 sigma=0.5 n=300 seed=1
+[EST DONE] 2026-04-15T18:26:06.350798 estimator=levina-bickel k=3 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:06.354377 estimator=levina-bickel k=5 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:06.358177 estimator=levina-bickel k=7 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:06.362135 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:06.366209 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:06.368925 estimator=twonn (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:06.369743 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:26:06.778651 estimator=danco (no-k) dur=0.409s seed=1
+[EST DONE] 2026-04-15T18:26:06.784191 estimator=mind (no-k) dur=0.006s seed=1
+[EST DONE] 2026-04-15T18:26:06.792566 estimator=fisher (no-k) dur=0.008s seed=1
+[EST DONE] 2026-04-15T18:26:07.876464 estimator=masked-ae (no-k) dur=1.084s seed=1
+[TASK END] 2026-04-15T18:26:07.876488 manifold=sphere d=7 sigma=0.5 seed=1 duration=1.533s
+[TASK START] 2026-04-15T18:26:07.877220 manifold=sphere d=7 sigma=0.5 n=300 seed=2
+[EST DONE] 2026-04-15T18:26:07.885162 estimator=levina-bickel k=3 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:07.888813 estimator=levina-bickel k=5 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:07.892528 estimator=levina-bickel k=7 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:07.896293 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:07.900343 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:07.903571 estimator=twonn (no-k) dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:07.904440 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:26:08.324222 estimator=danco (no-k) dur=0.420s seed=2
+[EST DONE] 2026-04-15T18:26:08.329174 estimator=mind (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:26:08.408134 estimator=fisher (no-k) dur=0.079s seed=2
+[EST DONE] 2026-04-15T18:26:09.498519 estimator=masked-ae (no-k) dur=1.090s seed=2
+[TASK END] 2026-04-15T18:26:09.498715 manifold=sphere d=7 sigma=0.5 seed=2 duration=1.621s
+[TASK START] 2026-04-15T18:26:09.499322 manifold=sphere d=7 sigma=0.5 n=300 seed=3
+[EST DONE] 2026-04-15T18:26:09.507333 estimator=levina-bickel k=3 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:09.510976 estimator=levina-bickel k=5 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:09.514715 estimator=levina-bickel k=7 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:09.518589 estimator=levina-bickel k=10 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:09.522849 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:09.526075 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:09.526944 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:26:10.177197 estimator=danco (no-k) dur=0.650s seed=3
+[EST DONE] 2026-04-15T18:26:10.182194 estimator=mind (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:26:10.222639 estimator=fisher (no-k) dur=0.040s seed=3
+[EST DONE] 2026-04-15T18:26:11.334470 estimator=masked-ae (no-k) dur=1.112s seed=3
+[TASK END] 2026-04-15T18:26:11.334500 manifold=sphere d=7 sigma=0.5 seed=3 duration=1.835s
+[TASK START] 2026-04-15T18:26:11.335262 manifold=sphere d=7 sigma=0.75 n=300 seed=1
+[EST DONE] 2026-04-15T18:26:11.344012 estimator=levina-bickel k=3 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:11.347538 estimator=levina-bickel k=5 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:11.351170 estimator=levina-bickel k=7 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:11.355012 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:11.358727 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:11.361311 estimator=twonn (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:11.362101 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:26:11.724068 estimator=danco (no-k) dur=0.362s seed=1
+[EST DONE] 2026-04-15T18:26:11.729517 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:26:11.784473 estimator=fisher (no-k) dur=0.055s seed=1
+[EST DONE] 2026-04-15T18:26:12.870433 estimator=masked-ae (no-k) dur=1.086s seed=1
+[TASK END] 2026-04-15T18:26:12.870460 manifold=sphere d=7 sigma=0.75 seed=1 duration=1.535s
+[TASK START] 2026-04-15T18:26:12.871041 manifold=sphere d=7 sigma=0.75 n=300 seed=2
+[EST DONE] 2026-04-15T18:26:12.877693 estimator=levina-bickel k=3 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:12.880657 estimator=levina-bickel k=5 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:12.883708 estimator=levina-bickel k=7 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:12.887103 estimator=levina-bickel k=10 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:12.890542 estimator=levina-bickel k=15 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:12.893241 estimator=twonn (no-k) dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:12.894068 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:26:13.424634 estimator=danco (no-k) dur=0.531s seed=2
+[EST DONE] 2026-04-15T18:26:13.429640 estimator=mind (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:26:13.460516 estimator=fisher (no-k) dur=0.031s seed=2
+[EST DONE] 2026-04-15T18:26:14.572921 estimator=masked-ae (no-k) dur=1.112s seed=2
+[TASK END] 2026-04-15T18:26:14.572963 manifold=sphere d=7 sigma=0.75 seed=2 duration=1.702s
+[TASK START] 2026-04-15T18:26:14.573630 manifold=sphere d=7 sigma=0.75 n=300 seed=3
+[EST DONE] 2026-04-15T18:26:14.580608 estimator=levina-bickel k=3 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:14.584025 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:14.587322 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:14.591016 estimator=levina-bickel k=10 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:14.595024 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:14.598107 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:14.598963 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:26:15.088990 estimator=danco (no-k) dur=0.490s seed=3
+[EST DONE] 2026-04-15T18:26:15.093972 estimator=mind (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:26:15.099228 estimator=fisher (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:26:16.126572 estimator=masked-ae (no-k) dur=1.027s seed=3
+[TASK END] 2026-04-15T18:26:16.126608 manifold=sphere d=7 sigma=0.75 seed=3 duration=1.553s
+[TASK START] 2026-04-15T18:26:16.127278 manifold=sphere d=7 sigma=1.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:26:16.134533 estimator=levina-bickel k=3 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:16.137512 estimator=levina-bickel k=5 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:16.140601 estimator=levina-bickel k=7 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:16.143815 estimator=levina-bickel k=10 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:16.147283 estimator=levina-bickel k=15 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:16.150016 estimator=twonn (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:16.150896 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:26:16.523638 estimator=danco (no-k) dur=0.373s seed=1
+[EST DONE] 2026-04-15T18:26:16.528998 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:26:16.575343 estimator=fisher (no-k) dur=0.046s seed=1
+[EST DONE] 2026-04-15T18:26:17.636817 estimator=masked-ae (no-k) dur=1.061s seed=1
+[TASK END] 2026-04-15T18:26:17.636839 manifold=sphere d=7 sigma=1.0 seed=1 duration=1.510s
+[TASK START] 2026-04-15T18:26:17.637064 manifold=sphere d=7 sigma=1.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:26:17.642482 estimator=levina-bickel k=3 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:26:17.644841 estimator=levina-bickel k=5 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:26:17.647234 estimator=levina-bickel k=7 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:26:17.649778 estimator=levina-bickel k=10 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:17.652554 estimator=levina-bickel k=15 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:17.654625 estimator=twonn (no-k) dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:26:17.655336 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:26:18.107920 estimator=danco (no-k) dur=0.453s seed=2
+[EST DONE] 2026-04-15T18:26:18.112733 estimator=mind (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:26:18.120178 estimator=fisher (no-k) dur=0.007s seed=2
+[EST DONE] 2026-04-15T18:26:19.221537 estimator=masked-ae (no-k) dur=1.101s seed=2
+[TASK END] 2026-04-15T18:26:19.221564 manifold=sphere d=7 sigma=1.0 seed=2 duration=1.584s
+[TASK START] 2026-04-15T18:26:19.222118 manifold=sphere d=7 sigma=1.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:26:19.228894 estimator=levina-bickel k=3 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:19.231894 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:19.234973 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:19.238188 estimator=levina-bickel k=10 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:19.241637 estimator=levina-bickel k=15 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:19.244317 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:19.245092 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:26:19.615111 estimator=danco (no-k) dur=0.370s seed=3
+[EST DONE] 2026-04-15T18:26:19.620600 estimator=mind (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:26:19.628216 estimator=fisher (no-k) dur=0.008s seed=3
+[EST DONE] 2026-04-15T18:26:20.703745 estimator=masked-ae (no-k) dur=1.076s seed=3
+[TASK END] 2026-04-15T18:26:20.703771 manifold=sphere d=7 sigma=1.0 seed=3 duration=1.482s
+[TASK START] 2026-04-15T18:26:20.704519 manifold=sphere d=9 sigma=0.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:26:20.712190 estimator=levina-bickel k=3 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:20.715543 estimator=levina-bickel k=5 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:20.719010 estimator=levina-bickel k=7 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:20.722580 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:20.726389 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:20.729693 estimator=twonn (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:20.730526 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:26:21.271116 estimator=danco (no-k) dur=0.541s seed=1
+[EST DONE] 2026-04-15T18:26:21.277100 estimator=mind (no-k) dur=0.006s seed=1
+[EST DONE] 2026-04-15T18:26:21.330680 estimator=fisher (no-k) dur=0.054s seed=1
+[EST DONE] 2026-04-15T18:26:22.415032 estimator=masked-ae (no-k) dur=1.084s seed=1
+[TASK END] 2026-04-15T18:26:22.415059 manifold=sphere d=9 sigma=0.0 seed=1 duration=1.711s
+[TASK START] 2026-04-15T18:26:22.415691 manifold=sphere d=9 sigma=0.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:26:22.425150 estimator=levina-bickel k=3 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:22.429176 estimator=levina-bickel k=5 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:22.432667 estimator=levina-bickel k=7 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:22.436689 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:22.441231 estimator=levina-bickel k=15 dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:26:22.445033 estimator=twonn (no-k) dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:22.445990 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:26:22.987221 estimator=danco (no-k) dur=0.541s seed=2
+[EST DONE] 2026-04-15T18:26:22.995155 estimator=mind (no-k) dur=0.008s seed=2
+[EST DONE] 2026-04-15T18:26:23.006749 estimator=fisher (no-k) dur=0.012s seed=2
+[EST DONE] 2026-04-15T18:26:24.006458 estimator=masked-ae (no-k) dur=1.000s seed=2
+[TASK END] 2026-04-15T18:26:24.006485 manifold=sphere d=9 sigma=0.0 seed=2 duration=1.591s
+[TASK START] 2026-04-15T18:26:24.007058 manifold=sphere d=9 sigma=0.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:26:24.014530 estimator=levina-bickel k=3 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:24.017866 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:24.021405 estimator=levina-bickel k=7 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:24.024980 estimator=levina-bickel k=10 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:24.028743 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:24.031850 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:24.032683 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:26:24.925371 estimator=danco (no-k) dur=0.893s seed=3
+[EST DONE] 2026-04-15T18:26:24.930913 estimator=mind (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:26:24.973932 estimator=fisher (no-k) dur=0.043s seed=3
+[EST DONE] 2026-04-15T18:26:26.047078 estimator=masked-ae (no-k) dur=1.073s seed=3
+[TASK END] 2026-04-15T18:26:26.047108 manifold=sphere d=9 sigma=0.0 seed=3 duration=2.040s
+[TASK START] 2026-04-15T18:26:26.047703 manifold=sphere d=9 sigma=0.25 n=300 seed=1
+[EST DONE] 2026-04-15T18:26:26.055355 estimator=levina-bickel k=3 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:26.058701 estimator=levina-bickel k=5 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:26.062147 estimator=levina-bickel k=7 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:26.065729 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:26.069515 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:26.072697 estimator=twonn (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:26.073515 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:26:26.653756 estimator=danco (no-k) dur=0.580s seed=1
+[EST DONE] 2026-04-15T18:26:26.659008 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:26:26.692337 estimator=fisher (no-k) dur=0.033s seed=1
+[EST DONE] 2026-04-15T18:26:27.775585 estimator=masked-ae (no-k) dur=1.083s seed=1
+[TASK END] 2026-04-15T18:26:27.775613 manifold=sphere d=9 sigma=0.25 seed=1 duration=1.728s
+[TASK START] 2026-04-15T18:26:27.776208 manifold=sphere d=9 sigma=0.25 n=300 seed=2
+[EST DONE] 2026-04-15T18:26:27.784014 estimator=levina-bickel k=3 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:27.787831 estimator=levina-bickel k=5 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:27.791282 estimator=levina-bickel k=7 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:27.795331 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:27.799623 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:27.803216 estimator=twonn (no-k) dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:27.804027 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:26:28.506878 estimator=danco (no-k) dur=0.703s seed=2
+[EST DONE] 2026-04-15T18:26:28.512147 estimator=mind (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:26:28.564328 estimator=fisher (no-k) dur=0.052s seed=2
+[EST DONE] 2026-04-15T18:26:29.628514 estimator=masked-ae (no-k) dur=1.064s seed=2
+[TASK END] 2026-04-15T18:26:29.628544 manifold=sphere d=9 sigma=0.25 seed=2 duration=1.852s
+[TASK START] 2026-04-15T18:26:29.629214 manifold=sphere d=9 sigma=0.25 n=300 seed=3
+[EST DONE] 2026-04-15T18:26:29.636162 estimator=levina-bickel k=3 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:29.639503 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:29.642943 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:29.646510 estimator=levina-bickel k=10 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:29.650264 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:29.653392 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:29.654193 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:26:30.364968 estimator=danco (no-k) dur=0.711s seed=3
+[EST DONE] 2026-04-15T18:26:30.370500 estimator=mind (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:26:30.380183 estimator=fisher (no-k) dur=0.010s seed=3
+[EST DONE] 2026-04-15T18:26:31.464083 estimator=masked-ae (no-k) dur=1.084s seed=3
+[TASK END] 2026-04-15T18:26:31.464117 manifold=sphere d=9 sigma=0.25 seed=3 duration=1.835s
+[TASK START] 2026-04-15T18:26:31.464692 manifold=sphere d=9 sigma=0.5 n=300 seed=1
+[EST DONE] 2026-04-15T18:26:31.472411 estimator=levina-bickel k=3 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:31.475832 estimator=levina-bickel k=5 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:31.479402 estimator=levina-bickel k=7 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:31.482993 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:31.486778 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:31.489933 estimator=twonn (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:31.490736 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:26:32.096632 estimator=danco (no-k) dur=0.606s seed=1
+[EST DONE] 2026-04-15T18:26:32.101783 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:26:32.118745 estimator=fisher (no-k) dur=0.017s seed=1
+[EST DONE] 2026-04-15T18:26:33.149173 estimator=masked-ae (no-k) dur=1.030s seed=1
+[TASK END] 2026-04-15T18:26:33.149200 manifold=sphere d=9 sigma=0.5 seed=1 duration=1.685s
+[TASK START] 2026-04-15T18:26:33.149784 manifold=sphere d=9 sigma=0.5 n=300 seed=2
+[EST DONE] 2026-04-15T18:26:33.157860 estimator=levina-bickel k=3 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:33.161582 estimator=levina-bickel k=5 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:33.165362 estimator=levina-bickel k=7 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:33.169070 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:33.173195 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:33.176594 estimator=twonn (no-k) dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:33.177507 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:26:33.843429 estimator=danco (no-k) dur=0.666s seed=2
+[EST DONE] 2026-04-15T18:26:33.848711 estimator=mind (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:26:33.864073 estimator=fisher (no-k) dur=0.015s seed=2
+[EST DONE] 2026-04-15T18:26:34.922893 estimator=masked-ae (no-k) dur=1.059s seed=2
+[TASK END] 2026-04-15T18:26:34.922928 manifold=sphere d=9 sigma=0.5 seed=2 duration=1.773s
+[TASK START] 2026-04-15T18:26:34.923649 manifold=sphere d=9 sigma=0.5 n=300 seed=3
+[EST DONE] 2026-04-15T18:26:34.932196 estimator=levina-bickel k=3 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:34.935540 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:34.938964 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:34.942523 estimator=levina-bickel k=10 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:34.946309 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:34.949456 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:34.950424 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:26:35.587388 estimator=danco (no-k) dur=0.637s seed=3
+[EST DONE] 2026-04-15T18:26:35.593003 estimator=mind (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:26:35.644512 estimator=fisher (no-k) dur=0.051s seed=3
+[EST DONE] 2026-04-15T18:26:36.742765 estimator=masked-ae (no-k) dur=1.098s seed=3
+[TASK END] 2026-04-15T18:26:36.742793 manifold=sphere d=9 sigma=0.5 seed=3 duration=1.819s
+[TASK START] 2026-04-15T18:26:36.743459 manifold=sphere d=9 sigma=0.75 n=300 seed=1
+[EST DONE] 2026-04-15T18:26:36.752212 estimator=levina-bickel k=3 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:36.756149 estimator=levina-bickel k=5 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:36.760172 estimator=levina-bickel k=7 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:36.764350 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:36.768706 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:36.772070 estimator=twonn (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:36.772893 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:26:37.278232 estimator=danco (no-k) dur=0.505s seed=1
+[EST DONE] 2026-04-15T18:26:37.283675 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:26:37.336084 estimator=fisher (no-k) dur=0.052s seed=1
+[EST DONE] 2026-04-15T18:26:38.446300 estimator=masked-ae (no-k) dur=1.110s seed=1
+[TASK END] 2026-04-15T18:26:38.446325 manifold=sphere d=9 sigma=0.75 seed=1 duration=1.703s
+[TASK START] 2026-04-15T18:26:38.447093 manifold=sphere d=9 sigma=0.75 n=300 seed=2
+[EST DONE] 2026-04-15T18:26:38.455577 estimator=levina-bickel k=3 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:38.458944 estimator=levina-bickel k=5 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:38.461657 estimator=levina-bickel k=7 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:38.464850 estimator=levina-bickel k=10 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:38.469106 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:38.472684 estimator=twonn (no-k) dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:38.473568 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:26:39.004866 estimator=danco (no-k) dur=0.531s seed=2
+[EST DONE] 2026-04-15T18:26:39.011147 estimator=mind (no-k) dur=0.006s seed=2
+[EST DONE] 2026-04-15T18:26:39.020196 estimator=fisher (no-k) dur=0.009s seed=2
+[EST DONE] 2026-04-15T18:26:40.159840 estimator=masked-ae (no-k) dur=1.140s seed=2
+[TASK END] 2026-04-15T18:26:40.159864 manifold=sphere d=9 sigma=0.75 seed=2 duration=1.713s
+[TASK START] 2026-04-15T18:26:40.160090 manifold=sphere d=9 sigma=0.75 n=300 seed=3
+[EST DONE] 2026-04-15T18:26:40.166143 estimator=levina-bickel k=3 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:40.169575 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:40.173760 estimator=levina-bickel k=7 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:40.178056 estimator=levina-bickel k=10 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:40.182506 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:40.186162 estimator=twonn (no-k) dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:40.187038 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:26:40.646429 estimator=danco (no-k) dur=0.459s seed=3
+[EST DONE] 2026-04-15T18:26:40.651588 estimator=mind (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:26:40.700104 estimator=fisher (no-k) dur=0.048s seed=3
+[EST DONE] 2026-04-15T18:26:41.837335 estimator=masked-ae (no-k) dur=1.137s seed=3
+[TASK END] 2026-04-15T18:26:41.837362 manifold=sphere d=9 sigma=0.75 seed=3 duration=1.677s
+[TASK START] 2026-04-15T18:26:41.837923 manifold=sphere d=9 sigma=1.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:26:41.845793 estimator=levina-bickel k=3 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:41.849371 estimator=levina-bickel k=5 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:41.852794 estimator=levina-bickel k=7 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:41.856380 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:41.860166 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:41.863296 estimator=twonn (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:26:41.864120 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:26:42.552935 estimator=danco (no-k) dur=0.689s seed=1
+[EST DONE] 2026-04-15T18:26:42.558221 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:26:42.564190 estimator=fisher (no-k) dur=0.006s seed=1
+[EST DONE] 2026-04-15T18:26:43.622547 estimator=masked-ae (no-k) dur=1.058s seed=1
+[TASK END] 2026-04-15T18:26:43.622582 manifold=sphere d=9 sigma=1.0 seed=1 duration=1.785s
+[TASK START] 2026-04-15T18:26:43.623198 manifold=sphere d=9 sigma=1.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:26:43.631360 estimator=levina-bickel k=3 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:43.634960 estimator=levina-bickel k=5 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:43.638670 estimator=levina-bickel k=7 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:43.642562 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:43.646685 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:43.650024 estimator=twonn (no-k) dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:26:43.650892 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:26:44.101851 estimator=danco (no-k) dur=0.451s seed=2
+[EST DONE] 2026-04-15T18:26:44.107895 estimator=mind (no-k) dur=0.006s seed=2
+[EST DONE] 2026-04-15T18:26:44.116177 estimator=fisher (no-k) dur=0.008s seed=2
+[EST DONE] 2026-04-15T18:26:45.136645 estimator=masked-ae (no-k) dur=1.020s seed=2
+[TASK END] 2026-04-15T18:26:45.136669 manifold=sphere d=9 sigma=1.0 seed=2 duration=1.513s
+[TASK START] 2026-04-15T18:26:45.136907 manifold=sphere d=9 sigma=1.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:26:45.143279 estimator=levina-bickel k=3 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:45.145925 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:45.148645 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:45.151428 estimator=levina-bickel k=10 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:45.154445 estimator=levina-bickel k=15 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:26:45.156845 estimator=twonn (no-k) dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:26:45.157565 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:26:46.216974 estimator=danco (no-k) dur=1.059s seed=3
+[EST DONE] 2026-04-15T18:26:46.222419 estimator=mind (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:26:46.235763 estimator=fisher (no-k) dur=0.013s seed=3
+[EST DONE] 2026-04-15T18:26:47.342771 estimator=masked-ae (no-k) dur=1.107s seed=3
+[TASK END] 2026-04-15T18:26:47.342799 manifold=sphere d=9 sigma=1.0 seed=3 duration=2.206s
+[TASK START] 2026-04-15T18:26:47.343341 manifold=sphere d=12 sigma=0.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:26:47.351844 estimator=levina-bickel k=3 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:47.355688 estimator=levina-bickel k=5 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:47.359604 estimator=levina-bickel k=7 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:47.363637 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:47.367904 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:47.371545 estimator=twonn (no-k) dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:47.372403 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:26:48.415312 estimator=danco (no-k) dur=1.043s seed=1
+[EST DONE] 2026-04-15T18:26:48.422250 estimator=mind (no-k) dur=0.007s seed=1
+[EST DONE] 2026-04-15T18:26:48.437556 estimator=fisher (no-k) dur=0.015s seed=1
+[EST DONE] 2026-04-15T18:26:49.531756 estimator=masked-ae (no-k) dur=1.094s seed=1
+[TASK END] 2026-04-15T18:26:49.531782 manifold=sphere d=12 sigma=0.0 seed=1 duration=2.188s
+[TASK START] 2026-04-15T18:26:49.532414 manifold=sphere d=12 sigma=0.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:26:49.540910 estimator=levina-bickel k=3 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:49.544729 estimator=levina-bickel k=5 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:49.548631 estimator=levina-bickel k=7 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:49.552672 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:49.556934 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:49.560581 estimator=twonn (no-k) dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:49.561412 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:26:50.478657 estimator=danco (no-k) dur=0.917s seed=2
+[EST DONE] 2026-04-15T18:26:50.484267 estimator=mind (no-k) dur=0.006s seed=2
+[EST DONE] 2026-04-15T18:26:50.504029 estimator=fisher (no-k) dur=0.020s seed=2
+[EST DONE] 2026-04-15T18:26:51.574935 estimator=masked-ae (no-k) dur=1.071s seed=2
+[TASK END] 2026-04-15T18:26:51.574961 manifold=sphere d=12 sigma=0.0 seed=2 duration=2.043s
+[TASK START] 2026-04-15T18:26:51.575526 manifold=sphere d=12 sigma=0.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:26:51.583944 estimator=levina-bickel k=3 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:51.587795 estimator=levina-bickel k=5 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:51.591704 estimator=levina-bickel k=7 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:51.595850 estimator=levina-bickel k=10 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:51.600127 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:51.603797 estimator=twonn (no-k) dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:51.604639 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:26:52.928429 estimator=danco (no-k) dur=1.324s seed=3
+[EST DONE] 2026-04-15T18:26:52.934335 estimator=mind (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:26:52.940152 estimator=fisher (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:26:53.969348 estimator=masked-ae (no-k) dur=1.029s seed=3
+[TASK END] 2026-04-15T18:26:53.969373 manifold=sphere d=12 sigma=0.0 seed=3 duration=2.394s
+[TASK START] 2026-04-15T18:26:53.969937 manifold=sphere d=12 sigma=0.25 n=300 seed=1
+[EST DONE] 2026-04-15T18:26:53.978584 estimator=levina-bickel k=3 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:53.982427 estimator=levina-bickel k=5 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:53.986338 estimator=levina-bickel k=7 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:53.990384 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:53.994648 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:53.998304 estimator=twonn (no-k) dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:26:53.999140 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:26:55.368531 estimator=danco (no-k) dur=1.369s seed=1
+[EST DONE] 2026-04-15T18:26:55.374430 estimator=mind (no-k) dur=0.006s seed=1
+[EST DONE] 2026-04-15T18:26:55.387932 estimator=fisher (no-k) dur=0.013s seed=1
+[EST DONE] 2026-04-15T18:26:56.408528 estimator=masked-ae (no-k) dur=1.021s seed=1
+[TASK END] 2026-04-15T18:26:56.408558 manifold=sphere d=12 sigma=0.25 seed=1 duration=2.439s
+[TASK START] 2026-04-15T18:26:56.409159 manifold=sphere d=12 sigma=0.25 n=300 seed=2
+[EST DONE] 2026-04-15T18:26:56.418846 estimator=levina-bickel k=3 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:56.423287 estimator=levina-bickel k=5 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:56.427758 estimator=levina-bickel k=7 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:56.432376 estimator=levina-bickel k=10 dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:26:56.437190 estimator=levina-bickel k=15 dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:26:56.441338 estimator=twonn (no-k) dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:26:56.442249 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:26:57.107010 estimator=danco (no-k) dur=0.665s seed=2
+[EST DONE] 2026-04-15T18:26:57.112964 estimator=mind (no-k) dur=0.006s seed=2
+[EST DONE] 2026-04-15T18:26:57.133954 estimator=fisher (no-k) dur=0.021s seed=2
+[EST DONE] 2026-04-15T18:26:58.193155 estimator=masked-ae (no-k) dur=1.059s seed=2
+[TASK END] 2026-04-15T18:26:58.193193 manifold=sphere d=12 sigma=0.25 seed=2 duration=1.784s
+[TASK START] 2026-04-15T18:26:58.193900 manifold=sphere d=12 sigma=0.25 n=300 seed=3
+[EST DONE] 2026-04-15T18:26:58.204512 estimator=levina-bickel k=3 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:58.208875 estimator=levina-bickel k=5 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:58.213395 estimator=levina-bickel k=7 dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:26:58.217946 estimator=levina-bickel k=10 dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:26:58.222222 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:58.225955 estimator=twonn (no-k) dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:26:58.226990 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:26:58.942482 estimator=danco (no-k) dur=0.715s seed=3
+[EST DONE] 2026-04-15T18:26:58.948258 estimator=mind (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:26:58.956231 estimator=fisher (no-k) dur=0.008s seed=3
+[EST DONE] 2026-04-15T18:27:00.026269 estimator=masked-ae (no-k) dur=1.070s seed=3
+[TASK END] 2026-04-15T18:27:00.026300 manifold=sphere d=12 sigma=0.25 seed=3 duration=1.832s
+[TASK START] 2026-04-15T18:27:00.026933 manifold=sphere d=12 sigma=0.5 n=300 seed=1
+[EST DONE] 2026-04-15T18:27:00.037344 estimator=levina-bickel k=3 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:27:00.042057 estimator=levina-bickel k=5 dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:27:00.046788 estimator=levina-bickel k=7 dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:27:00.051758 estimator=levina-bickel k=10 dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:27:00.056900 estimator=levina-bickel k=15 dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:27:00.061322 estimator=twonn (no-k) dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:27:00.062225 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:27:00.904771 estimator=danco (no-k) dur=0.843s seed=1
+[EST DONE] 2026-04-15T18:27:00.910032 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:27:00.928150 estimator=fisher (no-k) dur=0.018s seed=1
+[EST DONE] 2026-04-15T18:27:01.981352 estimator=masked-ae (no-k) dur=1.053s seed=1
+[TASK END] 2026-04-15T18:27:01.981375 manifold=sphere d=12 sigma=0.5 seed=1 duration=1.954s
+[TASK START] 2026-04-15T18:27:01.981591 manifold=sphere d=12 sigma=0.5 n=300 seed=2
+[EST DONE] 2026-04-15T18:27:01.988050 estimator=levina-bickel k=3 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:27:01.991896 estimator=levina-bickel k=5 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:27:01.995818 estimator=levina-bickel k=7 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:27:01.999861 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:27:02.004140 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:27:02.007763 estimator=twonn (no-k) dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:27:02.008603 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:27:02.743442 estimator=danco (no-k) dur=0.735s seed=2
+[EST DONE] 2026-04-15T18:27:02.748784 estimator=mind (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:27:02.808008 estimator=fisher (no-k) dur=0.059s seed=2
+[EST DONE] 2026-04-15T18:27:03.905524 estimator=masked-ae (no-k) dur=1.097s seed=2
+[TASK END] 2026-04-15T18:27:03.905554 manifold=sphere d=12 sigma=0.5 seed=2 duration=1.924s
+[TASK START] 2026-04-15T18:27:03.906140 manifold=sphere d=12 sigma=0.5 n=300 seed=3
+[EST DONE] 2026-04-15T18:27:03.915581 estimator=levina-bickel k=3 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:27:03.919400 estimator=levina-bickel k=5 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:27:03.924286 estimator=levina-bickel k=7 dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:27:03.929162 estimator=levina-bickel k=10 dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:27:03.934389 estimator=levina-bickel k=15 dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:27:03.938557 estimator=twonn (no-k) dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:27:03.939546 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:27:04.711315 estimator=danco (no-k) dur=0.772s seed=3
+[EST DONE] 2026-04-15T18:27:04.716991 estimator=mind (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:27:04.732257 estimator=fisher (no-k) dur=0.015s seed=3
+[EST DONE] 2026-04-15T18:27:05.857408 estimator=masked-ae (no-k) dur=1.125s seed=3
+[TASK END] 2026-04-15T18:27:05.857432 manifold=sphere d=12 sigma=0.5 seed=3 duration=1.951s
+[TASK START] 2026-04-15T18:27:05.857680 manifold=sphere d=12 sigma=0.75 n=300 seed=1
+[EST DONE] 2026-04-15T18:27:05.864666 estimator=levina-bickel k=3 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:27:05.867628 estimator=levina-bickel k=5 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:27:05.870715 estimator=levina-bickel k=7 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:27:05.873925 estimator=levina-bickel k=10 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:27:05.877338 estimator=levina-bickel k=15 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:27:05.880142 estimator=twonn (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:27:05.880897 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:27:06.688046 estimator=danco (no-k) dur=0.807s seed=1
+[EST DONE] 2026-04-15T18:27:06.693657 estimator=mind (no-k) dur=0.006s seed=1
+[EST DONE] 2026-04-15T18:27:06.701188 estimator=fisher (no-k) dur=0.008s seed=1
+[EST DONE] 2026-04-15T18:27:07.748524 estimator=masked-ae (no-k) dur=1.047s seed=1
+[TASK END] 2026-04-15T18:27:07.748547 manifold=sphere d=12 sigma=0.75 seed=1 duration=1.891s
+[TASK START] 2026-04-15T18:27:07.748782 manifold=sphere d=12 sigma=0.75 n=300 seed=2
+[EST DONE] 2026-04-15T18:27:07.755951 estimator=levina-bickel k=3 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:27:07.759041 estimator=levina-bickel k=5 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:27:07.762156 estimator=levina-bickel k=7 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:27:07.765402 estimator=levina-bickel k=10 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:27:07.768815 estimator=levina-bickel k=15 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:27:07.771590 estimator=twonn (no-k) dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:27:07.772342 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:27:08.454486 estimator=danco (no-k) dur=0.682s seed=2
+[EST DONE] 2026-04-15T18:27:08.460411 estimator=mind (no-k) dur=0.006s seed=2
+[EST DONE] 2026-04-15T18:27:08.472855 estimator=fisher (no-k) dur=0.012s seed=2
+[EST DONE] 2026-04-15T18:27:09.602590 estimator=masked-ae (no-k) dur=1.130s seed=2
+[TASK END] 2026-04-15T18:27:09.602620 manifold=sphere d=12 sigma=0.75 seed=2 duration=1.854s
+[TASK START] 2026-04-15T18:27:09.603220 manifold=sphere d=12 sigma=0.75 n=300 seed=3
+[EST DONE] 2026-04-15T18:27:09.612670 estimator=levina-bickel k=3 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:27:09.617009 estimator=levina-bickel k=5 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:27:09.621543 estimator=levina-bickel k=7 dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:27:09.626313 estimator=levina-bickel k=10 dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:27:09.631235 estimator=levina-bickel k=15 dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:27:09.635445 estimator=twonn (no-k) dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:27:09.636361 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:27:10.587496 estimator=danco (no-k) dur=0.951s seed=3
+[EST DONE] 2026-04-15T18:27:10.593151 estimator=mind (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:27:10.600198 estimator=fisher (no-k) dur=0.007s seed=3
+[EST DONE] 2026-04-15T18:27:11.673172 estimator=masked-ae (no-k) dur=1.073s seed=3
+[TASK END] 2026-04-15T18:27:11.673200 manifold=sphere d=12 sigma=0.75 seed=3 duration=2.070s
+[TASK START] 2026-04-15T18:27:11.673862 manifold=sphere d=12 sigma=1.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:27:11.684016 estimator=levina-bickel k=3 dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:27:11.688645 estimator=levina-bickel k=5 dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:27:11.693410 estimator=levina-bickel k=7 dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:27:11.698265 estimator=levina-bickel k=10 dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:27:11.703298 estimator=levina-bickel k=15 dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:27:11.707653 estimator=twonn (no-k) dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:27:11.708566 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:27:12.487550 estimator=danco (no-k) dur=0.779s seed=1
+[EST DONE] 2026-04-15T18:27:12.493163 estimator=mind (no-k) dur=0.006s seed=1
+[EST DONE] 2026-04-15T18:27:12.516116 estimator=fisher (no-k) dur=0.023s seed=1
+[EST DONE] 2026-04-15T18:27:13.567138 estimator=masked-ae (no-k) dur=1.051s seed=1
+[TASK END] 2026-04-15T18:27:13.567165 manifold=sphere d=12 sigma=1.0 seed=1 duration=1.893s
+[TASK START] 2026-04-15T18:27:13.567772 manifold=sphere d=12 sigma=1.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:27:13.576643 estimator=levina-bickel k=3 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:27:13.580872 estimator=levina-bickel k=5 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:27:13.585115 estimator=levina-bickel k=7 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:27:13.589460 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:27:13.594041 estimator=levina-bickel k=15 dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:27:13.597690 estimator=twonn (no-k) dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:27:13.598503 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:27:14.538875 estimator=danco (no-k) dur=0.940s seed=2
+[EST DONE] 2026-04-15T18:27:14.544777 estimator=mind (no-k) dur=0.006s seed=2
+[EST DONE] 2026-04-15T18:27:14.556442 estimator=fisher (no-k) dur=0.012s seed=2
+[EST DONE] 2026-04-15T18:27:15.654714 estimator=masked-ae (no-k) dur=1.098s seed=2
+[TASK END] 2026-04-15T18:27:15.654749 manifold=sphere d=12 sigma=1.0 seed=2 duration=2.087s
+[TASK START] 2026-04-15T18:27:15.654953 manifold=sphere d=12 sigma=1.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:27:15.661698 estimator=levina-bickel k=3 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:27:15.664676 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:27:15.667689 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:27:15.670876 estimator=levina-bickel k=10 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:27:15.674265 estimator=levina-bickel k=15 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:27:15.677042 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:27:15.677760 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:27:16.505722 estimator=danco (no-k) dur=0.828s seed=3
+[EST DONE] 2026-04-15T18:27:16.512275 estimator=mind (no-k) dur=0.007s seed=3
+[EST DONE] 2026-04-15T18:27:16.544139 estimator=fisher (no-k) dur=0.032s seed=3
+[EST DONE] 2026-04-15T18:27:17.714007 estimator=masked-ae (no-k) dur=1.170s seed=3
+[TASK END] 2026-04-15T18:27:17.714033 manifold=sphere d=12 sigma=1.0 seed=3 duration=2.059s
+[TASK START] 2026-04-15T18:27:17.714301 manifold=sphere d=15 sigma=0.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:27:18.036237 estimator=levina-bickel k=3 dur=0.071s seed=1
+[EST DONE] 2026-04-15T18:27:18.045308 estimator=levina-bickel k=5 dur=0.009s seed=1
+[EST DONE] 2026-04-15T18:27:18.064415 estimator=levina-bickel k=7 dur=0.019s seed=1
+[EST DONE] 2026-04-15T18:27:18.135381 estimator=levina-bickel k=10 dur=0.071s seed=1
+[EST DONE] 2026-04-15T18:27:18.210071 estimator=levina-bickel k=15 dur=0.075s seed=1
+[EST DONE] 2026-04-15T18:27:18.283902 estimator=twonn (no-k) dur=0.074s seed=1
+[EST DONE] 2026-04-15T18:27:18.285214 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:27:19.053286 estimator=danco (no-k) dur=0.768s seed=1
+[EST DONE] 2026-04-15T18:27:19.112352 estimator=mind (no-k) dur=0.059s seed=1
+[EST DONE] 2026-04-15T18:27:19.122409 estimator=fisher (no-k) dur=0.010s seed=1
+[EST DONE] 2026-04-15T18:27:20.174518 estimator=masked-ae (no-k) dur=1.052s seed=1
+[TASK END] 2026-04-15T18:27:20.174548 manifold=sphere d=15 sigma=0.0 seed=1 duration=2.460s
+[TASK START] 2026-04-15T18:27:20.175240 manifold=sphere d=15 sigma=0.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:27:20.343508 estimator=levina-bickel k=3 dur=0.072s seed=2
+[EST DONE] 2026-04-15T18:27:20.425773 estimator=levina-bickel k=5 dur=0.082s seed=2
+[EST DONE] 2026-04-15T18:27:20.484088 estimator=levina-bickel k=7 dur=0.058s seed=2
+[EST DONE] 2026-04-15T18:27:20.542104 estimator=levina-bickel k=10 dur=0.058s seed=2
+[EST DONE] 2026-04-15T18:27:20.612329 estimator=levina-bickel k=15 dur=0.070s seed=2
+[EST DONE] 2026-04-15T18:27:20.656819 estimator=twonn (no-k) dur=0.044s seed=2
+[EST DONE] 2026-04-15T18:27:20.657748 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:27:22.214155 estimator=danco (no-k) dur=1.556s seed=2
+[EST DONE] 2026-04-15T18:27:22.275649 estimator=mind (no-k) dur=0.061s seed=2
+[EST DONE] 2026-04-15T18:27:22.288206 estimator=fisher (no-k) dur=0.013s seed=2
+[EST DONE] 2026-04-15T18:27:23.499767 estimator=masked-ae (no-k) dur=1.212s seed=2
+[TASK END] 2026-04-15T18:27:23.499794 manifold=sphere d=15 sigma=0.0 seed=2 duration=3.325s
+[TASK START] 2026-04-15T18:27:23.500656 manifold=sphere d=15 sigma=0.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:27:23.621017 estimator=levina-bickel k=3 dur=0.052s seed=3
+[EST DONE] 2026-04-15T18:27:23.694562 estimator=levina-bickel k=5 dur=0.074s seed=3
+[EST DONE] 2026-04-15T18:27:23.768218 estimator=levina-bickel k=7 dur=0.074s seed=3
+[EST DONE] 2026-04-15T18:27:23.834308 estimator=levina-bickel k=10 dur=0.066s seed=3
+[EST DONE] 2026-04-15T18:27:23.883189 estimator=levina-bickel k=15 dur=0.049s seed=3
+[EST DONE] 2026-04-15T18:27:23.956449 estimator=twonn (no-k) dur=0.073s seed=3
+[EST DONE] 2026-04-15T18:27:23.957436 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:27:25.198645 estimator=danco (no-k) dur=1.241s seed=3
+[EST DONE] 2026-04-15T18:27:25.279486 estimator=mind (no-k) dur=0.081s seed=3
+[EST DONE] 2026-04-15T18:27:25.315929 estimator=fisher (no-k) dur=0.036s seed=3
+[EST DONE] 2026-04-15T18:27:26.387641 estimator=masked-ae (no-k) dur=1.072s seed=3
+[TASK END] 2026-04-15T18:27:26.387672 manifold=sphere d=15 sigma=0.0 seed=3 duration=2.887s
+[TASK START] 2026-04-15T18:27:26.388295 manifold=sphere d=15 sigma=0.25 n=300 seed=1
+[EST DONE] 2026-04-15T18:27:26.515865 estimator=levina-bickel k=3 dur=0.071s seed=1
+[EST DONE] 2026-04-15T18:27:26.525512 estimator=levina-bickel k=5 dur=0.010s seed=1
+[EST DONE] 2026-04-15T18:27:26.527387 estimator=levina-bickel k=7 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:27:26.586779 estimator=levina-bickel k=10 dur=0.059s seed=1
+[EST DONE] 2026-04-15T18:27:26.664321 estimator=levina-bickel k=15 dur=0.078s seed=1
+[EST DONE] 2026-04-15T18:27:26.685148 estimator=twonn (no-k) dur=0.021s seed=1
+[EST DONE] 2026-04-15T18:27:26.686136 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:27:27.957011 estimator=danco (no-k) dur=1.271s seed=1
+[EST DONE] 2026-04-15T18:27:28.022275 estimator=mind (no-k) dur=0.065s seed=1
+[EST DONE] 2026-04-15T18:27:28.038359 estimator=fisher (no-k) dur=0.016s seed=1
+[EST DONE] 2026-04-15T18:27:29.058252 estimator=masked-ae (no-k) dur=1.020s seed=1
+[TASK END] 2026-04-15T18:27:29.058279 manifold=sphere d=15 sigma=0.25 seed=1 duration=2.670s
+[TASK START] 2026-04-15T18:27:29.058876 manifold=sphere d=15 sigma=0.25 n=300 seed=2
+[EST DONE] 2026-04-15T18:27:29.218997 estimator=levina-bickel k=3 dur=0.062s seed=2
+[EST DONE] 2026-04-15T18:27:29.237648 estimator=levina-bickel k=5 dur=0.019s seed=2
+[EST DONE] 2026-04-15T18:27:29.282921 estimator=levina-bickel k=7 dur=0.045s seed=2
+[EST DONE] 2026-04-15T18:27:29.325732 estimator=levina-bickel k=10 dur=0.043s seed=2
+[EST DONE] 2026-04-15T18:27:29.336333 estimator=levina-bickel k=15 dur=0.011s seed=2
+[EST DONE] 2026-04-15T18:27:29.409408 estimator=twonn (no-k) dur=0.073s seed=2
+[EST DONE] 2026-04-15T18:27:29.410443 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:27:30.678154 estimator=danco (no-k) dur=1.268s seed=2
+[EST DONE] 2026-04-15T18:27:30.754783 estimator=mind (no-k) dur=0.077s seed=2
+[EST DONE] 2026-04-15T18:27:30.763751 estimator=fisher (no-k) dur=0.009s seed=2
+[EST DONE] 2026-04-15T18:27:31.838497 estimator=masked-ae (no-k) dur=1.075s seed=2
+[TASK END] 2026-04-15T18:27:31.838525 manifold=sphere d=15 sigma=0.25 seed=2 duration=2.780s
+[TASK START] 2026-04-15T18:27:31.839179 manifold=sphere d=15 sigma=0.25 n=300 seed=3
+[EST DONE] 2026-04-15T18:27:31.978760 estimator=levina-bickel k=3 dur=0.066s seed=3
+[EST DONE] 2026-04-15T18:27:32.057537 estimator=levina-bickel k=5 dur=0.079s seed=3
+[EST DONE] 2026-04-15T18:27:32.108292 estimator=levina-bickel k=7 dur=0.051s seed=3
+[EST DONE] 2026-04-15T18:27:32.159577 estimator=levina-bickel k=10 dur=0.051s seed=3
+[EST DONE] 2026-04-15T18:27:32.214327 estimator=levina-bickel k=15 dur=0.055s seed=3
+[EST DONE] 2026-04-15T18:27:32.245313 estimator=twonn (no-k) dur=0.031s seed=3
+[EST DONE] 2026-04-15T18:27:32.246218 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:27:33.798938 estimator=danco (no-k) dur=1.553s seed=3
+[EST DONE] 2026-04-15T18:27:33.871893 estimator=mind (no-k) dur=0.073s seed=3
+[EST DONE] 2026-04-15T18:27:33.879818 estimator=fisher (no-k) dur=0.008s seed=3
+[EST DONE] 2026-04-15T18:27:34.991338 estimator=masked-ae (no-k) dur=1.111s seed=3
+[TASK END] 2026-04-15T18:27:34.991363 manifold=sphere d=15 sigma=0.25 seed=3 duration=3.152s
+[TASK START] 2026-04-15T18:27:34.991606 manifold=sphere d=15 sigma=0.5 n=300 seed=1
+[EST DONE] 2026-04-15T18:27:35.108540 estimator=levina-bickel k=3 dur=0.055s seed=1
+[EST DONE] 2026-04-15T18:27:35.186022 estimator=levina-bickel k=5 dur=0.077s seed=1
+[EST DONE] 2026-04-15T18:27:35.215960 estimator=levina-bickel k=7 dur=0.030s seed=1
+[EST DONE] 2026-04-15T18:27:35.263931 estimator=levina-bickel k=10 dur=0.048s seed=1
+[EST DONE] 2026-04-15T18:27:35.341447 estimator=levina-bickel k=15 dur=0.077s seed=1
+[EST DONE] 2026-04-15T18:27:35.419801 estimator=twonn (no-k) dur=0.078s seed=1
+[EST DONE] 2026-04-15T18:27:35.420774 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:27:36.351540 estimator=danco (no-k) dur=0.931s seed=1
+[EST DONE] 2026-04-15T18:27:36.406834 estimator=mind (no-k) dur=0.055s seed=1
+[EST DONE] 2026-04-15T18:27:36.427811 estimator=fisher (no-k) dur=0.021s seed=1
+[EST DONE] 2026-04-15T18:27:37.500088 estimator=masked-ae (no-k) dur=1.072s seed=1
+[TASK END] 2026-04-15T18:27:37.500123 manifold=sphere d=15 sigma=0.5 seed=1 duration=2.509s
+[TASK START] 2026-04-15T18:27:37.500751 manifold=sphere d=15 sigma=0.5 n=300 seed=2
+[EST DONE] 2026-04-15T18:27:37.650655 estimator=levina-bickel k=3 dur=0.078s seed=2
+[EST DONE] 2026-04-15T18:27:37.722860 estimator=levina-bickel k=5 dur=0.072s seed=2
+[EST DONE] 2026-04-15T18:27:37.779878 estimator=levina-bickel k=7 dur=0.057s seed=2
+[EST DONE] 2026-04-15T18:27:37.802280 estimator=levina-bickel k=10 dur=0.022s seed=2
+[EST DONE] 2026-04-15T18:27:37.804615 estimator=levina-bickel k=15 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:27:37.823424 estimator=twonn (no-k) dur=0.019s seed=2
+[EST DONE] 2026-04-15T18:27:37.824336 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:27:39.091039 estimator=danco (no-k) dur=1.267s seed=2
+[EST DONE] 2026-04-15T18:27:39.145313 estimator=mind (no-k) dur=0.054s seed=2
+[EST DONE] 2026-04-15T18:27:39.160442 estimator=fisher (no-k) dur=0.015s seed=2
+[EST DONE] 2026-04-15T18:27:40.253634 estimator=masked-ae (no-k) dur=1.093s seed=2
+[TASK END] 2026-04-15T18:27:40.253666 manifold=sphere d=15 sigma=0.5 seed=2 duration=2.753s
+[TASK START] 2026-04-15T18:27:40.254274 manifold=sphere d=15 sigma=0.5 n=300 seed=3
+[EST DONE] 2026-04-15T18:27:40.408406 estimator=levina-bickel k=3 dur=0.080s seed=3
+[EST DONE] 2026-04-15T18:27:40.410347 estimator=levina-bickel k=5 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:27:40.461831 estimator=levina-bickel k=7 dur=0.051s seed=3
+[EST DONE] 2026-04-15T18:27:40.535091 estimator=levina-bickel k=10 dur=0.073s seed=3
+[EST DONE] 2026-04-15T18:27:40.550009 estimator=levina-bickel k=15 dur=0.015s seed=3
+[EST DONE] 2026-04-15T18:27:40.551596 estimator=twonn (no-k) dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:27:40.552533 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:27:41.524381 estimator=danco (no-k) dur=0.972s seed=3
+[EST DONE] 2026-04-15T18:27:41.603707 estimator=mind (no-k) dur=0.079s seed=3
+[EST DONE] 2026-04-15T18:27:41.622305 estimator=fisher (no-k) dur=0.019s seed=3
+[EST DONE] 2026-04-15T18:27:42.695716 estimator=masked-ae (no-k) dur=1.073s seed=3
+[TASK END] 2026-04-15T18:27:42.695743 manifold=sphere d=15 sigma=0.5 seed=3 duration=2.441s
+[TASK START] 2026-04-15T18:27:42.696381 manifold=sphere d=15 sigma=0.75 n=300 seed=1
+[EST DONE] 2026-04-15T18:27:42.859821 estimator=levina-bickel k=3 dur=0.072s seed=1
+[EST DONE] 2026-04-15T18:27:42.933103 estimator=levina-bickel k=5 dur=0.073s seed=1
+[EST DONE] 2026-04-15T18:27:43.006396 estimator=levina-bickel k=7 dur=0.073s seed=1
+[EST DONE] 2026-04-15T18:27:43.058726 estimator=levina-bickel k=10 dur=0.052s seed=1
+[EST DONE] 2026-04-15T18:27:43.126189 estimator=levina-bickel k=15 dur=0.067s seed=1
+[EST DONE] 2026-04-15T18:27:43.191084 estimator=twonn (no-k) dur=0.065s seed=1
+[EST DONE] 2026-04-15T18:27:43.192021 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:27:44.129263 estimator=danco (no-k) dur=0.937s seed=1
+[EST DONE] 2026-04-15T18:27:44.193237 estimator=mind (no-k) dur=0.064s seed=1
+[EST DONE] 2026-04-15T18:27:44.204230 estimator=fisher (no-k) dur=0.011s seed=1
+[EST DONE] 2026-04-15T18:27:45.345556 estimator=masked-ae (no-k) dur=1.141s seed=1
+[TASK END] 2026-04-15T18:27:45.345584 manifold=sphere d=15 sigma=0.75 seed=1 duration=2.649s
+[TASK START] 2026-04-15T18:27:45.346438 manifold=sphere d=15 sigma=0.75 n=300 seed=2
+[EST DONE] 2026-04-15T18:27:45.415873 estimator=levina-bickel k=3 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:27:45.430879 estimator=levina-bickel k=5 dur=0.015s seed=2
+[EST DONE] 2026-04-15T18:27:45.495871 estimator=levina-bickel k=7 dur=0.065s seed=2
+[EST DONE] 2026-04-15T18:27:45.558063 estimator=levina-bickel k=10 dur=0.062s seed=2
+[EST DONE] 2026-04-15T18:27:45.620750 estimator=levina-bickel k=15 dur=0.063s seed=2
+[EST DONE] 2026-04-15T18:27:45.628134 estimator=twonn (no-k) dur=0.007s seed=2
+[EST DONE] 2026-04-15T18:27:45.629089 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:27:46.756782 estimator=danco (no-k) dur=1.128s seed=2
+[EST DONE] 2026-04-15T18:27:46.834575 estimator=mind (no-k) dur=0.078s seed=2
+[EST DONE] 2026-04-15T18:27:46.839665 estimator=fisher (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:27:47.933537 estimator=masked-ae (no-k) dur=1.094s seed=2
+[TASK END] 2026-04-15T18:27:47.933563 manifold=sphere d=15 sigma=0.75 seed=2 duration=2.587s
+[TASK START] 2026-04-15T18:27:47.933893 manifold=sphere d=15 sigma=0.75 n=300 seed=3
+[EST DONE] 2026-04-15T18:27:48.108420 estimator=levina-bickel k=3 dur=0.062s seed=3
+[EST DONE] 2026-04-15T18:27:48.110357 estimator=levina-bickel k=5 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:27:48.112422 estimator=levina-bickel k=7 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:27:48.114541 estimator=levina-bickel k=10 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:27:48.116941 estimator=levina-bickel k=15 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:27:48.118612 estimator=twonn (no-k) dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:27:48.119563 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:27:49.109020 estimator=danco (no-k) dur=0.989s seed=3
+[EST DONE] 2026-04-15T18:27:49.170486 estimator=mind (no-k) dur=0.061s seed=3
+[EST DONE] 2026-04-15T18:27:49.183920 estimator=fisher (no-k) dur=0.013s seed=3
+[EST DONE] 2026-04-15T18:27:50.271969 estimator=masked-ae (no-k) dur=1.088s seed=3
+[TASK END] 2026-04-15T18:27:50.271997 manifold=sphere d=15 sigma=0.75 seed=3 duration=2.338s
+[TASK START] 2026-04-15T18:27:50.272560 manifold=sphere d=15 sigma=1.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:27:50.440686 estimator=levina-bickel k=3 dur=0.066s seed=1
+[EST DONE] 2026-04-15T18:27:50.494382 estimator=levina-bickel k=5 dur=0.054s seed=1
+[EST DONE] 2026-04-15T18:27:50.568626 estimator=levina-bickel k=7 dur=0.074s seed=1
+[EST DONE] 2026-04-15T18:27:50.643426 estimator=levina-bickel k=10 dur=0.075s seed=1
+[EST DONE] 2026-04-15T18:27:50.722928 estimator=levina-bickel k=15 dur=0.079s seed=1
+[EST DONE] 2026-04-15T18:27:50.808233 estimator=twonn (no-k) dur=0.085s seed=1
+[EST DONE] 2026-04-15T18:27:50.809238 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:27:51.859907 estimator=danco (no-k) dur=1.051s seed=1
+[EST DONE] 2026-04-15T18:27:51.928575 estimator=mind (no-k) dur=0.069s seed=1
+[EST DONE] 2026-04-15T18:27:51.933798 estimator=fisher (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:27:52.947591 estimator=masked-ae (no-k) dur=1.014s seed=1
+[TASK END] 2026-04-15T18:27:52.947618 manifold=sphere d=15 sigma=1.0 seed=1 duration=2.675s
+[TASK START] 2026-04-15T18:27:52.948203 manifold=sphere d=15 sigma=1.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:27:53.101105 estimator=levina-bickel k=3 dur=0.075s seed=2
+[EST DONE] 2026-04-15T18:27:53.128738 estimator=levina-bickel k=5 dur=0.028s seed=2
+[EST DONE] 2026-04-15T18:27:53.130800 estimator=levina-bickel k=7 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:27:53.133078 estimator=levina-bickel k=10 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:27:53.135673 estimator=levina-bickel k=15 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:27:53.137509 estimator=twonn (no-k) dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:27:53.138468 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:27:53.973900 estimator=danco (no-k) dur=0.835s seed=2
+[EST DONE] 2026-04-15T18:27:54.016636 estimator=mind (no-k) dur=0.043s seed=2
+[EST DONE] 2026-04-15T18:27:54.072116 estimator=fisher (no-k) dur=0.055s seed=2
+[EST DONE] 2026-04-15T18:27:55.209980 estimator=masked-ae (no-k) dur=1.138s seed=2
+[TASK END] 2026-04-15T18:27:55.210008 manifold=sphere d=15 sigma=1.0 seed=2 duration=2.262s
+[TASK START] 2026-04-15T18:27:55.210619 manifold=sphere d=15 sigma=1.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:27:55.363246 estimator=levina-bickel k=3 dur=0.071s seed=3
+[EST DONE] 2026-04-15T18:27:55.439010 estimator=levina-bickel k=5 dur=0.076s seed=3
+[EST DONE] 2026-04-15T18:27:55.503224 estimator=levina-bickel k=7 dur=0.064s seed=3
+[EST DONE] 2026-04-15T18:27:55.543721 estimator=levina-bickel k=10 dur=0.040s seed=3
+[EST DONE] 2026-04-15T18:27:55.580730 estimator=levina-bickel k=15 dur=0.037s seed=3
+[EST DONE] 2026-04-15T18:27:55.607663 estimator=twonn (no-k) dur=0.027s seed=3
+[EST DONE] 2026-04-15T18:27:55.608648 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:27:56.736154 estimator=danco (no-k) dur=1.127s seed=3
+[EST DONE] 2026-04-15T18:27:56.808226 estimator=mind (no-k) dur=0.072s seed=3
+[EST DONE] 2026-04-15T18:27:56.868179 estimator=fisher (no-k) dur=0.060s seed=3
+[EST DONE] 2026-04-15T18:27:57.984543 estimator=masked-ae (no-k) dur=1.116s seed=3
+[TASK END] 2026-04-15T18:27:57.984581 manifold=sphere d=15 sigma=1.0 seed=3 duration=2.774s
+[TASK START] 2026-04-15T18:27:57.985239 manifold=torus d=5 sigma=0.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:27:57.994189 estimator=levina-bickel k=3 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:27:57.998074 estimator=levina-bickel k=5 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:27:58.001874 estimator=levina-bickel k=7 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:27:58.005996 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:27:58.010325 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:27:58.014004 estimator=twonn (no-k) dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:27:58.014875 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:27:58.586442 estimator=danco (no-k) dur=0.572s seed=1
+[EST DONE] 2026-04-15T18:27:58.591697 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:27:58.604321 estimator=fisher (no-k) dur=0.013s seed=1
+[EST DONE] 2026-04-15T18:27:59.690794 estimator=masked-ae (no-k) dur=1.086s seed=1
+[TASK END] 2026-04-15T18:27:59.690820 manifold=torus d=5 sigma=0.0 seed=1 duration=1.706s
+[TASK START] 2026-04-15T18:27:59.691594 manifold=torus d=5 sigma=0.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:27:59.699684 estimator=levina-bickel k=3 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:27:59.703055 estimator=levina-bickel k=5 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:27:59.706584 estimator=levina-bickel k=7 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:27:59.710143 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:27:59.713889 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:27:59.717125 estimator=twonn (no-k) dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:27:59.717960 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:28:00.554488 estimator=danco (no-k) dur=0.836s seed=2
+[EST DONE] 2026-04-15T18:28:00.559854 estimator=mind (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:28:00.568164 estimator=fisher (no-k) dur=0.008s seed=2
+[EST DONE] 2026-04-15T18:28:01.597517 estimator=masked-ae (no-k) dur=1.029s seed=2
+[TASK END] 2026-04-15T18:28:01.597544 manifold=torus d=5 sigma=0.0 seed=2 duration=1.906s
+[TASK START] 2026-04-15T18:28:01.598109 manifold=torus d=5 sigma=0.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:28:01.605678 estimator=levina-bickel k=3 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:28:01.609170 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:28:01.612659 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:28:01.616287 estimator=levina-bickel k=10 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:01.620051 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:01.623174 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:28:01.623977 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:28:02.239475 estimator=danco (no-k) dur=0.615s seed=3
+[EST DONE] 2026-04-15T18:28:02.244300 estimator=mind (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:28:02.253854 estimator=fisher (no-k) dur=0.010s seed=3
+[EST DONE] 2026-04-15T18:28:03.300900 estimator=masked-ae (no-k) dur=1.047s seed=3
+[TASK END] 2026-04-15T18:28:03.300927 manifold=torus d=5 sigma=0.0 seed=3 duration=1.703s
+[TASK START] 2026-04-15T18:28:03.301698 manifold=torus d=5 sigma=0.25 n=300 seed=1
+[EST DONE] 2026-04-15T18:28:03.310589 estimator=levina-bickel k=3 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:03.314341 estimator=levina-bickel k=5 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:03.318126 estimator=levina-bickel k=7 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:03.322048 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:03.326283 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:03.329743 estimator=twonn (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:28:03.330601 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:28:03.985171 estimator=danco (no-k) dur=0.655s seed=1
+[EST DONE] 2026-04-15T18:28:03.990482 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:28:04.040128 estimator=fisher (no-k) dur=0.050s seed=1
+[EST DONE] 2026-04-15T18:28:05.120794 estimator=masked-ae (no-k) dur=1.081s seed=1
+[TASK END] 2026-04-15T18:28:05.120823 manifold=torus d=5 sigma=0.25 seed=1 duration=1.819s
+[TASK START] 2026-04-15T18:28:05.121544 manifold=torus d=5 sigma=0.25 n=300 seed=2
+[EST DONE] 2026-04-15T18:28:05.129292 estimator=levina-bickel k=3 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:28:05.132638 estimator=levina-bickel k=5 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:28:05.136060 estimator=levina-bickel k=7 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:28:05.139603 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:05.143638 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:05.146761 estimator=twonn (no-k) dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:28:05.147560 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:28:05.859367 estimator=danco (no-k) dur=0.712s seed=2
+[EST DONE] 2026-04-15T18:28:05.863787 estimator=mind (no-k) dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:05.883516 estimator=fisher (no-k) dur=0.020s seed=2
+[EST DONE] 2026-04-15T18:28:07.028184 estimator=masked-ae (no-k) dur=1.145s seed=2
+[TASK END] 2026-04-15T18:28:07.028214 manifold=torus d=5 sigma=0.25 seed=2 duration=1.907s
+[TASK START] 2026-04-15T18:28:07.028795 manifold=torus d=5 sigma=0.25 n=300 seed=3
+[EST DONE] 2026-04-15T18:28:07.037297 estimator=levina-bickel k=3 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:07.040690 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:28:07.044113 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:28:07.047158 estimator=levina-bickel k=10 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:28:07.050881 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:07.054026 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:28:07.054827 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:28:07.560713 estimator=danco (no-k) dur=0.506s seed=3
+[EST DONE] 2026-04-15T18:28:07.566938 estimator=mind (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:28:07.575595 estimator=fisher (no-k) dur=0.009s seed=3
+[EST DONE] 2026-04-15T18:28:08.652071 estimator=masked-ae (no-k) dur=1.076s seed=3
+[TASK END] 2026-04-15T18:28:08.652105 manifold=torus d=5 sigma=0.25 seed=3 duration=1.623s
+[TASK START] 2026-04-15T18:28:08.652824 manifold=torus d=5 sigma=0.5 n=300 seed=1
+[EST DONE] 2026-04-15T18:28:08.660575 estimator=levina-bickel k=3 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:28:08.663939 estimator=levina-bickel k=5 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:28:08.667641 estimator=levina-bickel k=7 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:08.671314 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:08.675093 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:08.678280 estimator=twonn (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:28:08.679177 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:28:09.207510 estimator=danco (no-k) dur=0.528s seed=1
+[EST DONE] 2026-04-15T18:28:09.212726 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:28:09.219960 estimator=fisher (no-k) dur=0.007s seed=1
+[EST DONE] 2026-04-15T18:28:10.294367 estimator=masked-ae (no-k) dur=1.074s seed=1
+[TASK END] 2026-04-15T18:28:10.294392 manifold=torus d=5 sigma=0.5 seed=1 duration=1.642s
+[TASK START] 2026-04-15T18:28:10.295035 manifold=torus d=5 sigma=0.5 n=300 seed=2
+[EST DONE] 2026-04-15T18:28:10.303253 estimator=levina-bickel k=3 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:28:10.307097 estimator=levina-bickel k=5 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:10.310774 estimator=levina-bickel k=7 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:10.314902 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:10.319183 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:10.322786 estimator=twonn (no-k) dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:10.323597 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:28:11.008502 estimator=danco (no-k) dur=0.685s seed=2
+[EST DONE] 2026-04-15T18:28:11.014065 estimator=mind (no-k) dur=0.006s seed=2
+[EST DONE] 2026-04-15T18:28:11.084715 estimator=fisher (no-k) dur=0.071s seed=2
+[EST DONE] 2026-04-15T18:28:12.184778 estimator=masked-ae (no-k) dur=1.100s seed=2
+[TASK END] 2026-04-15T18:28:12.184803 manifold=torus d=5 sigma=0.5 seed=2 duration=1.890s
+[TASK START] 2026-04-15T18:28:12.185357 manifold=torus d=5 sigma=0.5 n=300 seed=3
+[EST DONE] 2026-04-15T18:28:12.194322 estimator=levina-bickel k=3 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:12.198098 estimator=levina-bickel k=5 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:12.201853 estimator=levina-bickel k=7 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:12.205432 estimator=levina-bickel k=10 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:12.208328 estimator=levina-bickel k=15 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:28:12.210847 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:28:12.211655 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:28:12.805575 estimator=danco (no-k) dur=0.594s seed=3
+[EST DONE] 2026-04-15T18:28:12.810854 estimator=mind (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:28:12.824698 estimator=fisher (no-k) dur=0.014s seed=3
+[EST DONE] 2026-04-15T18:28:13.829795 estimator=masked-ae (no-k) dur=1.005s seed=3
+[TASK END] 2026-04-15T18:28:13.829820 manifold=torus d=5 sigma=0.5 seed=3 duration=1.644s
+[TASK START] 2026-04-15T18:28:13.830382 manifold=torus d=5 sigma=0.75 n=300 seed=1
+[EST DONE] 2026-04-15T18:28:13.838136 estimator=levina-bickel k=3 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:28:13.841521 estimator=levina-bickel k=5 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:28:13.844948 estimator=levina-bickel k=7 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:28:13.848506 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:13.852265 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:13.855380 estimator=twonn (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:28:13.856187 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:28:14.614750 estimator=danco (no-k) dur=0.759s seed=1
+[EST DONE] 2026-04-15T18:28:14.620089 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:28:14.644883 estimator=fisher (no-k) dur=0.025s seed=1
+[EST DONE] 2026-04-15T18:28:15.822908 estimator=masked-ae (no-k) dur=1.178s seed=1
+[TASK END] 2026-04-15T18:28:15.822934 manifold=torus d=5 sigma=0.75 seed=1 duration=1.993s
+[TASK START] 2026-04-15T18:28:15.823604 manifold=torus d=5 sigma=0.75 n=300 seed=2
+[EST DONE] 2026-04-15T18:28:15.832423 estimator=levina-bickel k=3 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:15.836279 estimator=levina-bickel k=5 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:15.840229 estimator=levina-bickel k=7 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:15.844109 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:15.848372 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:15.851821 estimator=twonn (no-k) dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:28:15.852694 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:28:16.510233 estimator=danco (no-k) dur=0.658s seed=2
+[EST DONE] 2026-04-15T18:28:16.515528 estimator=mind (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:28:16.528365 estimator=fisher (no-k) dur=0.013s seed=2
+[EST DONE] 2026-04-15T18:28:17.566977 estimator=masked-ae (no-k) dur=1.039s seed=2
+[TASK END] 2026-04-15T18:28:17.567020 manifold=torus d=5 sigma=0.75 seed=2 duration=1.743s
+[TASK START] 2026-04-15T18:28:17.567677 manifold=torus d=5 sigma=0.75 n=300 seed=3
+[EST DONE] 2026-04-15T18:28:17.575582 estimator=levina-bickel k=3 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:28:17.578940 estimator=levina-bickel k=5 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:28:17.582362 estimator=levina-bickel k=7 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:28:17.585920 estimator=levina-bickel k=10 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:17.589665 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:17.592830 estimator=twonn (no-k) dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:28:17.593658 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:28:18.042777 estimator=danco (no-k) dur=0.449s seed=3
+[EST DONE] 2026-04-15T18:28:18.048581 estimator=mind (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:28:18.055985 estimator=fisher (no-k) dur=0.007s seed=3
+[EST DONE] 2026-04-15T18:28:19.155373 estimator=masked-ae (no-k) dur=1.099s seed=3
+[TASK END] 2026-04-15T18:28:19.155402 manifold=torus d=5 sigma=0.75 seed=3 duration=1.588s
+[TASK START] 2026-04-15T18:28:19.155994 manifold=torus d=5 sigma=1.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:28:19.165154 estimator=levina-bickel k=3 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:19.169084 estimator=levina-bickel k=5 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:19.173146 estimator=levina-bickel k=7 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:19.177304 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:19.181798 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:19.185601 estimator=twonn (no-k) dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:19.186479 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:28:19.773022 estimator=danco (no-k) dur=0.587s seed=1
+[EST DONE] 2026-04-15T18:28:19.778145 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:28:19.794377 estimator=fisher (no-k) dur=0.016s seed=1
+[EST DONE] 2026-04-15T18:28:20.916577 estimator=masked-ae (no-k) dur=1.122s seed=1
+[TASK END] 2026-04-15T18:28:20.916608 manifold=torus d=5 sigma=1.0 seed=1 duration=1.761s
+[TASK START] 2026-04-15T18:28:20.917253 manifold=torus d=5 sigma=1.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:28:20.925923 estimator=levina-bickel k=3 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:28:20.928878 estimator=levina-bickel k=5 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:28:20.931414 estimator=levina-bickel k=7 dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:28:20.935364 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:20.939569 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:20.943306 estimator=twonn (no-k) dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:20.944197 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:28:21.467420 estimator=danco (no-k) dur=0.523s seed=2
+[EST DONE] 2026-04-15T18:28:21.473346 estimator=mind (no-k) dur=0.006s seed=2
+[EST DONE] 2026-04-15T18:28:21.512522 estimator=fisher (no-k) dur=0.039s seed=2
+[EST DONE] 2026-04-15T18:28:22.659509 estimator=masked-ae (no-k) dur=1.147s seed=2
+[TASK END] 2026-04-15T18:28:22.659539 manifold=torus d=5 sigma=1.0 seed=2 duration=1.742s
+[TASK START] 2026-04-15T18:28:22.660127 manifold=torus d=5 sigma=1.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:28:22.669644 estimator=levina-bickel k=3 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:22.673785 estimator=levina-bickel k=5 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:22.677952 estimator=levina-bickel k=7 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:22.682201 estimator=levina-bickel k=10 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:22.686701 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:22.690464 estimator=twonn (no-k) dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:22.691343 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:28:23.193451 estimator=danco (no-k) dur=0.502s seed=3
+[EST DONE] 2026-04-15T18:28:23.199132 estimator=mind (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:28:23.208437 estimator=fisher (no-k) dur=0.009s seed=3
+[EST DONE] 2026-04-15T18:28:24.266678 estimator=masked-ae (no-k) dur=1.058s seed=3
+[TASK END] 2026-04-15T18:28:24.266705 manifold=torus d=5 sigma=1.0 seed=3 duration=1.607s
+[TASK START] 2026-04-15T18:28:24.267266 manifold=torus d=7 sigma=0.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:28:24.276173 estimator=levina-bickel k=3 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:24.280221 estimator=levina-bickel k=5 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:24.284281 estimator=levina-bickel k=7 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:24.288427 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:24.292884 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:24.296662 estimator=twonn (no-k) dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:24.297493 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:28:25.080512 estimator=danco (no-k) dur=0.783s seed=1
+[EST DONE] 2026-04-15T18:28:25.086885 estimator=mind (no-k) dur=0.006s seed=1
+[EST DONE] 2026-04-15T18:28:25.105599 estimator=fisher (no-k) dur=0.019s seed=1
+[EST DONE] 2026-04-15T18:28:26.278002 estimator=masked-ae (no-k) dur=1.172s seed=1
+[TASK END] 2026-04-15T18:28:26.278027 manifold=torus d=7 sigma=0.0 seed=1 duration=2.011s
+[TASK START] 2026-04-15T18:28:26.278623 manifold=torus d=7 sigma=0.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:28:26.287570 estimator=levina-bickel k=3 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:26.291523 estimator=levina-bickel k=5 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:26.295756 estimator=levina-bickel k=7 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:26.299882 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:26.304283 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:26.308212 estimator=twonn (no-k) dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:26.309043 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:28:27.280567 estimator=danco (no-k) dur=0.971s seed=2
+[EST DONE] 2026-04-15T18:28:27.287042 estimator=mind (no-k) dur=0.006s seed=2
+[EST DONE] 2026-04-15T18:28:27.305099 estimator=fisher (no-k) dur=0.018s seed=2
+[EST DONE] 2026-04-15T18:28:28.397295 estimator=masked-ae (no-k) dur=1.092s seed=2
+[TASK END] 2026-04-15T18:28:28.397322 manifold=torus d=7 sigma=0.0 seed=2 duration=2.119s
+[TASK START] 2026-04-15T18:28:28.398167 manifold=torus d=7 sigma=0.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:28:28.408211 estimator=levina-bickel k=3 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:28.412610 estimator=levina-bickel k=5 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:28.417174 estimator=levina-bickel k=7 dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:28:28.421925 estimator=levina-bickel k=10 dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:28:28.426950 estimator=levina-bickel k=15 dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:28:28.431337 estimator=twonn (no-k) dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:28.432194 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:28:29.544863 estimator=danco (no-k) dur=1.113s seed=3
+[EST DONE] 2026-04-15T18:28:29.550723 estimator=mind (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:28:29.607960 estimator=fisher (no-k) dur=0.057s seed=3
+[EST DONE] 2026-04-15T18:28:30.768202 estimator=masked-ae (no-k) dur=1.160s seed=3
+[TASK END] 2026-04-15T18:28:30.768229 manifold=torus d=7 sigma=0.0 seed=3 duration=2.370s
+[TASK START] 2026-04-15T18:28:30.768958 manifold=torus d=7 sigma=0.25 n=300 seed=1
+[EST DONE] 2026-04-15T18:28:30.778182 estimator=levina-bickel k=3 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:30.782145 estimator=levina-bickel k=5 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:30.786187 estimator=levina-bickel k=7 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:30.790344 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:30.794728 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:30.798506 estimator=twonn (no-k) dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:30.799353 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:28:31.526944 estimator=danco (no-k) dur=0.728s seed=1
+[EST DONE] 2026-04-15T18:28:31.533510 estimator=mind (no-k) dur=0.007s seed=1
+[EST DONE] 2026-04-15T18:28:31.556055 estimator=fisher (no-k) dur=0.023s seed=1
+[EST DONE] 2026-04-15T18:28:32.666321 estimator=masked-ae (no-k) dur=1.110s seed=1
+[TASK END] 2026-04-15T18:28:32.666351 manifold=torus d=7 sigma=0.25 seed=1 duration=1.897s
+[TASK START] 2026-04-15T18:28:32.667101 manifold=torus d=7 sigma=0.25 n=300 seed=2
+[EST DONE] 2026-04-15T18:28:32.678028 estimator=levina-bickel k=3 dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:28:32.682844 estimator=levina-bickel k=5 dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:28:32.687728 estimator=levina-bickel k=7 dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:28:32.692797 estimator=levina-bickel k=10 dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:28:32.698078 estimator=levina-bickel k=15 dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:28:32.702660 estimator=twonn (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:28:32.703589 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:28:33.546210 estimator=danco (no-k) dur=0.843s seed=2
+[EST DONE] 2026-04-15T18:28:33.552176 estimator=mind (no-k) dur=0.006s seed=2
+[EST DONE] 2026-04-15T18:28:33.603968 estimator=fisher (no-k) dur=0.052s seed=2
+[EST DONE] 2026-04-15T18:28:34.688153 estimator=masked-ae (no-k) dur=1.084s seed=2
+[TASK END] 2026-04-15T18:28:34.688180 manifold=torus d=7 sigma=0.25 seed=2 duration=2.021s
+[TASK START] 2026-04-15T18:28:34.688760 manifold=torus d=7 sigma=0.25 n=300 seed=3
+[EST DONE] 2026-04-15T18:28:34.697887 estimator=levina-bickel k=3 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:34.701832 estimator=levina-bickel k=5 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:34.706136 estimator=levina-bickel k=7 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:34.710269 estimator=levina-bickel k=10 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:34.714618 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:34.718376 estimator=twonn (no-k) dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:34.719218 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:28:35.466671 estimator=danco (no-k) dur=0.747s seed=3
+[EST DONE] 2026-04-15T18:28:35.472679 estimator=mind (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:28:35.540033 estimator=fisher (no-k) dur=0.067s seed=3
+[EST DONE] 2026-04-15T18:28:36.577554 estimator=masked-ae (no-k) dur=1.037s seed=3
+[TASK END] 2026-04-15T18:28:36.577580 manifold=torus d=7 sigma=0.25 seed=3 duration=1.889s
+[TASK START] 2026-04-15T18:28:36.578160 manifold=torus d=7 sigma=0.5 n=300 seed=1
+[EST DONE] 2026-04-15T18:28:36.587185 estimator=levina-bickel k=3 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:36.591046 estimator=levina-bickel k=5 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:36.594891 estimator=levina-bickel k=7 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:36.599136 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:36.603515 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:36.607275 estimator=twonn (no-k) dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:36.608119 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:28:37.970265 estimator=danco (no-k) dur=1.362s seed=1
+[EST DONE] 2026-04-15T18:28:37.976140 estimator=mind (no-k) dur=0.006s seed=1
+[EST DONE] 2026-04-15T18:28:38.019920 estimator=fisher (no-k) dur=0.044s seed=1
+[EST DONE] 2026-04-15T18:28:39.111629 estimator=masked-ae (no-k) dur=1.092s seed=1
+[TASK END] 2026-04-15T18:28:39.111656 manifold=torus d=7 sigma=0.5 seed=1 duration=2.533s
+[TASK START] 2026-04-15T18:28:39.112247 manifold=torus d=7 sigma=0.5 n=300 seed=2
+[EST DONE] 2026-04-15T18:28:39.121167 estimator=levina-bickel k=3 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:39.125117 estimator=levina-bickel k=5 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:39.129123 estimator=levina-bickel k=7 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:39.133445 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:39.137793 estimator=levina-bickel k=15 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:39.141636 estimator=twonn (no-k) dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:39.142451 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:28:39.950933 estimator=danco (no-k) dur=0.808s seed=2
+[EST DONE] 2026-04-15T18:28:39.957894 estimator=mind (no-k) dur=0.007s seed=2
+[EST DONE] 2026-04-15T18:28:39.989274 estimator=fisher (no-k) dur=0.031s seed=2
+[EST DONE] 2026-04-15T18:28:41.089464 estimator=masked-ae (no-k) dur=1.100s seed=2
+[TASK END] 2026-04-15T18:28:41.089494 manifold=torus d=7 sigma=0.5 seed=2 duration=1.977s
+[TASK START] 2026-04-15T18:28:41.090109 manifold=torus d=7 sigma=0.5 n=300 seed=3
+[EST DONE] 2026-04-15T18:28:41.100516 estimator=levina-bickel k=3 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:41.104884 estimator=levina-bickel k=5 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:41.109421 estimator=levina-bickel k=7 dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:28:41.114146 estimator=levina-bickel k=10 dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:28:41.119016 estimator=levina-bickel k=15 dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:28:41.123195 estimator=twonn (no-k) dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:41.124195 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:28:42.246960 estimator=danco (no-k) dur=1.123s seed=3
+[EST DONE] 2026-04-15T18:28:42.252603 estimator=mind (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:28:42.284125 estimator=fisher (no-k) dur=0.031s seed=3
+[EST DONE] 2026-04-15T18:28:43.397606 estimator=masked-ae (no-k) dur=1.113s seed=3
+[TASK END] 2026-04-15T18:28:43.397635 manifold=torus d=7 sigma=0.5 seed=3 duration=2.308s
+[TASK START] 2026-04-15T18:28:43.398221 manifold=torus d=7 sigma=0.75 n=300 seed=1
+[EST DONE] 2026-04-15T18:28:43.407263 estimator=levina-bickel k=3 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:43.411186 estimator=levina-bickel k=5 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:43.415195 estimator=levina-bickel k=7 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:43.419319 estimator=levina-bickel k=10 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:43.423754 estimator=levina-bickel k=15 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:43.427509 estimator=twonn (no-k) dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:43.428354 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:28:44.461015 estimator=danco (no-k) dur=1.033s seed=1
+[EST DONE] 2026-04-15T18:28:44.465825 estimator=mind (no-k) dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:28:44.476183 estimator=fisher (no-k) dur=0.010s seed=1
+[EST DONE] 2026-04-15T18:28:45.598256 estimator=masked-ae (no-k) dur=1.122s seed=1
+[TASK END] 2026-04-15T18:28:45.598280 manifold=torus d=7 sigma=0.75 seed=1 duration=2.200s
+[TASK START] 2026-04-15T18:28:45.598807 manifold=torus d=7 sigma=0.75 n=300 seed=2
+[EST DONE] 2026-04-15T18:28:45.606751 estimator=levina-bickel k=3 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:45.610701 estimator=levina-bickel k=5 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:45.614753 estimator=levina-bickel k=7 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:45.618903 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:45.623461 estimator=levina-bickel k=15 dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:28:45.627242 estimator=twonn (no-k) dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:45.628085 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:28:46.553815 estimator=danco (no-k) dur=0.926s seed=2
+[EST DONE] 2026-04-15T18:28:46.559929 estimator=mind (no-k) dur=0.006s seed=2
+[EST DONE] 2026-04-15T18:28:46.576944 estimator=fisher (no-k) dur=0.017s seed=2
+[EST DONE] 2026-04-15T18:28:47.663459 estimator=masked-ae (no-k) dur=1.086s seed=2
+[TASK END] 2026-04-15T18:28:47.663485 manifold=torus d=7 sigma=0.75 seed=2 duration=2.065s
+[TASK START] 2026-04-15T18:28:47.664083 manifold=torus d=7 sigma=0.75 n=300 seed=3
+[EST DONE] 2026-04-15T18:28:47.673439 estimator=levina-bickel k=3 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:47.677365 estimator=levina-bickel k=5 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:47.681488 estimator=levina-bickel k=7 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:47.685662 estimator=levina-bickel k=10 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:47.689994 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:47.693783 estimator=twonn (no-k) dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:47.694639 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:28:48.521256 estimator=danco (no-k) dur=0.827s seed=3
+[EST DONE] 2026-04-15T18:28:48.526709 estimator=mind (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:28:48.540011 estimator=fisher (no-k) dur=0.013s seed=3
+[EST DONE] 2026-04-15T18:28:49.718818 estimator=masked-ae (no-k) dur=1.179s seed=3
+[TASK END] 2026-04-15T18:28:49.718867 manifold=torus d=7 sigma=0.75 seed=3 duration=2.055s
+[TASK START] 2026-04-15T18:28:49.719537 manifold=torus d=7 sigma=1.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:28:49.730172 estimator=levina-bickel k=3 dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:28:49.734816 estimator=levina-bickel k=5 dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:28:49.739520 estimator=levina-bickel k=7 dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:28:49.744408 estimator=levina-bickel k=10 dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:28:49.749481 estimator=levina-bickel k=15 dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:28:49.753751 estimator=twonn (no-k) dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:28:49.754628 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:28:50.480764 estimator=danco (no-k) dur=0.726s seed=1
+[EST DONE] 2026-04-15T18:28:50.486809 estimator=mind (no-k) dur=0.006s seed=1
+[EST DONE] 2026-04-15T18:28:50.532063 estimator=fisher (no-k) dur=0.045s seed=1
+[EST DONE] 2026-04-15T18:28:51.602394 estimator=masked-ae (no-k) dur=1.070s seed=1
+[TASK END] 2026-04-15T18:28:51.602419 manifold=torus d=7 sigma=1.0 seed=1 duration=1.883s
+[TASK START] 2026-04-15T18:28:51.602989 manifold=torus d=7 sigma=1.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:28:51.611966 estimator=levina-bickel k=3 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:51.615902 estimator=levina-bickel k=5 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:51.619929 estimator=levina-bickel k=7 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:51.624084 estimator=levina-bickel k=10 dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:51.629104 estimator=levina-bickel k=15 dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:28:51.633498 estimator=twonn (no-k) dur=0.004s seed=2
+[EST DONE] 2026-04-15T18:28:51.634347 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:28:52.676237 estimator=danco (no-k) dur=1.042s seed=2
+[EST DONE] 2026-04-15T18:28:52.682806 estimator=mind (no-k) dur=0.007s seed=2
+[EST DONE] 2026-04-15T18:28:52.732006 estimator=fisher (no-k) dur=0.049s seed=2
+[EST DONE] 2026-04-15T18:28:53.792724 estimator=masked-ae (no-k) dur=1.061s seed=2
+[TASK END] 2026-04-15T18:28:53.792760 manifold=torus d=7 sigma=1.0 seed=2 duration=2.190s
+[TASK START] 2026-04-15T18:28:53.793406 manifold=torus d=7 sigma=1.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:28:53.802598 estimator=levina-bickel k=3 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:53.806546 estimator=levina-bickel k=5 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:53.810578 estimator=levina-bickel k=7 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:53.814740 estimator=levina-bickel k=10 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:53.818923 estimator=levina-bickel k=15 dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:53.822624 estimator=twonn (no-k) dur=0.004s seed=3
+[EST DONE] 2026-04-15T18:28:53.823467 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:28:54.743876 estimator=danco (no-k) dur=0.920s seed=3
+[EST DONE] 2026-04-15T18:28:54.750252 estimator=mind (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:28:54.796781 estimator=fisher (no-k) dur=0.047s seed=3
+[EST DONE] 2026-04-15T18:28:55.916032 estimator=masked-ae (no-k) dur=1.119s seed=3
+[TASK END] 2026-04-15T18:28:55.916058 manifold=torus d=7 sigma=1.0 seed=3 duration=2.123s
+[TASK START] 2026-04-15T18:28:55.916794 manifold=torus d=9 sigma=0.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:28:56.087097 estimator=levina-bickel k=3 dur=0.058s seed=1
+[EST DONE] 2026-04-15T18:28:56.187498 estimator=levina-bickel k=5 dur=0.100s seed=1
+[EST DONE] 2026-04-15T18:28:56.253715 estimator=levina-bickel k=7 dur=0.066s seed=1
+[EST DONE] 2026-04-15T18:28:56.342927 estimator=levina-bickel k=10 dur=0.089s seed=1
+[EST DONE] 2026-04-15T18:28:56.345470 estimator=levina-bickel k=15 dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:28:56.347017 estimator=twonn (no-k) dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:28:56.348006 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:28:57.344065 estimator=danco (no-k) dur=0.996s seed=1
+[EST DONE] 2026-04-15T18:28:57.427564 estimator=mind (no-k) dur=0.083s seed=1
+[EST DONE] 2026-04-15T18:28:57.439914 estimator=fisher (no-k) dur=0.012s seed=1
+[EST DONE] 2026-04-15T18:28:58.545796 estimator=masked-ae (no-k) dur=1.106s seed=1
+[TASK END] 2026-04-15T18:28:58.545822 manifold=torus d=9 sigma=0.0 seed=1 duration=2.629s
+[TASK START] 2026-04-15T18:28:58.546405 manifold=torus d=9 sigma=0.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:28:58.715630 estimator=levina-bickel k=3 dur=0.092s seed=2
+[EST DONE] 2026-04-15T18:28:58.737472 estimator=levina-bickel k=5 dur=0.022s seed=2
+[EST DONE] 2026-04-15T18:28:58.739611 estimator=levina-bickel k=7 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:28:58.748294 estimator=levina-bickel k=10 dur=0.009s seed=2
+[EST DONE] 2026-04-15T18:28:58.836811 estimator=levina-bickel k=15 dur=0.089s seed=2
+[EST DONE] 2026-04-15T18:28:58.854906 estimator=twonn (no-k) dur=0.018s seed=2
+[EST DONE] 2026-04-15T18:28:58.855890 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:29:00.340190 estimator=danco (no-k) dur=1.484s seed=2
+[EST DONE] 2026-04-15T18:29:00.423103 estimator=mind (no-k) dur=0.083s seed=2
+[EST DONE] 2026-04-15T18:29:00.435925 estimator=fisher (no-k) dur=0.013s seed=2
+[EST DONE] 2026-04-15T18:29:01.545991 estimator=masked-ae (no-k) dur=1.110s seed=2
+[TASK END] 2026-04-15T18:29:01.546021 manifold=torus d=9 sigma=0.0 seed=2 duration=3.000s
+[TASK START] 2026-04-15T18:29:01.546613 manifold=torus d=9 sigma=0.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:29:01.706460 estimator=levina-bickel k=3 dur=0.058s seed=3
+[EST DONE] 2026-04-15T18:29:01.733298 estimator=levina-bickel k=5 dur=0.027s seed=3
+[EST DONE] 2026-04-15T18:29:01.828530 estimator=levina-bickel k=7 dur=0.095s seed=3
+[EST DONE] 2026-04-15T18:29:01.830660 estimator=levina-bickel k=10 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:29:01.898536 estimator=levina-bickel k=15 dur=0.068s seed=3
+[EST DONE] 2026-04-15T18:29:01.972531 estimator=twonn (no-k) dur=0.074s seed=3
+[EST DONE] 2026-04-15T18:29:01.973505 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:29:03.514640 estimator=danco (no-k) dur=1.541s seed=3
+[EST DONE] 2026-04-15T18:29:03.605901 estimator=mind (no-k) dur=0.091s seed=3
+[EST DONE] 2026-04-15T18:29:03.616037 estimator=fisher (no-k) dur=0.010s seed=3
+[EST DONE] 2026-04-15T18:29:04.590471 estimator=masked-ae (no-k) dur=0.974s seed=3
+[TASK END] 2026-04-15T18:29:04.590499 manifold=torus d=9 sigma=0.0 seed=3 duration=3.044s
+[TASK START] 2026-04-15T18:29:04.591081 manifold=torus d=9 sigma=0.25 n=300 seed=1
+[EST DONE] 2026-04-15T18:29:04.638712 estimator=levina-bickel k=3 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:29:04.653671 estimator=levina-bickel k=5 dur=0.015s seed=1
+[EST DONE] 2026-04-15T18:29:04.706800 estimator=levina-bickel k=7 dur=0.053s seed=1
+[EST DONE] 2026-04-15T18:29:04.792186 estimator=levina-bickel k=10 dur=0.085s seed=1
+[EST DONE] 2026-04-15T18:29:04.878498 estimator=levina-bickel k=15 dur=0.086s seed=1
+[EST DONE] 2026-04-15T18:29:04.960870 estimator=twonn (no-k) dur=0.082s seed=1
+[EST DONE] 2026-04-15T18:29:04.961912 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:29:06.363236 estimator=danco (no-k) dur=1.401s seed=1
+[EST DONE] 2026-04-15T18:29:06.431327 estimator=mind (no-k) dur=0.068s seed=1
+[EST DONE] 2026-04-15T18:29:06.452066 estimator=fisher (no-k) dur=0.021s seed=1
+[EST DONE] 2026-04-15T18:29:07.524885 estimator=masked-ae (no-k) dur=1.073s seed=1
+[TASK END] 2026-04-15T18:29:07.524913 manifold=torus d=9 sigma=0.25 seed=1 duration=2.934s
+[TASK START] 2026-04-15T18:29:07.525499 manifold=torus d=9 sigma=0.25 n=300 seed=2
+[EST DONE] 2026-04-15T18:29:07.626851 estimator=levina-bickel k=3 dur=0.006s seed=2
+[EST DONE] 2026-04-15T18:29:07.680947 estimator=levina-bickel k=5 dur=0.054s seed=2
+[EST DONE] 2026-04-15T18:29:07.738330 estimator=levina-bickel k=7 dur=0.057s seed=2
+[EST DONE] 2026-04-15T18:29:07.769451 estimator=levina-bickel k=10 dur=0.031s seed=2
+[EST DONE] 2026-04-15T18:29:07.824553 estimator=levina-bickel k=15 dur=0.055s seed=2
+[EST DONE] 2026-04-15T18:29:07.878048 estimator=twonn (no-k) dur=0.053s seed=2
+[EST DONE] 2026-04-15T18:29:07.878989 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:29:09.019584 estimator=danco (no-k) dur=1.141s seed=2
+[EST DONE] 2026-04-15T18:29:09.124961 estimator=mind (no-k) dur=0.105s seed=2
+[EST DONE] 2026-04-15T18:29:09.134640 estimator=fisher (no-k) dur=0.010s seed=2
+[EST DONE] 2026-04-15T18:29:10.156623 estimator=masked-ae (no-k) dur=1.022s seed=2
+[TASK END] 2026-04-15T18:29:10.156649 manifold=torus d=9 sigma=0.25 seed=2 duration=2.631s
+[TASK START] 2026-04-15T18:29:10.157234 manifold=torus d=9 sigma=0.25 n=300 seed=3
+[EST DONE] 2026-04-15T18:29:10.302068 estimator=levina-bickel k=3 dur=0.071s seed=3
+[EST DONE] 2026-04-15T18:29:10.379183 estimator=levina-bickel k=5 dur=0.077s seed=3
+[EST DONE] 2026-04-15T18:29:10.425555 estimator=levina-bickel k=7 dur=0.046s seed=3
+[EST DONE] 2026-04-15T18:29:10.427922 estimator=levina-bickel k=10 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:29:10.430551 estimator=levina-bickel k=15 dur=0.003s seed=3
+[EST DONE] 2026-04-15T18:29:10.432421 estimator=twonn (no-k) dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:29:10.433387 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:29:11.390827 estimator=danco (no-k) dur=0.957s seed=3
+[EST DONE] 2026-04-15T18:29:11.406583 estimator=mind (no-k) dur=0.016s seed=3
+[EST DONE] 2026-04-15T18:29:11.419956 estimator=fisher (no-k) dur=0.013s seed=3
+[EST DONE] 2026-04-15T18:29:12.523697 estimator=masked-ae (no-k) dur=1.104s seed=3
+[TASK END] 2026-04-15T18:29:12.523727 manifold=torus d=9 sigma=0.25 seed=3 duration=2.366s
+[TASK START] 2026-04-15T18:29:12.524462 manifold=torus d=9 sigma=0.5 n=300 seed=1
+[EST DONE] 2026-04-15T18:29:12.664608 estimator=levina-bickel k=3 dur=0.058s seed=1
+[EST DONE] 2026-04-15T18:29:12.713371 estimator=levina-bickel k=5 dur=0.049s seed=1
+[EST DONE] 2026-04-15T18:29:12.715319 estimator=levina-bickel k=7 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:29:12.777907 estimator=levina-bickel k=10 dur=0.063s seed=1
+[EST DONE] 2026-04-15T18:29:12.854703 estimator=levina-bickel k=15 dur=0.077s seed=1
+[EST DONE] 2026-04-15T18:29:12.923749 estimator=twonn (no-k) dur=0.069s seed=1
+[EST DONE] 2026-04-15T18:29:12.924725 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:29:14.082283 estimator=danco (no-k) dur=1.158s seed=1
+[EST DONE] 2026-04-15T18:29:14.122754 estimator=mind (no-k) dur=0.040s seed=1
+[EST DONE] 2026-04-15T18:29:14.132389 estimator=fisher (no-k) dur=0.010s seed=1
+[EST DONE] 2026-04-15T18:29:15.329542 estimator=masked-ae (no-k) dur=1.197s seed=1
+[TASK END] 2026-04-15T18:29:15.329568 manifold=torus d=9 sigma=0.5 seed=1 duration=2.805s
+[TASK START] 2026-04-15T18:29:15.330325 manifold=torus d=9 sigma=0.5 n=300 seed=2
+[EST DONE] 2026-04-15T18:29:15.403002 estimator=levina-bickel k=3 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:29:15.405009 estimator=levina-bickel k=5 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:29:15.481516 estimator=levina-bickel k=7 dur=0.076s seed=2
+[EST DONE] 2026-04-15T18:29:15.567017 estimator=levina-bickel k=10 dur=0.085s seed=2
+[EST DONE] 2026-04-15T18:29:15.637437 estimator=levina-bickel k=15 dur=0.070s seed=2
+[EST DONE] 2026-04-15T18:29:15.642693 estimator=twonn (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:29:15.643537 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:29:17.221175 estimator=danco (no-k) dur=1.578s seed=2
+[EST DONE] 2026-04-15T18:29:17.315033 estimator=mind (no-k) dur=0.094s seed=2
+[EST DONE] 2026-04-15T18:29:17.324033 estimator=fisher (no-k) dur=0.009s seed=2
+[EST DONE] 2026-04-15T18:29:18.346494 estimator=masked-ae (no-k) dur=1.022s seed=2
+[TASK END] 2026-04-15T18:29:18.346521 manifold=torus d=9 sigma=0.5 seed=2 duration=3.016s
+[TASK START] 2026-04-15T18:29:18.347091 manifold=torus d=9 sigma=0.5 n=300 seed=3
+[EST DONE] 2026-04-15T18:29:18.465425 estimator=levina-bickel k=3 dur=0.020s seed=3
+[EST DONE] 2026-04-15T18:29:18.522863 estimator=levina-bickel k=5 dur=0.057s seed=3
+[EST DONE] 2026-04-15T18:29:18.584597 estimator=levina-bickel k=7 dur=0.062s seed=3
+[EST DONE] 2026-04-15T18:29:18.600213 estimator=levina-bickel k=10 dur=0.016s seed=3
+[EST DONE] 2026-04-15T18:29:18.675483 estimator=levina-bickel k=15 dur=0.075s seed=3
+[EST DONE] 2026-04-15T18:29:18.711032 estimator=twonn (no-k) dur=0.036s seed=3
+[EST DONE] 2026-04-15T18:29:18.712138 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:29:19.654370 estimator=danco (no-k) dur=0.942s seed=3
+[EST DONE] 2026-04-15T18:29:19.733774 estimator=mind (no-k) dur=0.079s seed=3
+[EST DONE] 2026-04-15T18:29:19.752763 estimator=fisher (no-k) dur=0.019s seed=3
+[EST DONE] 2026-04-15T18:29:20.882232 estimator=masked-ae (no-k) dur=1.129s seed=3
+[TASK END] 2026-04-15T18:29:20.882260 manifold=torus d=9 sigma=0.5 seed=3 duration=2.535s
+Completed synthetic task manifold=sphere d=5 sigma=0.0 seed=1 in 9.1s
+Completed synthetic task manifold=sphere d=5 sigma=0.0 seed=2 in 10.5s
+Completed synthetic task manifold=sphere d=5 sigma=0.0 seed=3 in 11.9s
+Completed synthetic task manifold=sphere d=5 sigma=0.25 seed=1 in 13.4s
+Completed synthetic task manifold=sphere d=5 sigma=0.25 seed=2 in 15.2s
+Completed synthetic task manifold=sphere d=5 sigma=0.25 seed=3 in 16.6s
+Completed synthetic task manifold=sphere d=5 sigma=0.5 seed=1 in 18.0s
+Completed synthetic task manifold=sphere d=5 sigma=0.5 seed=2 in 19.4s
+Completed synthetic task manifold=sphere d=5 sigma=0.5 seed=3 in 20.8s
+Completed synthetic task manifold=sphere d=5 sigma=0.75 seed=1 in 22.2s
+Completed synthetic task manifold=sphere d=5 sigma=0.75 seed=2 in 23.7s
+Completed synthetic task manifold=sphere d=5 sigma=0.75 seed=3 in 25.3s
+Completed synthetic task manifold=sphere d=5 sigma=1.0 seed=1 in 26.8s
+Completed synthetic task manifold=sphere d=5 sigma=1.0 seed=2 in 28.3s
+Completed synthetic task manifold=sphere d=5 sigma=1.0 seed=3 in 29.8s
+Completed synthetic task manifold=sphere d=7 sigma=0.0 seed=1 in 31.5s
+Completed synthetic task manifold=sphere d=7 sigma=0.0 seed=2 in 33.1s
+Completed synthetic task manifold=sphere d=7 sigma=0.0 seed=3 in 34.6s
+Completed synthetic task manifold=sphere d=7 sigma=0.25 seed=1 in 36.2s
+Completed synthetic task manifold=sphere d=7 sigma=0.25 seed=2 in 37.9s
+Completed synthetic task manifold=sphere d=7 sigma=0.25 seed=3 in 39.7s
+Completed synthetic task manifold=sphere d=7 sigma=0.5 seed=1 in 41.2s
+Completed synthetic task manifold=sphere d=7 sigma=0.5 seed=2 in 42.8s
+Completed synthetic task manifold=sphere d=7 sigma=0.5 seed=3 in 44.6s
+Completed synthetic task manifold=sphere d=7 sigma=0.75 seed=1 in 46.2s
+Completed synthetic task manifold=sphere d=7 sigma=0.75 seed=2 in 47.9s
+Completed synthetic task manifold=sphere d=7 sigma=0.75 seed=3 in 49.4s
+Completed synthetic task manifold=sphere d=7 sigma=1.0 seed=1 in 51.0s
+Completed synthetic task manifold=sphere d=7 sigma=1.0 seed=2 in 52.5s
+Completed synthetic task manifold=sphere d=7 sigma=1.0 seed=3 in 54.0s
+Completed synthetic task manifold=sphere d=9 sigma=0.0 seed=1 in 55.7s
+Completed synthetic task manifold=sphere d=9 sigma=0.0 seed=2 in 57.3s
+Completed synthetic task manifold=sphere d=9 sigma=0.0 seed=3 in 59.4s
+Completed synthetic task manifold=sphere d=9 sigma=0.25 seed=1 in 61.1s
+Completed synthetic task manifold=sphere d=9 sigma=0.25 seed=2 in 62.9s
+Completed synthetic task manifold=sphere d=9 sigma=0.25 seed=3 in 64.8s
+Completed synthetic task manifold=sphere d=9 sigma=0.5 seed=1 in 66.5s
+Completed synthetic task manifold=sphere d=9 sigma=0.5 seed=2 in 68.2s
+Completed synthetic task manifold=sphere d=9 sigma=0.5 seed=3 in 70.1s
+Completed synthetic task manifold=sphere d=9 sigma=0.75 seed=1 in 71.8s
+Completed synthetic task manifold=sphere d=9 sigma=0.75 seed=2 in 73.5s
+Completed synthetic task manifold=sphere d=9 sigma=0.75 seed=3 in 75.2s
+Completed synthetic task manifold=sphere d=9 sigma=1.0 seed=1 in 76.9s
+Completed synthetic task manifold=sphere d=9 sigma=1.0 seed=2 in 78.4s
+Completed synthetic task manifold=sphere d=9 sigma=1.0 seed=3 in 80.7s
+Completed synthetic task manifold=sphere d=12 sigma=0.0 seed=1 in 82.8s
+Completed synthetic task manifold=sphere d=12 sigma=0.0 seed=2 in 84.9s
+Completed synthetic task manifold=sphere d=12 sigma=0.0 seed=3 in 87.3s
+Completed synthetic task manifold=sphere d=12 sigma=0.25 seed=1 in 89.7s
+Completed synthetic task manifold=sphere d=12 sigma=0.25 seed=2 in 91.5s
+Completed synthetic task manifold=sphere d=12 sigma=0.25 seed=3 in 93.3s
+Completed synthetic task manifold=sphere d=12 sigma=0.5 seed=1 in 95.3s
+Completed synthetic task manifold=sphere d=12 sigma=0.5 seed=2 in 97.2s
+Completed synthetic task manifold=sphere d=12 sigma=0.5 seed=3 in 99.2s
+Completed synthetic task manifold=sphere d=12 sigma=0.75 seed=1 in 101.1s
+Completed synthetic task manifold=sphere d=12 sigma=0.75 seed=2 in 102.9s
+Completed synthetic task manifold=sphere d=12 sigma=0.75 seed=3 in 105.0s
+Completed synthetic task manifold=sphere d=12 sigma=1.0 seed=1 in 106.9s
+Completed synthetic task manifold=sphere d=12 sigma=1.0 seed=2 in 109.0s
+Completed synthetic task manifold=sphere d=12 sigma=1.0 seed=3 in 111.0s
+Completed synthetic task manifold=sphere d=15 sigma=0.0 seed=1 in 113.5s
+Completed synthetic task manifold=sphere d=15 sigma=0.0 seed=2 in 116.8s
+Completed synthetic task manifold=sphere d=15 sigma=0.0 seed=3 in 119.7s
+Completed synthetic task manifold=sphere d=15 sigma=0.25 seed=1 in 122.4s
+Completed synthetic task manifold=sphere d=15 sigma=0.25 seed=2 in 125.2s
+Completed synthetic task manifold=sphere d=15 sigma=0.25 seed=3 in 128.3s
+Completed synthetic task manifold=sphere d=15 sigma=0.5 seed=1 in 130.8s
+Completed synthetic task manifold=sphere d=15 sigma=0.5 seed=2 in 133.6s
+Completed synthetic task manifold=sphere d=15 sigma=0.5 seed=3 in 136.0s
+Completed synthetic task manifold=sphere d=15 sigma=0.75 seed=1 in 138.7s
+Completed synthetic task manifold=sphere d=15 sigma=0.75 seed=2 in 141.2s
+Completed synthetic task manifold=sphere d=15 sigma=0.75 seed=3 in 143.6s
+Completed synthetic task manifold=sphere d=15 sigma=1.0 seed=1 in 146.3s
+Completed synthetic task manifold=sphere d=15 sigma=1.0 seed=2 in 148.5s
+Completed synthetic task manifold=sphere d=15 sigma=1.0 seed=3 in 151.3s
+Completed synthetic task manifold=torus d=5 sigma=0.0 seed=1 in 153.0s
+Completed synthetic task manifold=torus d=5 sigma=0.0 seed=2 in 154.9s
+Completed synthetic task manifold=torus d=5 sigma=0.0 seed=3 in 156.6s
+Completed synthetic task manifold=torus d=5 sigma=0.25 seed=1 in 158.4s
+Completed synthetic task manifold=torus d=5 sigma=0.25 seed=2 in 160.3s
+Completed synthetic task manifold=torus d=5 sigma=0.25 seed=3 in 162.0s
+Completed synthetic task manifold=torus d=5 sigma=0.5 seed=1 in 163.6s
+Completed synthetic task manifold=torus d=5 sigma=0.5 seed=2 in 165.5s
+Completed synthetic task manifold=torus d=5 sigma=0.5 seed=3 in 167.1s
+Completed synthetic task manifold=torus d=5 sigma=0.75 seed=1 in 169.1s
+Completed synthetic task manifold=torus d=5 sigma=0.75 seed=2 in 170.9s
+Completed synthetic task manifold=torus d=5 sigma=0.75 seed=3 in 172.5s
+Completed synthetic task manifold=torus d=5 sigma=1.0 seed=1 in 174.2s
+Completed synthetic task manifold=torus d=5 sigma=1.0 seed=2 in 176.0s
+Completed synthetic task manifold=torus d=5 sigma=1.0 seed=3 in 177.6s
+Completed synthetic task manifold=torus d=7 sigma=0.0 seed=1 in 179.6s
+Completed synthetic task manifold=torus d=7 sigma=0.0 seed=2 in 181.7s
+Completed synthetic task manifold=torus d=7 sigma=0.0 seed=3 in 184.1s
+Completed synthetic task manifold=torus d=7 sigma=0.25 seed=1 in 186.0s
+Completed synthetic task manifold=torus d=7 sigma=0.25 seed=2 in 188.0s
+Completed synthetic task manifold=torus d=7 sigma=0.25 seed=3 in 189.9s
+Completed synthetic task manifold=torus d=7 sigma=0.5 seed=1 in 192.4s
+Completed synthetic task manifold=torus d=7 sigma=0.5 seed=2 in 194.4s
+Completed synthetic task manifold=torus d=7 sigma=0.5 seed=3 in 196.7s
+Completed synthetic task manifold=torus d=7 sigma=0.75 seed=1 in 198.9s
+Completed synthetic task manifold=torus d=7 sigma=0.75 seed=2 in 201.0s
+Completed synthetic task manifold=torus d=7 sigma=0.75 seed=3 in 203.0s
+Completed synthetic task manifold=torus d=7 sigma=1.0 seed=1 in 204.9s
+Completed synthetic task manifold=torus d=7 sigma=1.0 seed=2 in 207.1s
+Completed synthetic task manifold=torus d=7 sigma=1.0 seed=3 in 209.2s
+Completed synthetic task manifold=torus d=9 sigma=0.0 seed=1 in 211.9s
+Completed synthetic task manifold=torus d=9 sigma=0.0 seed=2 in 214.9s
+Completed synthetic task manifold=torus d=9 sigma=0.0 seed=3 in 217.9s
+Completed synthetic task manifold=torus d=9 sigma=0.25 seed=1 in 220.8s
+Completed synthetic task manifold=torus d=9 sigma=0.25 seed=2 in 223.5s
+Completed synthetic task manifold=torus d=9 sigma=0.25 seed=3 in 225.8s
+Completed synthetic task manifold=torus d=9 sigma=0.5 seed=1 in 228.6s
+Completed synthetic task manifold=torus d=9 sigma=0.5 seed=2 in 231.7s
+Completed synthetic task manifold=torus d=9 sigma=0.5 seed=3 in 234.2s
+[TASK START] 2026-04-15T18:29:20.882900 manifold=torus d=9 sigma=0.75 n=300 seed=1
+[EST DONE] 2026-04-15T18:29:20.953598 estimator=levina-bickel k=3 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:29:20.955262 estimator=levina-bickel k=5 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:29:20.961464 estimator=levina-bickel k=7 dur=0.006s seed=1
+[EST DONE] 2026-04-15T18:29:21.032156 estimator=levina-bickel k=10 dur=0.071s seed=1
+[EST DONE] 2026-04-15T18:29:21.107152 estimator=levina-bickel k=15 dur=0.075s seed=1
+[EST DONE] 2026-04-15T18:29:21.164000 estimator=twonn (no-k) dur=0.057s seed=1
+[EST DONE] 2026-04-15T18:29:21.165026 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:29:22.624465 estimator=danco (no-k) dur=1.459s seed=1
+[EST DONE] 2026-04-15T18:29:22.675809 estimator=mind (no-k) dur=0.051s seed=1
+[EST DONE] 2026-04-15T18:29:22.683976 estimator=fisher (no-k) dur=0.008s seed=1
+[EST DONE] 2026-04-15T18:29:23.780933 estimator=masked-ae (no-k) dur=1.097s seed=1
+[TASK END] 2026-04-15T18:29:23.780956 manifold=torus d=9 sigma=0.75 seed=1 duration=2.898s
+[TASK START] 2026-04-15T18:29:23.781176 manifold=torus d=9 sigma=0.75 n=300 seed=2
+[EST DONE] 2026-04-15T18:29:23.936566 estimator=levina-bickel k=3 dur=0.080s seed=2
+[EST DONE] 2026-04-15T18:29:23.969619 estimator=levina-bickel k=5 dur=0.033s seed=2
+[EST DONE] 2026-04-15T18:29:23.976782 estimator=levina-bickel k=7 dur=0.007s seed=2
+[EST DONE] 2026-04-15T18:29:23.979097 estimator=levina-bickel k=10 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:29:24.038917 estimator=levina-bickel k=15 dur=0.060s seed=2
+[EST DONE] 2026-04-15T18:29:24.113021 estimator=twonn (no-k) dur=0.074s seed=2
+[EST DONE] 2026-04-15T18:29:24.113992 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:29:24.859415 estimator=danco (no-k) dur=0.745s seed=2
+[EST DONE] 2026-04-15T18:29:24.862750 estimator=mind (no-k) dur=0.003s seed=2
+[EST DONE] 2026-04-15T18:29:24.871001 estimator=fisher (no-k) dur=0.008s seed=2
+[EST DONE] 2026-04-15T18:29:25.962246 estimator=masked-ae (no-k) dur=1.091s seed=2
+[TASK END] 2026-04-15T18:29:25.962282 manifold=torus d=9 sigma=0.75 seed=2 duration=2.181s
+[TASK START] 2026-04-15T18:29:25.962956 manifold=torus d=9 sigma=0.75 n=300 seed=3
+[EST DONE] 2026-04-15T18:29:26.110212 estimator=levina-bickel k=3 dur=0.077s seed=3
+[EST DONE] 2026-04-15T18:29:26.161749 estimator=levina-bickel k=5 dur=0.052s seed=3
+[EST DONE] 2026-04-15T18:29:26.235758 estimator=levina-bickel k=7 dur=0.074s seed=3
+[EST DONE] 2026-04-15T18:29:26.304567 estimator=levina-bickel k=10 dur=0.069s seed=3
+[EST DONE] 2026-04-15T18:29:26.370932 estimator=levina-bickel k=15 dur=0.066s seed=3
+[EST DONE] 2026-04-15T18:29:26.461463 estimator=twonn (no-k) dur=0.091s seed=3
+[EST DONE] 2026-04-15T18:29:26.462548 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:29:27.560302 estimator=danco (no-k) dur=1.098s seed=3
+[EST DONE] 2026-04-15T18:29:27.632838 estimator=mind (no-k) dur=0.072s seed=3
+[EST DONE] 2026-04-15T18:29:27.644465 estimator=fisher (no-k) dur=0.012s seed=3
+[EST DONE] 2026-04-15T18:29:28.722949 estimator=masked-ae (no-k) dur=1.078s seed=3
+[TASK END] 2026-04-15T18:29:28.722984 manifold=torus d=9 sigma=0.75 seed=3 duration=2.760s
+[TASK START] 2026-04-15T18:29:28.723348 manifold=torus d=9 sigma=1.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:29:28.887349 estimator=levina-bickel k=3 dur=0.083s seed=1
+[EST DONE] 2026-04-15T18:29:28.960901 estimator=levina-bickel k=5 dur=0.074s seed=1
+[EST DONE] 2026-04-15T18:29:29.004372 estimator=levina-bickel k=7 dur=0.043s seed=1
+[EST DONE] 2026-04-15T18:29:29.060281 estimator=levina-bickel k=10 dur=0.056s seed=1
+[EST DONE] 2026-04-15T18:29:29.143605 estimator=levina-bickel k=15 dur=0.083s seed=1
+[EST DONE] 2026-04-15T18:29:29.216105 estimator=twonn (no-k) dur=0.072s seed=1
+[EST DONE] 2026-04-15T18:29:29.217088 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:29:30.391071 estimator=danco (no-k) dur=1.174s seed=1
+[EST DONE] 2026-04-15T18:29:30.529280 estimator=mind (no-k) dur=0.138s seed=1
+[EST DONE] 2026-04-15T18:29:30.551473 estimator=fisher (no-k) dur=0.022s seed=1
+[EST DONE] 2026-04-15T18:29:31.639159 estimator=masked-ae (no-k) dur=1.088s seed=1
+[TASK END] 2026-04-15T18:29:31.639189 manifold=torus d=9 sigma=1.0 seed=1 duration=2.916s
+[TASK START] 2026-04-15T18:29:31.639823 manifold=torus d=9 sigma=1.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:29:31.672533 estimator=levina-bickel k=3 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:29:31.721962 estimator=levina-bickel k=5 dur=0.049s seed=2
+[EST DONE] 2026-04-15T18:29:31.813237 estimator=levina-bickel k=7 dur=0.091s seed=2
+[EST DONE] 2026-04-15T18:29:31.833271 estimator=levina-bickel k=10 dur=0.020s seed=2
+[EST DONE] 2026-04-15T18:29:31.889669 estimator=levina-bickel k=15 dur=0.056s seed=2
+[EST DONE] 2026-04-15T18:29:31.957695 estimator=twonn (no-k) dur=0.068s seed=2
+[EST DONE] 2026-04-15T18:29:31.958587 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:29:33.106752 estimator=danco (no-k) dur=1.148s seed=2
+[EST DONE] 2026-04-15T18:29:33.179422 estimator=mind (no-k) dur=0.073s seed=2
+[EST DONE] 2026-04-15T18:29:33.187881 estimator=fisher (no-k) dur=0.008s seed=2
+[EST DONE] 2026-04-15T18:29:34.329854 estimator=masked-ae (no-k) dur=1.142s seed=2
+[TASK END] 2026-04-15T18:29:34.329882 manifold=torus d=9 sigma=1.0 seed=2 duration=2.690s
+[TASK START] 2026-04-15T18:29:34.330451 manifold=torus d=9 sigma=1.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:29:34.480064 estimator=levina-bickel k=3 dur=0.071s seed=3
+[EST DONE] 2026-04-15T18:29:34.555407 estimator=levina-bickel k=5 dur=0.075s seed=3
+[EST DONE] 2026-04-15T18:29:34.630328 estimator=levina-bickel k=7 dur=0.075s seed=3
+[EST DONE] 2026-04-15T18:29:34.714065 estimator=levina-bickel k=10 dur=0.084s seed=3
+[EST DONE] 2026-04-15T18:29:34.789567 estimator=levina-bickel k=15 dur=0.075s seed=3
+[EST DONE] 2026-04-15T18:29:34.870980 estimator=twonn (no-k) dur=0.081s seed=3
+[EST DONE] 2026-04-15T18:29:34.871942 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:29:36.112664 estimator=danco (no-k) dur=1.241s seed=3
+[EST DONE] 2026-04-15T18:29:36.167492 estimator=mind (no-k) dur=0.055s seed=3
+[EST DONE] 2026-04-15T18:29:36.193602 estimator=fisher (no-k) dur=0.026s seed=3
+[EST DONE] 2026-04-15T18:29:37.260758 estimator=masked-ae (no-k) dur=1.067s seed=3
+[TASK END] 2026-04-15T18:29:37.260784 manifold=torus d=9 sigma=1.0 seed=3 duration=2.930s
+[TASK START] 2026-04-15T18:29:37.261352 manifold=torus d=12 sigma=0.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:29:37.408671 estimator=levina-bickel k=3 dur=0.048s seed=1
+[EST DONE] 2026-04-15T18:29:37.410764 estimator=levina-bickel k=5 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:29:37.469597 estimator=levina-bickel k=7 dur=0.059s seed=1
+[EST DONE] 2026-04-15T18:29:37.536632 estimator=levina-bickel k=10 dur=0.067s seed=1
+[EST DONE] 2026-04-15T18:29:37.538910 estimator=levina-bickel k=15 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:29:37.595283 estimator=twonn (no-k) dur=0.056s seed=1
+[EST DONE] 2026-04-15T18:29:37.596374 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:29:39.578314 estimator=danco (no-k) dur=1.982s seed=1
+[EST DONE] 2026-04-15T18:29:39.696967 estimator=mind (no-k) dur=0.119s seed=1
+[EST DONE] 2026-04-15T18:29:39.711983 estimator=fisher (no-k) dur=0.015s seed=1
+[EST DONE] 2026-04-15T18:29:40.874602 estimator=masked-ae (no-k) dur=1.163s seed=1
+[TASK END] 2026-04-15T18:29:40.874638 manifold=torus d=12 sigma=0.0 seed=1 duration=3.613s
+[TASK START] 2026-04-15T18:29:40.875407 manifold=torus d=12 sigma=0.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:29:40.895716 estimator=levina-bickel k=3 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:29:40.897412 estimator=levina-bickel k=5 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:29:40.899148 estimator=levina-bickel k=7 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:29:40.974836 estimator=levina-bickel k=10 dur=0.076s seed=2
+[EST DONE] 2026-04-15T18:29:41.065673 estimator=levina-bickel k=15 dur=0.091s seed=2
+[EST DONE] 2026-04-15T18:29:41.085719 estimator=twonn (no-k) dur=0.020s seed=2
+[EST DONE] 2026-04-15T18:29:41.086769 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:29:42.608025 estimator=danco (no-k) dur=1.521s seed=2
+[EST DONE] 2026-04-15T18:29:42.682428 estimator=mind (no-k) dur=0.074s seed=2
+[EST DONE] 2026-04-15T18:29:42.688030 estimator=fisher (no-k) dur=0.006s seed=2
+[EST DONE] 2026-04-15T18:29:43.773804 estimator=masked-ae (no-k) dur=1.086s seed=2
+[TASK END] 2026-04-15T18:29:43.773842 manifold=torus d=12 sigma=0.0 seed=2 duration=2.898s
+[TASK START] 2026-04-15T18:29:43.774501 manifold=torus d=12 sigma=0.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:29:43.999235 estimator=levina-bickel k=3 dur=0.096s seed=3
+[EST DONE] 2026-04-15T18:29:44.051043 estimator=levina-bickel k=5 dur=0.052s seed=3
+[EST DONE] 2026-04-15T18:29:44.113721 estimator=levina-bickel k=7 dur=0.063s seed=3
+[EST DONE] 2026-04-15T18:29:44.153637 estimator=levina-bickel k=10 dur=0.040s seed=3
+[EST DONE] 2026-04-15T18:29:44.203282 estimator=levina-bickel k=15 dur=0.050s seed=3
+[EST DONE] 2026-04-15T18:29:44.276242 estimator=twonn (no-k) dur=0.073s seed=3
+[EST DONE] 2026-04-15T18:29:44.277195 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:29:46.043900 estimator=danco (no-k) dur=1.767s seed=3
+[EST DONE] 2026-04-15T18:29:46.097220 estimator=mind (no-k) dur=0.053s seed=3
+[EST DONE] 2026-04-15T18:29:46.104650 estimator=fisher (no-k) dur=0.007s seed=3
+[EST DONE] 2026-04-15T18:29:47.201214 estimator=masked-ae (no-k) dur=1.097s seed=3
+[TASK END] 2026-04-15T18:29:47.201241 manifold=torus d=12 sigma=0.0 seed=3 duration=3.427s
+[TASK START] 2026-04-15T18:29:47.201978 manifold=torus d=12 sigma=0.25 n=300 seed=1
+[EST DONE] 2026-04-15T18:29:47.219477 estimator=levina-bickel k=3 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:29:47.228371 estimator=levina-bickel k=5 dur=0.009s seed=1
+[EST DONE] 2026-04-15T18:29:47.313804 estimator=levina-bickel k=7 dur=0.085s seed=1
+[EST DONE] 2026-04-15T18:29:47.357142 estimator=levina-bickel k=10 dur=0.043s seed=1
+[EST DONE] 2026-04-15T18:29:47.359408 estimator=levina-bickel k=15 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:29:47.366088 estimator=twonn (no-k) dur=0.007s seed=1
+[EST DONE] 2026-04-15T18:29:47.367234 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:29:48.992613 estimator=danco (no-k) dur=1.625s seed=1
+[EST DONE] 2026-04-15T18:29:48.995830 estimator=mind (no-k) dur=0.003s seed=1
+[EST DONE] 2026-04-15T18:29:49.051897 estimator=fisher (no-k) dur=0.056s seed=1
+[EST DONE] 2026-04-15T18:29:50.122239 estimator=masked-ae (no-k) dur=1.070s seed=1
+[TASK END] 2026-04-15T18:29:50.122272 manifold=torus d=12 sigma=0.25 seed=1 duration=2.920s
+[TASK START] 2026-04-15T18:29:50.123099 manifold=torus d=12 sigma=0.25 n=300 seed=2
+[EST DONE] 2026-04-15T18:29:50.214408 estimator=levina-bickel k=3 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:29:50.216272 estimator=levina-bickel k=5 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:29:50.227096 estimator=levina-bickel k=7 dur=0.011s seed=2
+[EST DONE] 2026-04-15T18:29:50.300126 estimator=levina-bickel k=10 dur=0.073s seed=2
+[EST DONE] 2026-04-15T18:29:50.373790 estimator=levina-bickel k=15 dur=0.074s seed=2
+[EST DONE] 2026-04-15T18:29:50.404649 estimator=twonn (no-k) dur=0.031s seed=2
+[EST DONE] 2026-04-15T18:29:50.405760 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:29:52.139383 estimator=danco (no-k) dur=1.734s seed=2
+[EST DONE] 2026-04-15T18:29:52.160090 estimator=mind (no-k) dur=0.021s seed=2
+[EST DONE] 2026-04-15T18:29:52.167879 estimator=fisher (no-k) dur=0.008s seed=2
+[EST DONE] 2026-04-15T18:29:53.331886 estimator=masked-ae (no-k) dur=1.164s seed=2
+[TASK END] 2026-04-15T18:29:53.331919 manifold=torus d=12 sigma=0.25 seed=2 duration=3.209s
+[TASK START] 2026-04-15T18:29:53.332521 manifold=torus d=12 sigma=0.25 n=300 seed=3
+[EST DONE] 2026-04-15T18:29:53.509281 estimator=levina-bickel k=3 dur=0.074s seed=3
+[EST DONE] 2026-04-15T18:29:53.574399 estimator=levina-bickel k=5 dur=0.065s seed=3
+[EST DONE] 2026-04-15T18:29:53.602600 estimator=levina-bickel k=7 dur=0.028s seed=3
+[EST DONE] 2026-04-15T18:29:53.604858 estimator=levina-bickel k=10 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:29:53.607140 estimator=levina-bickel k=15 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:29:53.613161 estimator=twonn (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:29:53.614162 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:29:55.497620 estimator=danco (no-k) dur=1.883s seed=3
+[EST DONE] 2026-04-15T18:29:55.524938 estimator=mind (no-k) dur=0.027s seed=3
+[EST DONE] 2026-04-15T18:29:55.536047 estimator=fisher (no-k) dur=0.011s seed=3
+[EST DONE] 2026-04-15T18:29:56.584307 estimator=masked-ae (no-k) dur=1.048s seed=3
+[TASK END] 2026-04-15T18:29:56.584339 manifold=torus d=12 sigma=0.25 seed=3 duration=3.252s
+[TASK START] 2026-04-15T18:29:56.585006 manifold=torus d=12 sigma=0.5 n=300 seed=1
+[EST DONE] 2026-04-15T18:29:56.727012 estimator=levina-bickel k=3 dur=0.070s seed=1
+[EST DONE] 2026-04-15T18:29:56.800445 estimator=levina-bickel k=5 dur=0.073s seed=1
+[EST DONE] 2026-04-15T18:29:56.860278 estimator=levina-bickel k=7 dur=0.060s seed=1
+[EST DONE] 2026-04-15T18:29:56.886168 estimator=levina-bickel k=10 dur=0.026s seed=1
+[EST DONE] 2026-04-15T18:29:56.888373 estimator=levina-bickel k=15 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:29:56.940829 estimator=twonn (no-k) dur=0.052s seed=1
+[EST DONE] 2026-04-15T18:29:56.941839 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:29:58.836404 estimator=danco (no-k) dur=1.895s seed=1
+[EST DONE] 2026-04-15T18:29:58.883074 estimator=mind (no-k) dur=0.047s seed=1
+[EST DONE] 2026-04-15T18:29:58.890489 estimator=fisher (no-k) dur=0.007s seed=1
+[EST DONE] 2026-04-15T18:29:59.960910 estimator=masked-ae (no-k) dur=1.070s seed=1
+[TASK END] 2026-04-15T18:29:59.960939 manifold=torus d=12 sigma=0.5 seed=1 duration=3.376s
+[TASK START] 2026-04-15T18:29:59.961676 manifold=torus d=12 sigma=0.5 n=300 seed=2
+[EST DONE] 2026-04-15T18:30:00.055339 estimator=levina-bickel k=3 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:30:00.057075 estimator=levina-bickel k=5 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:30:00.058805 estimator=levina-bickel k=7 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:30:00.096255 estimator=levina-bickel k=10 dur=0.037s seed=2
+[EST DONE] 2026-04-15T18:30:00.135912 estimator=levina-bickel k=15 dur=0.040s seed=2
+[EST DONE] 2026-04-15T18:30:00.190433 estimator=twonn (no-k) dur=0.054s seed=2
+[EST DONE] 2026-04-15T18:30:00.191492 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:30:01.594704 estimator=danco (no-k) dur=1.403s seed=2
+[EST DONE] 2026-04-15T18:30:01.628898 estimator=mind (no-k) dur=0.034s seed=2
+[EST DONE] 2026-04-15T18:30:01.633914 estimator=fisher (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:30:02.702806 estimator=masked-ae (no-k) dur=1.069s seed=2
+[TASK END] 2026-04-15T18:30:02.702833 manifold=torus d=12 sigma=0.5 seed=2 duration=2.741s
+[TASK START] 2026-04-15T18:30:02.703422 manifold=torus d=12 sigma=0.5 n=300 seed=3
+[EST DONE] 2026-04-15T18:30:02.726489 estimator=levina-bickel k=3 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:30:02.741266 estimator=levina-bickel k=5 dur=0.015s seed=3
+[EST DONE] 2026-04-15T18:30:02.825240 estimator=levina-bickel k=7 dur=0.084s seed=3
+[EST DONE] 2026-04-15T18:30:02.901897 estimator=levina-bickel k=10 dur=0.077s seed=3
+[EST DONE] 2026-04-15T18:30:02.936948 estimator=levina-bickel k=15 dur=0.035s seed=3
+[EST DONE] 2026-04-15T18:30:02.938757 estimator=twonn (no-k) dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:30:02.939786 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:30:04.600615 estimator=danco (no-k) dur=1.661s seed=3
+[EST DONE] 2026-04-15T18:30:04.678211 estimator=mind (no-k) dur=0.078s seed=3
+[EST DONE] 2026-04-15T18:30:04.683995 estimator=fisher (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:30:05.746095 estimator=masked-ae (no-k) dur=1.062s seed=3
+[TASK END] 2026-04-15T18:30:05.746121 manifold=torus d=12 sigma=0.5 seed=3 duration=3.043s
+[TASK START] 2026-04-15T18:30:05.746850 manifold=torus d=12 sigma=0.75 n=300 seed=1
+[EST DONE] 2026-04-15T18:30:05.780006 estimator=levina-bickel k=3 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:30:05.839353 estimator=levina-bickel k=5 dur=0.059s seed=1
+[EST DONE] 2026-04-15T18:30:05.940012 estimator=levina-bickel k=7 dur=0.101s seed=1
+[EST DONE] 2026-04-15T18:30:05.949867 estimator=levina-bickel k=10 dur=0.010s seed=1
+[EST DONE] 2026-04-15T18:30:05.992336 estimator=levina-bickel k=15 dur=0.042s seed=1
+[EST DONE] 2026-04-15T18:30:06.046793 estimator=twonn (no-k) dur=0.054s seed=1
+[EST DONE] 2026-04-15T18:30:06.047999 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:30:07.849723 estimator=danco (no-k) dur=1.802s seed=1
+[EST DONE] 2026-04-15T18:30:07.918637 estimator=mind (no-k) dur=0.069s seed=1
+[EST DONE] 2026-04-15T18:30:07.924227 estimator=fisher (no-k) dur=0.006s seed=1
+[EST DONE] 2026-04-15T18:30:08.995603 estimator=masked-ae (no-k) dur=1.071s seed=1
+[TASK END] 2026-04-15T18:30:08.995630 manifold=torus d=12 sigma=0.75 seed=1 duration=3.249s
+[TASK START] 2026-04-15T18:30:08.996227 manifold=torus d=12 sigma=0.75 n=300 seed=2
+[EST DONE] 2026-04-15T18:30:09.073329 estimator=levina-bickel k=3 dur=0.035s seed=2
+[EST DONE] 2026-04-15T18:30:09.110936 estimator=levina-bickel k=5 dur=0.038s seed=2
+[EST DONE] 2026-04-15T18:30:09.184967 estimator=levina-bickel k=7 dur=0.074s seed=2
+[EST DONE] 2026-04-15T18:30:09.225773 estimator=levina-bickel k=10 dur=0.041s seed=2
+[EST DONE] 2026-04-15T18:30:09.277078 estimator=levina-bickel k=15 dur=0.051s seed=2
+[EST DONE] 2026-04-15T18:30:09.312198 estimator=twonn (no-k) dur=0.035s seed=2
+[EST DONE] 2026-04-15T18:30:09.313207 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:30:11.265648 estimator=danco (no-k) dur=1.952s seed=2
+[EST DONE] 2026-04-15T18:30:11.300558 estimator=mind (no-k) dur=0.035s seed=2
+[EST DONE] 2026-04-15T18:30:11.305875 estimator=fisher (no-k) dur=0.005s seed=2
+[EST DONE] 2026-04-15T18:30:12.507143 estimator=masked-ae (no-k) dur=1.201s seed=2
+[TASK END] 2026-04-15T18:30:12.507170 manifold=torus d=12 sigma=0.75 seed=2 duration=3.511s
+[TASK START] 2026-04-15T18:30:12.507745 manifold=torus d=12 sigma=0.75 n=300 seed=3
+[EST DONE] 2026-04-15T18:30:12.671097 estimator=levina-bickel k=3 dur=0.077s seed=3
+[EST DONE] 2026-04-15T18:30:12.736285 estimator=levina-bickel k=5 dur=0.065s seed=3
+[EST DONE] 2026-04-15T18:30:12.786866 estimator=levina-bickel k=7 dur=0.051s seed=3
+[EST DONE] 2026-04-15T18:30:12.843893 estimator=levina-bickel k=10 dur=0.057s seed=3
+[EST DONE] 2026-04-15T18:30:12.846293 estimator=levina-bickel k=15 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:30:12.847831 estimator=twonn (no-k) dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:30:12.848782 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:30:14.797623 estimator=danco (no-k) dur=1.949s seed=3
+[EST DONE] 2026-04-15T18:30:14.878184 estimator=mind (no-k) dur=0.081s seed=3
+[EST DONE] 2026-04-15T18:30:14.912166 estimator=fisher (no-k) dur=0.034s seed=3
+[EST DONE] 2026-04-15T18:30:16.132346 estimator=masked-ae (no-k) dur=1.220s seed=3
+[TASK END] 2026-04-15T18:30:16.132372 manifold=torus d=12 sigma=0.75 seed=3 duration=3.625s
+[TASK START] 2026-04-15T18:30:16.132969 manifold=torus d=12 sigma=1.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:30:16.259200 estimator=levina-bickel k=3 dur=0.030s seed=1
+[EST DONE] 2026-04-15T18:30:16.302698 estimator=levina-bickel k=5 dur=0.043s seed=1
+[EST DONE] 2026-04-15T18:30:16.380327 estimator=levina-bickel k=7 dur=0.078s seed=1
+[EST DONE] 2026-04-15T18:30:16.382314 estimator=levina-bickel k=10 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:30:16.423057 estimator=levina-bickel k=15 dur=0.041s seed=1
+[EST DONE] 2026-04-15T18:30:16.493501 estimator=twonn (no-k) dur=0.070s seed=1
+[EST DONE] 2026-04-15T18:30:16.494455 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:30:17.969975 estimator=danco (no-k) dur=1.475s seed=1
+[EST DONE] 2026-04-15T18:30:18.042746 estimator=mind (no-k) dur=0.073s seed=1
+[EST DONE] 2026-04-15T18:30:18.069493 estimator=fisher (no-k) dur=0.027s seed=1
+[EST DONE] 2026-04-15T18:30:19.126518 estimator=masked-ae (no-k) dur=1.057s seed=1
+[TASK END] 2026-04-15T18:30:19.126545 manifold=torus d=12 sigma=1.0 seed=1 duration=2.994s
+[TASK START] 2026-04-15T18:30:19.127158 manifold=torus d=12 sigma=1.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:30:19.326841 estimator=levina-bickel k=3 dur=0.067s seed=2
+[EST DONE] 2026-04-15T18:30:19.384447 estimator=levina-bickel k=5 dur=0.058s seed=2
+[EST DONE] 2026-04-15T18:30:19.454941 estimator=levina-bickel k=7 dur=0.070s seed=2
+[EST DONE] 2026-04-15T18:30:19.479959 estimator=levina-bickel k=10 dur=0.025s seed=2
+[EST DONE] 2026-04-15T18:30:19.493652 estimator=levina-bickel k=15 dur=0.014s seed=2
+[EST DONE] 2026-04-15T18:30:19.495358 estimator=twonn (no-k) dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:30:19.496432 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:30:21.330757 estimator=danco (no-k) dur=1.834s seed=2
+[EST DONE] 2026-04-15T18:30:21.346729 estimator=mind (no-k) dur=0.016s seed=2
+[EST DONE] 2026-04-15T18:30:21.383803 estimator=fisher (no-k) dur=0.037s seed=2
+[EST DONE] 2026-04-15T18:30:22.470337 estimator=masked-ae (no-k) dur=1.087s seed=2
+[TASK END] 2026-04-15T18:30:22.470364 manifold=torus d=12 sigma=1.0 seed=2 duration=3.343s
+[TASK START] 2026-04-15T18:30:22.470931 manifold=torus d=12 sigma=1.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:30:22.599410 estimator=levina-bickel k=3 dur=0.056s seed=3
+[EST DONE] 2026-04-15T18:30:22.615442 estimator=levina-bickel k=5 dur=0.016s seed=3
+[EST DONE] 2026-04-15T18:30:22.682936 estimator=levina-bickel k=7 dur=0.067s seed=3
+[EST DONE] 2026-04-15T18:30:22.763935 estimator=levina-bickel k=10 dur=0.081s seed=3
+[EST DONE] 2026-04-15T18:30:22.832711 estimator=levina-bickel k=15 dur=0.069s seed=3
+[EST DONE] 2026-04-15T18:30:22.848551 estimator=twonn (no-k) dur=0.016s seed=3
+[EST DONE] 2026-04-15T18:30:22.849475 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:30:24.430156 estimator=danco (no-k) dur=1.581s seed=3
+[EST DONE] 2026-04-15T18:30:24.505480 estimator=mind (no-k) dur=0.075s seed=3
+[EST DONE] 2026-04-15T18:30:24.559824 estimator=fisher (no-k) dur=0.054s seed=3
+[EST DONE] 2026-04-15T18:30:25.629298 estimator=masked-ae (no-k) dur=1.069s seed=3
+[TASK END] 2026-04-15T18:30:25.629324 manifold=torus d=12 sigma=1.0 seed=3 duration=3.158s
+[TASK START] 2026-04-15T18:30:25.629889 manifold=torus d=15 sigma=0.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:30:25.755650 estimator=levina-bickel k=3 dur=0.031s seed=1
+[EST DONE] 2026-04-15T18:30:25.770913 estimator=levina-bickel k=5 dur=0.015s seed=1
+[EST DONE] 2026-04-15T18:30:25.782215 estimator=levina-bickel k=7 dur=0.011s seed=1
+[EST DONE] 2026-04-15T18:30:25.820111 estimator=levina-bickel k=10 dur=0.038s seed=1
+[EST DONE] 2026-04-15T18:30:25.898395 estimator=levina-bickel k=15 dur=0.078s seed=1
+[EST DONE] 2026-04-15T18:30:25.939370 estimator=twonn (no-k) dur=0.041s seed=1
+[EST DONE] 2026-04-15T18:30:25.940869 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:30:28.166218 estimator=danco (no-k) dur=2.225s seed=1
+[EST DONE] 2026-04-15T18:30:28.263372 estimator=mind (no-k) dur=0.097s seed=1
+[EST DONE] 2026-04-15T18:30:28.276133 estimator=fisher (no-k) dur=0.013s seed=1
+[EST DONE] 2026-04-15T18:30:29.476902 estimator=masked-ae (no-k) dur=1.201s seed=1
+[TASK END] 2026-04-15T18:30:29.476942 manifold=torus d=15 sigma=0.0 seed=1 duration=3.847s
+[TASK START] 2026-04-15T18:30:29.477500 manifold=torus d=15 sigma=0.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:30:29.659394 estimator=levina-bickel k=3 dur=0.091s seed=2
+[EST DONE] 2026-04-15T18:30:29.696694 estimator=levina-bickel k=5 dur=0.037s seed=2
+[EST DONE] 2026-04-15T18:30:29.698780 estimator=levina-bickel k=7 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:30:29.741742 estimator=levina-bickel k=10 dur=0.043s seed=2
+[EST DONE] 2026-04-15T18:30:29.821573 estimator=levina-bickel k=15 dur=0.080s seed=2
+[EST DONE] 2026-04-15T18:30:29.832201 estimator=twonn (no-k) dur=0.011s seed=2
+[EST DONE] 2026-04-15T18:30:29.833271 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:30:32.410739 estimator=danco (no-k) dur=2.577s seed=2
+[EST DONE] 2026-04-15T18:30:32.495625 estimator=mind (no-k) dur=0.085s seed=2
+[EST DONE] 2026-04-15T18:30:32.511437 estimator=fisher (no-k) dur=0.016s seed=2
+[EST DONE] 2026-04-15T18:30:33.573586 estimator=masked-ae (no-k) dur=1.062s seed=2
+[TASK END] 2026-04-15T18:30:33.573754 manifold=torus d=15 sigma=0.0 seed=2 duration=4.096s
+[TASK START] 2026-04-15T18:30:33.574307 manifold=torus d=15 sigma=0.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:30:33.662046 estimator=levina-bickel k=3 dur=0.028s seed=3
+[EST DONE] 2026-04-15T18:30:33.663863 estimator=levina-bickel k=5 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:30:33.665897 estimator=levina-bickel k=7 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:30:33.668171 estimator=levina-bickel k=10 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:30:33.676312 estimator=levina-bickel k=15 dur=0.008s seed=3
+[EST DONE] 2026-04-15T18:30:33.677942 estimator=twonn (no-k) dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:30:33.679073 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:30:36.151740 estimator=danco (no-k) dur=2.473s seed=3
+[EST DONE] 2026-04-15T18:30:36.199931 estimator=mind (no-k) dur=0.048s seed=3
+[EST DONE] 2026-04-15T18:30:36.205185 estimator=fisher (no-k) dur=0.005s seed=3
+[EST DONE] 2026-04-15T18:30:37.351171 estimator=masked-ae (no-k) dur=1.146s seed=3
+[TASK END] 2026-04-15T18:30:37.351212 manifold=torus d=15 sigma=0.0 seed=3 duration=3.777s
+[TASK START] 2026-04-15T18:30:37.352104 manifold=torus d=15 sigma=0.25 n=300 seed=1
+[EST DONE] 2026-04-15T18:30:37.566904 estimator=levina-bickel k=3 dur=0.103s seed=1
+[EST DONE] 2026-04-15T18:30:37.649346 estimator=levina-bickel k=5 dur=0.082s seed=1
+[EST DONE] 2026-04-15T18:30:37.653421 estimator=levina-bickel k=7 dur=0.004s seed=1
+[EST DONE] 2026-04-15T18:30:37.655329 estimator=levina-bickel k=10 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:30:37.721586 estimator=levina-bickel k=15 dur=0.066s seed=1
+[EST DONE] 2026-04-15T18:30:37.823577 estimator=twonn (no-k) dur=0.102s seed=1
+[EST DONE] 2026-04-15T18:30:37.824790 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:30:39.755071 estimator=danco (no-k) dur=1.930s seed=1
+[EST DONE] 2026-04-15T18:30:39.802780 estimator=mind (no-k) dur=0.048s seed=1
+[EST DONE] 2026-04-15T18:30:39.813927 estimator=fisher (no-k) dur=0.011s seed=1
+[EST DONE] 2026-04-15T18:30:40.890233 estimator=masked-ae (no-k) dur=1.076s seed=1
+[TASK END] 2026-04-15T18:30:40.890259 manifold=torus d=15 sigma=0.25 seed=1 duration=3.538s
+[TASK START] 2026-04-15T18:30:40.890898 manifold=torus d=15 sigma=0.25 n=300 seed=2
+[EST DONE] 2026-04-15T18:30:40.970324 estimator=levina-bickel k=3 dur=0.057s seed=2
+[EST DONE] 2026-04-15T18:30:41.044115 estimator=levina-bickel k=5 dur=0.074s seed=2
+[EST DONE] 2026-04-15T18:30:41.107598 estimator=levina-bickel k=7 dur=0.063s seed=2
+[EST DONE] 2026-04-15T18:30:41.157882 estimator=levina-bickel k=10 dur=0.050s seed=2
+[EST DONE] 2026-04-15T18:30:41.209752 estimator=levina-bickel k=15 dur=0.052s seed=2
+[EST DONE] 2026-04-15T18:30:41.211250 estimator=twonn (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:30:41.212254 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:30:43.350118 estimator=danco (no-k) dur=2.138s seed=2
+[EST DONE] 2026-04-15T18:30:43.423336 estimator=mind (no-k) dur=0.073s seed=2
+[EST DONE] 2026-04-15T18:30:43.435979 estimator=fisher (no-k) dur=0.013s seed=2
+[EST DONE] 2026-04-15T18:30:44.501374 estimator=masked-ae (no-k) dur=1.065s seed=2
+[TASK END] 2026-04-15T18:30:44.501398 manifold=torus d=15 sigma=0.25 seed=2 duration=3.610s
+[TASK START] 2026-04-15T18:30:44.501615 manifold=torus d=15 sigma=0.25 n=300 seed=3
+[EST DONE] 2026-04-15T18:30:44.660643 estimator=levina-bickel k=3 dur=0.079s seed=3
+[EST DONE] 2026-04-15T18:30:44.744710 estimator=levina-bickel k=5 dur=0.084s seed=3
+[EST DONE] 2026-04-15T18:30:44.802600 estimator=levina-bickel k=7 dur=0.058s seed=3
+[EST DONE] 2026-04-15T18:30:44.887078 estimator=levina-bickel k=10 dur=0.084s seed=3
+[EST DONE] 2026-04-15T18:30:44.944535 estimator=levina-bickel k=15 dur=0.057s seed=3
+[EST DONE] 2026-04-15T18:30:44.946124 estimator=twonn (no-k) dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:30:44.947090 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:30:46.452907 estimator=danco (no-k) dur=1.506s seed=3
+[EST DONE] 2026-04-15T18:30:46.502702 estimator=mind (no-k) dur=0.050s seed=3
+[EST DONE] 2026-04-15T18:30:46.508288 estimator=fisher (no-k) dur=0.006s seed=3
+[EST DONE] 2026-04-15T18:30:47.608189 estimator=masked-ae (no-k) dur=1.100s seed=3
+[TASK END] 2026-04-15T18:30:47.608220 manifold=torus d=15 sigma=0.25 seed=3 duration=3.107s
+[TASK START] 2026-04-15T18:30:47.608518 manifold=torus d=15 sigma=0.5 n=300 seed=1
+[EST DONE] 2026-04-15T18:30:47.795575 estimator=levina-bickel k=3 dur=0.072s seed=1
+[EST DONE] 2026-04-15T18:30:47.832484 estimator=levina-bickel k=5 dur=0.037s seed=1
+[EST DONE] 2026-04-15T18:30:47.900277 estimator=levina-bickel k=7 dur=0.068s seed=1
+[EST DONE] 2026-04-15T18:30:47.974239 estimator=levina-bickel k=10 dur=0.074s seed=1
+[EST DONE] 2026-04-15T18:30:48.036858 estimator=levina-bickel k=15 dur=0.063s seed=1
+[EST DONE] 2026-04-15T18:30:48.096196 estimator=twonn (no-k) dur=0.059s seed=1
+[EST DONE] 2026-04-15T18:30:48.097261 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:30:50.318468 estimator=danco (no-k) dur=2.221s seed=1
+[EST DONE] 2026-04-15T18:30:50.392837 estimator=mind (no-k) dur=0.074s seed=1
+[EST DONE] 2026-04-15T18:30:50.399867 estimator=fisher (no-k) dur=0.007s seed=1
+[EST DONE] 2026-04-15T18:30:51.436292 estimator=masked-ae (no-k) dur=1.036s seed=1
+[TASK END] 2026-04-15T18:30:51.436330 manifold=torus d=15 sigma=0.5 seed=1 duration=3.828s
+[TASK START] 2026-04-15T18:30:51.436891 manifold=torus d=15 sigma=0.5 n=300 seed=2
+[EST DONE] 2026-04-15T18:30:51.559284 estimator=levina-bickel k=3 dur=0.040s seed=2
+[EST DONE] 2026-04-15T18:30:51.561451 estimator=levina-bickel k=5 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:30:51.563363 estimator=levina-bickel k=7 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:30:51.565511 estimator=levina-bickel k=10 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:30:51.567809 estimator=levina-bickel k=15 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:30:51.569648 estimator=twonn (no-k) dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:30:51.570762 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:30:53.709114 estimator=danco (no-k) dur=2.138s seed=2
+[EST DONE] 2026-04-15T18:30:53.769219 estimator=mind (no-k) dur=0.060s seed=2
+[EST DONE] 2026-04-15T18:30:53.779836 estimator=fisher (no-k) dur=0.011s seed=2
+[EST DONE] 2026-04-15T18:30:54.801691 estimator=masked-ae (no-k) dur=1.022s seed=2
+[TASK END] 2026-04-15T18:30:54.801717 manifold=torus d=15 sigma=0.5 seed=2 duration=3.365s
+[TASK START] 2026-04-15T18:30:54.802346 manifold=torus d=15 sigma=0.5 n=300 seed=3
+[EST DONE] 2026-04-15T18:30:54.904605 estimator=levina-bickel k=3 dur=0.027s seed=3
+[EST DONE] 2026-04-15T18:30:54.906496 estimator=levina-bickel k=5 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:30:54.976538 estimator=levina-bickel k=7 dur=0.070s seed=3
+[EST DONE] 2026-04-15T18:30:55.042189 estimator=levina-bickel k=10 dur=0.066s seed=3
+[EST DONE] 2026-04-15T18:30:55.117222 estimator=levina-bickel k=15 dur=0.075s seed=3
+[EST DONE] 2026-04-15T18:30:55.197277 estimator=twonn (no-k) dur=0.080s seed=3
+[EST DONE] 2026-04-15T18:30:55.198246 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:30:57.655854 estimator=danco (no-k) dur=2.458s seed=3
+[EST DONE] 2026-04-15T18:30:57.732793 estimator=mind (no-k) dur=0.077s seed=3
+[EST DONE] 2026-04-15T18:30:57.744015 estimator=fisher (no-k) dur=0.011s seed=3
+[EST DONE] 2026-04-15T18:30:58.908439 estimator=masked-ae (no-k) dur=1.164s seed=3
+[TASK END] 2026-04-15T18:30:58.908474 manifold=torus d=15 sigma=0.5 seed=3 duration=4.106s
+[TASK START] 2026-04-15T18:30:58.909101 manifold=torus d=15 sigma=0.75 n=300 seed=1
+[EST DONE] 2026-04-15T18:30:59.057103 estimator=levina-bickel k=3 dur=0.067s seed=1
+[EST DONE] 2026-04-15T18:30:59.132891 estimator=levina-bickel k=5 dur=0.076s seed=1
+[EST DONE] 2026-04-15T18:30:59.208342 estimator=levina-bickel k=7 dur=0.075s seed=1
+[EST DONE] 2026-04-15T18:30:59.210390 estimator=levina-bickel k=10 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:30:59.246797 estimator=levina-bickel k=15 dur=0.036s seed=1
+[EST DONE] 2026-04-15T18:30:59.321051 estimator=twonn (no-k) dur=0.074s seed=1
+[EST DONE] 2026-04-15T18:30:59.322143 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:31:01.561526 estimator=danco (no-k) dur=2.239s seed=1
+[EST DONE] 2026-04-15T18:31:01.616733 estimator=mind (no-k) dur=0.055s seed=1
+[EST DONE] 2026-04-15T18:31:01.629362 estimator=fisher (no-k) dur=0.013s seed=1
+[EST DONE] 2026-04-15T18:31:02.765454 estimator=masked-ae (no-k) dur=1.136s seed=1
+[TASK END] 2026-04-15T18:31:02.765482 manifold=torus d=15 sigma=0.75 seed=1 duration=3.856s
+[TASK START] 2026-04-15T18:31:02.766074 manifold=torus d=15 sigma=0.75 n=300 seed=2
+[EST DONE] 2026-04-15T18:31:02.912754 estimator=levina-bickel k=3 dur=0.075s seed=2
+[EST DONE] 2026-04-15T18:31:02.986153 estimator=levina-bickel k=5 dur=0.073s seed=2
+[EST DONE] 2026-04-15T18:31:03.050497 estimator=levina-bickel k=7 dur=0.064s seed=2
+[EST DONE] 2026-04-15T18:31:03.078735 estimator=levina-bickel k=10 dur=0.028s seed=2
+[EST DONE] 2026-04-15T18:31:03.138246 estimator=levina-bickel k=15 dur=0.059s seed=2
+[EST DONE] 2026-04-15T18:31:03.204197 estimator=twonn (no-k) dur=0.066s seed=2
+[EST DONE] 2026-04-15T18:31:03.205285 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:31:05.244109 estimator=danco (no-k) dur=2.039s seed=2
+[EST DONE] 2026-04-15T18:31:05.322837 estimator=mind (no-k) dur=0.079s seed=2
+[EST DONE] 2026-04-15T18:31:05.356023 estimator=fisher (no-k) dur=0.033s seed=2
+[EST DONE] 2026-04-15T18:31:06.509892 estimator=masked-ae (no-k) dur=1.154s seed=2
+[TASK END] 2026-04-15T18:31:06.509923 manifold=torus d=15 sigma=0.75 seed=2 duration=3.744s
+[TASK START] 2026-04-15T18:31:06.510576 manifold=torus d=15 sigma=0.75 n=300 seed=3
+[EST DONE] 2026-04-15T18:31:06.614850 estimator=levina-bickel k=3 dur=0.043s seed=3
+[EST DONE] 2026-04-15T18:31:06.616867 estimator=levina-bickel k=5 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:31:06.618960 estimator=levina-bickel k=7 dur=0.002s seed=3
+[EST DONE] 2026-04-15T18:31:06.686400 estimator=levina-bickel k=10 dur=0.067s seed=3
+[EST DONE] 2026-04-15T18:31:06.768189 estimator=levina-bickel k=15 dur=0.082s seed=3
+[EST DONE] 2026-04-15T18:31:06.825873 estimator=twonn (no-k) dur=0.058s seed=3
+[EST DONE] 2026-04-15T18:31:06.826942 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:31:09.205596 estimator=danco (no-k) dur=2.379s seed=3
+[EST DONE] 2026-04-15T18:31:09.230862 estimator=mind (no-k) dur=0.025s seed=3
+[EST DONE] 2026-04-15T18:31:09.243842 estimator=fisher (no-k) dur=0.013s seed=3
+[EST DONE] 2026-04-15T18:31:10.226496 estimator=masked-ae (no-k) dur=0.983s seed=3
+[TASK END] 2026-04-15T18:31:10.226520 manifold=torus d=15 sigma=0.75 seed=3 duration=3.716s
+[TASK START] 2026-04-15T18:31:10.226752 manifold=torus d=15 sigma=1.0 n=300 seed=1
+[EST DONE] 2026-04-15T18:31:10.308238 estimator=levina-bickel k=3 dur=0.005s seed=1
+[EST DONE] 2026-04-15T18:31:10.316636 estimator=levina-bickel k=5 dur=0.008s seed=1
+[EST DONE] 2026-04-15T18:31:10.318371 estimator=levina-bickel k=7 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:31:10.320274 estimator=levina-bickel k=10 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:31:10.322422 estimator=levina-bickel k=15 dur=0.002s seed=1
+[EST DONE] 2026-04-15T18:31:10.323875 estimator=twonn (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:31:10.325002 estimator=lPCA (no-k) dur=0.001s seed=1
+[EST DONE] 2026-04-15T18:31:12.062828 estimator=danco (no-k) dur=1.738s seed=1
+[EST DONE] 2026-04-15T18:31:12.135084 estimator=mind (no-k) dur=0.072s seed=1
+[EST DONE] 2026-04-15T18:31:12.155876 estimator=fisher (no-k) dur=0.021s seed=1
+[EST DONE] 2026-04-15T18:31:13.268374 estimator=masked-ae (no-k) dur=1.112s seed=1
+[TASK END] 2026-04-15T18:31:13.268402 manifold=torus d=15 sigma=1.0 seed=1 duration=3.042s
+[TASK START] 2026-04-15T18:31:13.268945 manifold=torus d=15 sigma=1.0 n=300 seed=2
+[EST DONE] 2026-04-15T18:31:13.389133 estimator=levina-bickel k=3 dur=0.076s seed=2
+[EST DONE] 2026-04-15T18:31:13.391035 estimator=levina-bickel k=5 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:31:13.393020 estimator=levina-bickel k=7 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:31:13.394964 estimator=levina-bickel k=10 dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:31:13.448872 estimator=levina-bickel k=15 dur=0.054s seed=2
+[EST DONE] 2026-04-15T18:31:13.450716 estimator=twonn (no-k) dur=0.002s seed=2
+[EST DONE] 2026-04-15T18:31:13.451843 estimator=lPCA (no-k) dur=0.001s seed=2
+[EST DONE] 2026-04-15T18:31:15.756775 estimator=danco (no-k) dur=2.305s seed=2
+[EST DONE] 2026-04-15T18:31:15.837911 estimator=mind (no-k) dur=0.081s seed=2
+[EST DONE] 2026-04-15T18:31:15.844062 estimator=fisher (no-k) dur=0.006s seed=2
+[EST DONE] 2026-04-15T18:31:16.939162 estimator=masked-ae (no-k) dur=1.095s seed=2
+[TASK END] 2026-04-15T18:31:16.939191 manifold=torus d=15 sigma=1.0 seed=2 duration=3.670s
+[TASK START] 2026-04-15T18:31:16.939748 manifold=torus d=15 sigma=1.0 n=300 seed=3
+[EST DONE] 2026-04-15T18:31:17.143317 estimator=levina-bickel k=3 dur=0.093s seed=3
+[EST DONE] 2026-04-15T18:31:17.210362 estimator=levina-bickel k=5 dur=0.067s seed=3
+[EST DONE] 2026-04-15T18:31:17.285425 estimator=levina-bickel k=7 dur=0.075s seed=3
+[EST DONE] 2026-04-15T18:31:17.369906 estimator=levina-bickel k=10 dur=0.084s seed=3
+[EST DONE] 2026-04-15T18:31:17.444740 estimator=levina-bickel k=15 dur=0.075s seed=3
+[EST DONE] 2026-04-15T18:31:17.512670 estimator=twonn (no-k) dur=0.068s seed=3
+[EST DONE] 2026-04-15T18:31:17.513812 estimator=lPCA (no-k) dur=0.001s seed=3
+[EST DONE] 2026-04-15T18:31:19.638010 estimator=danco (no-k) dur=2.124s seed=3
+[EST DONE] 2026-04-15T18:31:19.704072 estimator=mind (no-k) dur=0.066s seed=3
+[EST DONE] 2026-04-15T18:31:19.711961 estimator=fisher (no-k) dur=0.008s seed=3
+[EST DONE] 2026-04-15T18:31:20.729232 estimator=masked-ae (no-k) dur=1.017s seed=3
+[TASK END] 2026-04-15T18:31:20.729259 manifold=torus d=15 sigma=1.0 seed=3 duration=3.790s
+Completed synthetic task manifold=torus d=9 sigma=0.75 seed=1 in 237.1s
+Completed synthetic task manifold=torus d=9 sigma=0.75 seed=2 in 239.3s
+Completed synthetic task manifold=torus d=9 sigma=0.75 seed=3 in 242.0s
+Completed synthetic task manifold=torus d=9 sigma=1.0 seed=1 in 244.9s
+Completed synthetic task manifold=torus d=9 sigma=1.0 seed=2 in 247.6s
+Completed synthetic task manifold=torus d=9 sigma=1.0 seed=3 in 250.6s
+Completed synthetic task manifold=torus d=12 sigma=0.0 seed=1 in 254.2s
+Completed synthetic task manifold=torus d=12 sigma=0.0 seed=2 in 257.1s
+Completed synthetic task manifold=torus d=12 sigma=0.0 seed=3 in 260.5s
+Completed synthetic task manifold=torus d=12 sigma=0.25 seed=1 in 263.4s
+Completed synthetic task manifold=torus d=12 sigma=0.25 seed=2 in 266.6s
+Completed synthetic task manifold=torus d=12 sigma=0.25 seed=3 in 269.9s
+Completed synthetic task manifold=torus d=12 sigma=0.5 seed=1 in 273.3s
+Completed synthetic task manifold=torus d=12 sigma=0.5 seed=2 in 276.0s
+Completed synthetic task manifold=torus d=12 sigma=0.5 seed=3 in 279.1s
+Completed synthetic task manifold=torus d=12 sigma=0.75 seed=1 in 282.3s
+Completed synthetic task manifold=torus d=12 sigma=0.75 seed=2 in 285.8s
+Completed synthetic task manifold=torus d=12 sigma=0.75 seed=3 in 289.4s
+Completed synthetic task manifold=torus d=12 sigma=1.0 seed=1 in 292.4s
+Completed synthetic task manifold=torus d=12 sigma=1.0 seed=2 in 295.8s
+Completed synthetic task manifold=torus d=12 sigma=1.0 seed=3 in 298.9s
+Completed synthetic task manifold=torus d=15 sigma=0.0 seed=1 in 302.8s
+Completed synthetic task manifold=torus d=15 sigma=0.0 seed=2 in 306.9s
+Completed synthetic task manifold=torus d=15 sigma=0.0 seed=3 in 310.7s
+Completed synthetic task manifold=torus d=15 sigma=0.25 seed=1 in 314.2s
+Completed synthetic task manifold=torus d=15 sigma=0.25 seed=2 in 317.8s
+Completed synthetic task manifold=torus d=15 sigma=0.25 seed=3 in 320.9s
+Completed synthetic task manifold=torus d=15 sigma=0.5 seed=1 in 324.7s
+Completed synthetic task manifold=torus d=15 sigma=0.5 seed=2 in 328.1s
+Completed synthetic task manifold=torus d=15 sigma=0.5 seed=3 in 332.2s
+Completed synthetic task manifold=torus d=15 sigma=0.75 seed=1 in 336.1s
+Completed synthetic task manifold=torus d=15 sigma=0.75 seed=2 in 339.8s
+Completed synthetic task manifold=torus d=15 sigma=0.75 seed=3 in 343.5s
+Completed synthetic task manifold=torus d=15 sigma=1.0 seed=1 in 346.6s
+Completed synthetic task manifold=torus d=15 sigma=1.0 seed=2 in 350.2s
+Completed synthetic task manifold=torus d=15 sigma=1.0 seed=3 in 354.0s
+Wrote per-task synthetic results to results/synthetic_large.task1.csv
+Saved results/synthetic_large.csv
+Running MNIST autoencoder large experiments...
+[AE START] seed=1 bottleneck=5 epochs=10 subset=0
+[AE EPOCH] epoch=1/10 loss=0.044539 epoch_time=1.25s device=cuda
+[AE EPOCH] epoch=2/10 loss=0.030567 epoch_time=1.08s device=cuda
+[AE EPOCH] epoch=3/10 loss=0.028678 epoch_time=1.22s device=cuda
+[AE EPOCH] epoch=4/10 loss=0.027677 epoch_time=1.04s device=cuda
+[AE EPOCH] epoch=5/10 loss=0.027009 epoch_time=1.01s device=cuda
+[AE EPOCH] epoch=6/10 loss=0.026513 epoch_time=1.01s device=cuda
+[AE EPOCH] epoch=7/10 loss=0.026135 epoch_time=1.01s device=cuda
+[AE EPOCH] epoch=8/10 loss=0.025816 epoch_time=1.04s device=cuda
+[AE EPOCH] epoch=9/10 loss=0.025538 epoch_time=1.04s device=cuda
+[AE EPOCH] epoch=10/10 loss=0.025314 epoch_time=1.07s device=cuda
+[AE TRAIN COMPLETE] total_time=10.76s
+[AE START] seed=2 bottleneck=5 epochs=10 subset=0
+[AE EPOCH] epoch=1/10 loss=0.044645 epoch_time=1.18s device=cuda
+[AE EPOCH] epoch=2/10 loss=0.031018 epoch_time=1.09s device=cuda
+[AE EPOCH] epoch=3/10 loss=0.029040 epoch_time=1.13s device=cuda
+[AE EPOCH] epoch=4/10 loss=0.028000 epoch_time=1.03s device=cuda
+[AE EPOCH] epoch=5/10 loss=0.027306 epoch_time=0.99s device=cuda
+[AE EPOCH] epoch=6/10 loss=0.026786 epoch_time=1.03s device=cuda
+[AE EPOCH] epoch=7/10 loss=0.026345 epoch_time=1.15s device=cuda
+[AE EPOCH] epoch=8/10 loss=0.026009 epoch_time=0.98s device=cuda
+[AE EPOCH] epoch=9/10 loss=0.025703 epoch_time=0.99s device=cuda
+[AE EPOCH] epoch=10/10 loss=0.025445 epoch_time=1.00s device=cuda
+[AE TRAIN COMPLETE] total_time=10.58s

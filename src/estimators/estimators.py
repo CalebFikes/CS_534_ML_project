@@ -145,7 +145,7 @@ def correlation_integral(X, n_r=20, r_min_quantile=0.01, r_max_quantile=0.2):
         slope, intercept = np.polyfit(logs, logC, 1)
         return float(slope)
 
-def danco_wrapper(X):
+def danco_wrapper(X, k=None):
     """DANCo wrapper. Accepts optional neighborhood size `k`.
 
     If `k` is provided (passed via kwargs from `estimate`), it is forwarded
@@ -162,15 +162,14 @@ def danco_wrapper(X):
             arr = np.asarray(out)
             return float(arr.mean())
 
-    # allow being called either as danco_wrapper(X) or danco_wrapper(X, k=...)
-    try:
-        # called directly by estimate with possible kwargs
+    # forward optional `k` to the inner implementation
+    if k is None:
         return _inner(X)
-    except TypeError:
-        return _inner(X)
+    else:
+        return _inner(X, k=int(k))
 
 
-def local_pca_wrapper(X):
+def local_pca_wrapper(X, k=None):
     """Wrapper for scikit-dimension's local PCA (LPCA) estimator.
 
     Tries multiple common attribute names for the estimator class exposed by
@@ -222,12 +221,10 @@ def local_pca_wrapper(X):
                 arr = np.asarray(out)
                 return float(arr.mean())
 
-    try:
-        return _inner(X)
-    except TypeError:
-        return _inner(X)
+    # forward optional neighborhood size if provided
+    return _inner(X, k=int(k)) if k is not None else _inner(X)
 
-def mind_wrapper(X):
+def mind_wrapper(X, k=None):
     """MiND wrapper. Accepts optional `k` to control neighborhood size.
 
     If `k` is provided it is forwarded to the MiND constructor.
@@ -250,10 +247,11 @@ def mind_wrapper(X):
             arr = np.asarray(out)
             return float(arr.mean())
 
-    try:
+    # forward optional `k` to MiND
+    if k is None:
         return _inner(X)
-    except TypeError:
-        return _inner(X)
+    else:
+        return _inner(X, k=int(k))
 
 def fisher_separability_placeholder(X):
     """Placeholder for Fisher separability estimator.
@@ -281,6 +279,13 @@ def estimate(X, method='levina-bickel', **kwargs):
         'mind': mind_wrapper,
         'fisher': fisher_separability_placeholder,
         'masked-ae': masked_ae_estimate,
+        # accept canonical/display names as well
+        'Levina-Bickel': levina_bickel_mle,
+        'TwoNN': twonn,
+        'DANCo': danco_wrapper,
+        'MiND': mind_wrapper,
+        'FisherS': fisher_separability_placeholder,
+        'SMAE': masked_ae_estimate,
     }
     if method not in methods:
         raise ValueError(f"Unknown method: {method}")

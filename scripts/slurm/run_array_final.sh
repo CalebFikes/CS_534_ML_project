@@ -2,7 +2,7 @@
 #SBATCH --job-name=idbench_syn_final
 #SBATCH --output=logs/idbench_syn_final_%A_%a.out
 #SBATCH --error=logs/idbench_syn_final_%A_%a.err
-#SBATCH --time=12:00:00
+#SBATCH --time=48:00:00
 #SBATCH --mem=32G
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
@@ -22,13 +22,10 @@ elif [ -f "/local/scratch/cfikes/miniconda3/etc/profile.d/conda.sh" ]; then
 fi
 
 set -x
-echo "Starting final job on $(hostname) at $(date); workdir=$(pwd); user=$(whoami)"
+echo "Starting final worker on $(hostname) at $(date); workdir=$(pwd); user=$(whoami); task=${SLURM_ARRAY_TASK_ID}"
 conda activate cs_534_gpu
 # ensure we run from the repository root so `python -m src...` works
 cd /local/scratch/cfikes/CS_534_ML_project || exit 1
 
-# remove old figures so final run overwrites them
-rm -rf results/figs || true
-
-# Run the experiment driver in final (full) mode
-python -m src.experiments.run_experiments --mode final --workers 1 --base-seed ${BASE_SEED}
+# Run the experiment driver in final (full) mode (worker only)
+python -m src.experiments.run_experiments --mode final --workers ${SLURM_CPUS_PER_TASK:-1} --base-seed ${BASE_SEED:-0}

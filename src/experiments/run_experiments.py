@@ -18,6 +18,17 @@ from src.estimators.estimators import estimate
 import matplotlib.pyplot as plt
 import random
 
+# canonical display names for estimators
+CANONICAL_EST_NAMES = {
+    'levina-bickel': 'Levina-Bickel',
+    'twonn': 'TwoNN',
+    'danco': 'DANCo',
+    'mind': 'MiND',
+    'fisher': 'FisherS',
+    'masked-ae': 'SMAE',
+    'lPCA': 'lPCA',
+}
+
 
 def synthetic_worker(task):
     """Worker function that generates one replicate and returns list of records."""
@@ -33,7 +44,7 @@ def synthetic_worker(task):
     from datetime import datetime
 
     start_t = time.time()
-    print(f"[TASK START] {datetime.now().isoformat()} manifold={manifold} d={d} sigma={sigma} n={n} seed={seed}")
+    print(f"[TASK START] {datetime.now().isoformat()} manifold={manifold} d={d} sigma={sigma} n={n} seed={seed}", flush=True)
 
     if manifold == 'sphere':
         X = sample_sphere(d, n, random_state=seed)
@@ -66,16 +77,18 @@ def synthetic_worker(task):
     # result across all requested k values. Estimators that accept `k` are
     # evaluated for each k.
     for m in methods:
+        # display name used in CSVs/plots/logs
+        disp_name = CANONICAL_EST_NAMES.get(m, m)
         # special kwargs for masked-AE estimator
         mask_kwargs = {}
         if m == 'masked-ae':
             mask_kwargs = {
-                'threshold': 1e-2,
+                'threshold': 5e-2,
                 'lr': 5e-4,
                 'pretrain_epochs': 50,
-                'pretrain_lr': 5e-4,
-                'sweep_epochs': 10,
-                'sweep_lr': 5e-4,
+                'pretrain_lr': 1e-4,
+                'sweep_epochs': 25,
+                'sweep_lr': 5e-5,
             }
         # Explicit list of estimators that should NOT be re-run per-k
         non_k_methods = set(['fisher', 'masked-ae', 'twonn'])
@@ -109,9 +122,9 @@ def synthetic_worker(task):
                     val = float('nan')
                     err_msg = traceback.format_exc()
                 est_dur = time.time() - est_start
-                print(f"[EST DONE] {datetime.now().isoformat()} estimator={m} k={k} dur={est_dur:.3f}s seed={seed}")
+                print(f"[EST DONE] {datetime.now().isoformat()} estimator={disp_name} k={k} dur={est_dur:.3f}s seed={seed}", flush=True)
                 records.append({
-                    'estimator': m,
+                    'estimator': disp_name,
                     'base_seed': int(base_seed) if base_seed is not None else None,
                     'manifold': manifold,
                     'd': d,
@@ -135,10 +148,10 @@ def synthetic_worker(task):
                 val = float('nan')
                 err_msg = traceback.format_exc()
             est_dur = time.time() - est_start
-            print(f"[EST DONE] {datetime.now().isoformat()} estimator={m} (no-k) dur={est_dur:.3f}s seed={seed}")
+            print(f"[EST DONE] {datetime.now().isoformat()} estimator={disp_name} (no-k) dur={est_dur:.3f}s seed={seed}", flush=True)
             for k in K:
                 records.append({
-                    'estimator': m,
+                    'estimator': disp_name,
                     'base_seed': int(base_seed) if base_seed is not None else None,
                     'manifold': manifold,
                     'd': d,
@@ -151,7 +164,7 @@ def synthetic_worker(task):
                 })
 
     dur = time.time() - start_t
-    print(f"[TASK END] {datetime.now().isoformat()} manifold={manifold} d={d} sigma={sigma} seed={seed} duration={dur:.3f}s")
+    print(f"[TASK END] {datetime.now().isoformat()} manifold={manifold} d={d} sigma={sigma} seed={seed} duration={dur:.3f}s", flush=True)
     return records
 
 
@@ -245,18 +258,28 @@ def run_synthetic(config, out_csv, max_workers=None):
 def run_mnist_autoencoder(config, out_csv, run_train=True):
     import subprocess
     import numpy as np
-
     records = []
     data_dir = config.get('data_dir', 'data')
 
     for k in config['bottleneck_dims']:
         for r in range(config['R']):
-            seed = config.get('base_seed', 0) + r
-            model_path = f'models/ae_k{k}_r{r}.pth'
-            latents_path = f'data/mnist_latents_k{k}_r{r}.npy'
+            # choose a replicate identifier: use Slurm array task id when
+            # available so concurrently running workers don't clobber each
+            # other's files. Fall back to the local replicate index `r`.
+            task_id = os.environ.get('SLURM_ARRAY_TASK_ID') or os.environ.get('SLURM_ARRAY_TASK_INDEX')
+            rep_label = str(task_id) if task_id is not None else str(r)
+            seed = int(config.get('base_seed', 0)) + int(r)
+            model_path = f'models/ae_k{k}_r{rep_label}.pth'
+            latents_path = f'data/mnist_latents_k{k}_r{rep_label}.npy'
             os.makedirs(os.path.dirname(model_path) or '.', exist_ok=True)
             os.makedirs(os.path.dirname(latents_path) or '.', exist_ok=True)
+
+            # Log start of MNIST replicate
+            import datetime as _dt
+            print(f"[MNIST TASK START] {_dt.datetime.now().isoformat()} bottleneck={k} replicate={r} seed={seed}", flush=True)
+
             if run_train:
+                t0 = time.time()
                 cmd = [
                     sys.executable, '-m', 'src.models.train_autoencoder',
                     '--data-dir', data_dir,
@@ -273,6 +296,8 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
                 if 'cpu' in config and config['cpu']:
                     cmd.append('--cpu')
                 subprocess.check_call(cmd)
+                t_train = time.time() - t0
+                print(f"[AE TRAIN COMPLETE] {_dt.datetime.now().isoformat()} bottleneck={k} replicate={r} dur={t_train:.1f}s seed={seed}", flush=True)
 
             Z = np.load(latents_path)
             noise_levels = config.get('noise_levels', [0.0])
@@ -292,35 +317,71 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
                             'sweep_epochs': 10,
                             'sweep_lr': 5e-4,
                         }
-                    for k_n in config['neighbor_grid_K']:
+                    # Only run non-kNN estimators once per sigma/bottleneck to save
+                    # compute. We'll still record a row for each k in the grid
+                    # so downstream plotting code (which expects results per-k)
+                    # continues to work.
+                    non_k_methods = set(['fisher', 'masked-ae', 'twonn'])
+                    disp_name = CANONICAL_EST_NAMES.get(m, m)
+                    if m in non_k_methods:
+                        # compute once
+                        import datetime as _dt2
+                        print(f"[EST START] {_dt2.datetime.now().isoformat()} bottleneck={k} replicate={r} seed={seed} estimator={disp_name} k=ALL sigma={sigma}", flush=True)
+                        est_t0 = time.time()
                         err_msg = ''
                         try:
                             if m == 'masked-ae':
-                                val = estimate(Z_noisy, method=m, k=k_n, **mask_kwargs)
+                                val = estimate(Z_noisy, method=m, **mask_kwargs)
                             else:
-                                val = estimate(Z_noisy, method=m, k=k_n)
-                        except TypeError:
-                            try:
-                                if m == 'masked-ae':
-                                    val = estimate(Z_noisy, method=m, **mask_kwargs)
-                                else:
-                                    val = estimate(Z_noisy, method=m)
-                            except Exception:
-                                val = float('nan')
-                                err_msg = traceback.format_exc()
+                                val = estimate(Z_noisy, method=m)
                         except Exception:
                             val = float('nan')
                             err_msg = traceback.format_exc()
-                        records.append({
-                            'estimator': m,
-                            'base_seed': int(config.get('base_seed', None)) if config.get('base_seed', None) is not None else None,
-                            'bottleneck': k,
-                            'k': k_n,
-                            'sigma': float(sigma),
-                            'estimate': float(val),
-                            'seed': int(seed),
-                            'error': err_msg.replace('\n', ' | '),
-                        })
+                        est_dur = time.time() - est_t0
+                        print(f"[EST DONE] {_dt2.datetime.now().isoformat()} bottleneck={k} replicate={r} seed={seed} estimator={disp_name} k=ALL dur={est_dur:.3f}s", flush=True)
+                        # duplicate record across k grid
+                        for k_n in config['neighbor_grid_K']:
+                            records.append({
+                                'estimator': disp_name,
+                                'base_seed': int(config.get('base_seed', None)) if config.get('base_seed', None) is not None else None,
+                                'bottleneck': k,
+                                'k': k_n,
+                                'sigma': float(sigma),
+                                'estimate': float(val),
+                                'seed': int(seed),
+                                'error': err_msg.replace('\n', ' | '),
+                            })
+                    else:
+                        # knn-based estimator: run for each k_n
+                        for k_n in config['neighbor_grid_K']:
+                            import datetime as _dt2
+                            disp_name = CANONICAL_EST_NAMES.get(m, m)
+                            print(f"[EST START] {_dt2.datetime.now().isoformat()} bottleneck={k} replicate={r} seed={seed} estimator={disp_name} k={k_n} sigma={sigma}", flush=True)
+                            est_t0 = time.time()
+                            err_msg = ''
+                            try:
+                                val = estimate(Z_noisy, method=m, k=k_n)
+                            except TypeError:
+                                try:
+                                    val = estimate(Z_noisy, method=m)
+                                except Exception:
+                                    val = float('nan')
+                                    err_msg = traceback.format_exc()
+                            except Exception:
+                                val = float('nan')
+                                err_msg = traceback.format_exc()
+                            est_dur = time.time() - est_t0
+                            print(f"[EST DONE] {_dt2.datetime.now().isoformat()} bottleneck={k} replicate={r} seed={seed} estimator={disp_name} k={k_n} dur={est_dur:.3f}s", flush=True)
+                            records.append({
+                                'estimator': disp_name,
+                                'base_seed': int(config.get('base_seed', None)) if config.get('base_seed', None) is not None else None,
+                                'bottleneck': k,
+                                'k': k_n,
+                                'sigma': float(sigma),
+                                'estimate': float(val),
+                                'seed': int(seed),
+                                'error': err_msg.replace('\n', ' | '),
+                            })
 
     df = pd.DataFrame.from_records(records)
     # See comment above in `run_synthetic` — write per-task CSV when inside
@@ -830,7 +891,7 @@ def main():
     elif args.mode == 'large':
         # intermediate debugging size
         syn_config = {
-            'n_samples': 300,
+            'n_samples': 60000,
             'intrinsic_dims': [5, 7, 9, 12, 15],
             'manifolds': ['sphere', 'torus'],
             'noise_levels': list(np.linspace(0.0, 1.0, 5)),
@@ -854,7 +915,7 @@ def main():
     elif args.mode == 'final':
         # final production size (defaults; can be overridden via CLI)
         syn_config = {
-            'n_samples': 300,
+            'n_samples': 60000,
             'intrinsic_dims': list(map(int, np.linspace(5, 15, 7))),
             'manifolds': ['sphere', 'torus'],
             'noise_levels': list(np.linspace(0.0, 1.0, 10)),
@@ -913,6 +974,15 @@ def main():
         syn_config['base_seed'] = args.base_seed
         mnist_config['base_seed'] = args.base_seed
 
+    # If running inside a Slurm array task, make each worker run exactly one
+    # replicate and use the array task id to disambiguate saved model/latents
+    # filenames. The submit wrapper should set BASE_SEED to the desired seed
+    # offset (often the array index).
+    task_env = os.environ.get('SLURM_ARRAY_TASK_ID') or os.environ.get('SLURM_ARRAY_TASK_INDEX')
+    if task_env:
+        syn_config['R'] = 1
+        mnist_config['R'] = 1
+
     # optionally skip corrint (very slow on full MNIST). Remove from method lists.
     if getattr(args, 'skip_corrint', False):
         def _filter_methods(lst):
@@ -948,31 +1018,43 @@ def main():
     mnist_out = f'results/mnist_{args.mode}.csv'
     figs_out_dir = f'results/figs_{args.mode}'
 
-    # Clear previous outputs: remove existing CSVs and empty the figs directory
-    try:
-        if os.path.exists(synthetic_out):
-            os.remove(synthetic_out)
-        if os.path.exists(mnist_out):
-            os.remove(mnist_out)
-    except Exception:
-        pass
-    # clear figs dir
-    try:
-        if os.path.isdir(figs_out_dir):
-            for fname in os.listdir(figs_out_dir):
-                fpath = os.path.join(figs_out_dir, fname)
-                try:
-                    if os.path.isfile(fpath) or os.path.islink(fpath):
-                        os.remove(fpath)
-                    elif os.path.isdir(fpath):
-                        import shutil
-                        shutil.rmtree(fpath)
-                except Exception:
-                    pass
-        else:
+    # Clear previous outputs only when running outside an array worker.
+    # When running inside a Slurm array task we must NOT remove the global
+    # CSV or figs directory because multiple workers run concurrently and
+    # a submission wrapper is responsible for cleaning before launching
+    # the array (the wrapper calls sbatch and then a finalize job).
+    task_env = os.environ.get('SLURM_ARRAY_TASK_ID') or os.environ.get('SLURM_ARRAY_TASK_INDEX')
+    if not task_env:
+        try:
+            if os.path.exists(synthetic_out):
+                os.remove(synthetic_out)
+            if os.path.exists(mnist_out):
+                os.remove(mnist_out)
+        except Exception:
+            pass
+        # clear figs dir
+        try:
+            if os.path.isdir(figs_out_dir):
+                for fname in os.listdir(figs_out_dir):
+                    fpath = os.path.join(figs_out_dir, fname)
+                    try:
+                        if os.path.isfile(fpath) or os.path.islink(fpath):
+                            os.remove(fpath)
+                        elif os.path.isdir(fpath):
+                            import shutil
+                            shutil.rmtree(fpath)
+                    except Exception:
+                        pass
+            else:
+                os.makedirs(figs_out_dir, exist_ok=True)
+        except Exception:
+            pass
+    else:
+        # Ensure figs_out_dir exists for workers so they don't error when writing
+        try:
             os.makedirs(figs_out_dir, exist_ok=True)
-    except Exception:
-        pass
+        except Exception:
+            pass
 
     print(f'Running synthetic {args.mode} experiments...', flush=True)
     df_syn = run_synthetic(syn_config, out_csv=synthetic_out, max_workers=args.workers)
