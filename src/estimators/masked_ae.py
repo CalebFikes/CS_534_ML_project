@@ -89,9 +89,14 @@ else:
                           threshold=1e-3,
                           pretrain_epochs=50, pretrain_lr=1e-4,
                           sweep_epochs=25, sweep_lr=1e-5,
+                          enforce_monotone=True,
                           return_debug=False,
                           **kwargs):
         """Estimate intrinsic dimension via masked AE lambda-sweep and 1-breakpiece fit.
+
+        The piecewise breakpoint is found on the log10(lambda) vs. reconstruction
+        error (MSE) curve. We optionally apply isotonic regression to enforce
+        monotonicity (increasing MSE with lambda) before fitting.
 
         Returns: float (estimated dimension = number of active latents at fitted breakpoint)
         """
@@ -185,10 +190,28 @@ else:
         # DEBUG: report arrays that go into Kneedle
         logger.debug(f"[masked-ae DEBUG] lams={lams.tolist()} acts={acts.tolist()} recons={recons.tolist()}")
 
-        # Use log(lambda) -> active for elbow detection (more sensitive)
+        # Use log(lambda) -> recon (MSE) for elbow/knee detection. Apply
+        # optional isotonic (monotone increasing) smoothing to reduce random
+        # non-monotonic wiggles from stochastic training.
         log_lams = np.log10(lams)
         try:
-            bp_log = _piecewise_breakpoint(log_lams, acts)
+            # sort by log-lambda for preprocessing
+            order = np.argsort(log_lams)
+            x_s = log_lams[order]
+            y_s = recons[order]
+
+            if enforce_monotone:
+                try:
+                    from sklearn.isotonic import IsotonicRegression
+                    ir = IsotonicRegression(increasing=True)
+                    y_iso_s = ir.fit_transform(x_s, y_s)
+                except Exception:
+                    # fallback: enforce non-decreasing via cumulative maximum
+                    y_iso_s = np.maximum.accumulate(y_s)
+            else:
+                y_iso_s = y_s
+
+            bp_log = _piecewise_breakpoint(x_s, y_iso_s)
             lam_bp = float(10 ** bp_log)
             logger.debug(f"[masked-ae DEBUG] piecewise_bp_log={bp_log} lam_bp={lam_bp}")
         except Exception as e:
@@ -236,7 +259,7 @@ else:
             w_sorted = np.sort(w_final)[::-1]
             meta = {
                 'lam_bp': float(lam_bp),
-                'bp_log': float(bp_log),
+                    'bp_log': float(bp_log),
                 'active_final': int(active_final),
                 'threshold': float(threshold),
                 'nlatent': int(nlatent),
