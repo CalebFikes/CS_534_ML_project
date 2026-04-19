@@ -37,12 +37,13 @@ else:
             return x_hat, z
 
 
-    def _kneedle(xs, ys):
-        """Detect elbow using a Kneedle-like procedure.
+    def _piecewise_breakpoint(xs, ys):
+        """Find a single breakpoint by fitting a continuous piecewise-linear
+        function with one knot (breakpoint) via least-squares.
 
-        This implementation normalizes `xs` and `ys` to [0,1], computes the
-        difference curve and selects the index of maximal deviation as the
-        elbow. Returns the x-coordinate at the detected elbow (float).
+        We search candidate breakpoints between unique sorted x-values and
+        choose the one that minimizes the residual sum of squares. Returns
+        the x-coordinate of the selected breakpoint (float).
         """
         xs = np.asarray(xs, dtype=float)
         ys = np.asarray(ys, dtype=float)
@@ -55,41 +56,32 @@ else:
         xs_s = xs[order]
         ys_s = ys[order]
 
-        # If there are too few unique points, return the median
-        if np.unique(xs_s).size < 2:
-            return float(xs_s[0])
+        # If too few unique points, return central x
+        uniq = np.unique(xs_s)
+        if uniq.size < 2 or xs_s.size < 3:
+            return float(xs_s[xs_s.size // 2])
 
-        # normalize to [0,1]
-        def _norm(a):
-            a_min = a.min()
-            a_max = a.max()
-            if a_max <= a_min:
-                return np.zeros_like(a)
-            return (a - a_min) / (a_max - a_min)
+        # candidate breakpoints: midpoints between consecutive unique x's
+        candidates = (uniq[:-1] + uniq[1:]) / 2.0
 
-        x_n = _norm(xs_s)
-        y_n = _norm(ys_s)
+        best_bp = float(candidates[0])
+        best_rss = np.inf
 
-        # determine monotonicity of y: if y decreases with x -> decreasing=True
-        decreasing = y_n[0] > y_n[-1]
+        for x0 in candidates:
+            # design matrix: [1, x, max(0, x-x0)] (continuous piecewise linear)
+            H = np.vstack([np.ones_like(xs_s), xs_s, np.maximum(0.0, xs_s - x0)]).T
+            # least squares solve
+            coef, residuals, rank, s = np.linalg.lstsq(H, ys_s, rcond=None)
+            if residuals.size > 0:
+                rss = float(residuals[0])
+            else:
+                pred = H.dot(coef)
+                rss = float(((ys_s - pred) ** 2).sum())
+            if rss < best_rss:
+                best_rss = rss
+                best_bp = float(x0)
 
-        # Kneedle score: difference between the curve and the diagonal.
-        # For decreasing curves we want x - y, otherwise y - x.
-        if decreasing:
-            score = x_n - y_n
-        else:
-            score = y_n - x_n
-
-        # small smoothing to reduce noise (moving average window=3)
-        if score.size >= 3:
-            kernel = np.ones(3) / 3.0
-            score_smooth = np.convolve(score, kernel, mode='same')
-        else:
-            score_smooth = score
-
-        # elbow index: location of maximal score
-        idx = int(np.argmax(score_smooth))
-        return float(xs_s[idx])
+        return best_bp
 
 
     def masked_ae_estimate(X, nlatent=64, nhidden=256, lambdas=None,
@@ -196,11 +188,11 @@ else:
         # Use log(lambda) -> active for elbow detection (more sensitive)
         log_lams = np.log10(lams)
         try:
-            bp_log = _kneedle(log_lams, acts)
+            bp_log = _piecewise_breakpoint(log_lams, acts)
             lam_bp = float(10 ** bp_log)
-            logger.debug(f"[masked-ae DEBUG] kneedle_bp_log={bp_log} lam_bp={lam_bp}")
+            logger.debug(f"[masked-ae DEBUG] piecewise_bp_log={bp_log} lam_bp={lam_bp}")
         except Exception as e:
-            logger.debug(f"[masked-ae DEBUG] kneedle exception: {e}")
+            logger.debug(f"[masked-ae DEBUG] piecewise fit exception: {e}")
             lam_bp = float(lams[int(len(lams) // 2)])
 
 
