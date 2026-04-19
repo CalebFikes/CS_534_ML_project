@@ -7,7 +7,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=6
 #SBATCH --gres=gpu:1
-#SBATCH --array=0-2
+#SBATCH --array=0-3
 
 export BASE_SEED=${SLURM_ARRAY_TASK_ID}
 
