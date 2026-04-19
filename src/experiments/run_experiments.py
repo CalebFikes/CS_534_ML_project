@@ -83,12 +83,11 @@ def synthetic_worker(task):
         mask_kwargs = {}
         if m == 'masked-ae':
             mask_kwargs = {
-                'threshold': 5e-2,
-                'lr': 5e-4,
-                'pretrain_epochs': 50,
-                'pretrain_lr': 1e-4,
+                'lr': 5e-5,
+                'pretrain_epochs': 10,
+                'pretrain_lr': 5e-5,
                 'sweep_epochs': 25,
-                'sweep_lr': 5e-5,
+                'sweep_lr': 1e-5,
             }
         # Explicit list of estimators that should NOT be re-run per-k
         non_k_methods = set(['fisher', 'masked-ae', 'twonn'])
@@ -287,6 +286,7 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
                     '--hidden-dim', str(config.get('hidden_dim', 400)),
                     '--bottleneck', str(k),
                     '--epochs', str(config['epochs']),
+                    '--lr', str(config.get('ae_lr', 1e-3)),
                     '--save-model', model_path,
                     '--save-latents', latents_path,
                     '--subset-size', str(config.get('mnist_subset_size', 0)),
@@ -310,12 +310,11 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
                     mask_kwargs = {}
                     if m == 'masked-ae':
                         mask_kwargs = {
-                            'threshold': 1e-2,
-                            'lr': 5e-4,
-                            'pretrain_epochs': 50,
-                            'pretrain_lr': 5e-4,
-                            'sweep_epochs': 10,
-                            'sweep_lr': 5e-4,
+                            'lr': 5e-5,
+                            'pretrain_epochs': 10,
+                            'pretrain_lr': 5e-5,
+                            'sweep_epochs': 25,
+                            'sweep_lr': 1e-5,
                         }
                     # Only run non-kNN estimators once per sigma/bottleneck to save
                     # compute. We'll still record a row for each k in the grid
@@ -895,7 +894,7 @@ def main():
             'intrinsic_dims': [5, 7, 9, 12, 15],
             'manifolds': ['sphere', 'torus'],
             'noise_levels': list(np.linspace(0.0, 1.0, 5)),
-            'R': 3,
+            'R': 4,
             'neighbor_grid_K': [3, 5, 7, 10, 15],
             'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher', 'masked-ae'],
             'base_seed': 0,
@@ -903,8 +902,9 @@ def main():
         mnist_config = {
             'mnist_subset_size': 0,
             'bottleneck_dims': [5, 7, 9, 12, 15],
-            'R': 3,
-            'epochs': 10,
+            'R': 4,
+            'epochs': 50,
+            'ae_lr': 5e-5,
             'batch_size': 128,
             'neighbor_grid_K': [3, 5, 7, 10, 15],
             'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher', 'masked-ae'],

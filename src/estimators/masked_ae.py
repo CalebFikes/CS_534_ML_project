@@ -112,7 +112,7 @@ else:
 
         logger = logging.getLogger(__name__)
         # DEBUG: report lambda sweep we're using
-        logger.debug(f"[masked-ae DEBUG] lambda_grid={lambdas} nlatent={nlatent} nhidden={nhidden} epochs={epochs} lr={lr} threshold={threshold}")
+        logger.debug(f"[masked-ae DEBUG] lambda_grid={lambdas} nlatent={nlatent} nhidden={nhidden} epochs={epochs} lr={lr}")
 
         X = np.asarray(X)
         if X.ndim != 2:
