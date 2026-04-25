@@ -11,6 +11,7 @@ try:
     from skdim import id
     SKDIM_AVAILABLE = True
 except Exception:
+    print("NO SKDIM")
     SKDIM_AVAILABLE = False
 
 def _kneighbors_distances(X, k):

@@ -10,7 +10,7 @@ import json
 import numpy as np
 import pandas as pd
 from concurrent.futures import ProcessPoolExecutor, as_completed
-from src.data.generators import sample_sphere, sample_torus, embed_via_random_orthonormal, add_orthogonal_noise
+from src.data.generators import sample_sphere, sample_torus, embed_via_random_orthonormal, add_noise
 from src.estimators.estimators import estimate
 import matplotlib.pyplot as plt
 
@@ -31,7 +31,7 @@ def synthetic_worker(task):
     else:
         X = sample_torus(d, n, random_state=seed)
     X = embed_via_random_orthonormal(X, D, random_state=seed)
-    X = add_orthogonal_noise(X, sigma, random_state=seed)
+    X = add_noise(X, sigma, random_state=seed)
 
     records = []
     for m in methods:
@@ -39,7 +39,7 @@ def synthetic_worker(task):
             try:
                 val = estimate(X, method=m, k=k)
             except TypeError:
-                # some estimators don't accept k; ignore
+                #currently, I think that this is not working correctly--the method still seems to be calling with k for Fisher, when it should nots
                 try:
                     val = estimate(X, method=m)
                 except Exception:
@@ -111,6 +111,7 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
 
                 model_path = f'models/ae_k{k}_n{noise}_r{r}.pth'
                 latents_path = f'data/mnist_latents_k{k}_n{noise}_r{r}.npy'
+                recon_path = f'data/b{k}_n{noise}.npy'
 
                 os.makedirs(os.path.dirname(model_path) or '.', exist_ok=True)
                 os.makedirs(os.path.dirname(latents_path) or '.', exist_ok=True)
@@ -128,7 +129,7 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
                         '--subset-size', str(config.get('mnist_subset_size', 0)),
                         '--num-workers', str(config.get('num_workers', 0)),
                         '--seed', str(seed),
-                        '--noise-levels', str(noise),   # NEW ARG
+                        '--noise-levels', str(noise)   #new noise parameter
                     ]
                     print("NOISE DEBUG")
                     print(noise)
@@ -138,14 +139,89 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
                     subprocess.check_call(cmd)
 
                 Z = np.load(latents_path)
+                #major change: run on the latent reconstructions, NOT the latent values themselves
+                X_recon = np.load(recon_path)
+                
+                X_recon = Z #TODO: LEFT IN FOR TESTING NOW SINCE X_recon TAKES TOO LONG: change later
 
                 for m in config['methods']:
                     for k_n in config['neighbor_grid_K']:
                         try:
-                            val = estimate(Z, method=m, k=k_n)
+                            val = estimate(X_recon, method=m, k=k_n)
                         except TypeError:
                             try:
-                                val = estimate(Z, method=m)
+                                val = estimate(X_recon, method=m)
+                            except Exception:
+                                val = float('nan')
+                        except Exception:
+                            val = float('nan')
+
+                        records.append({
+                            'estimator': m,
+                            'bottleneck': k,
+                            'noise': noise,   # NEW FIELD
+                            'k_n': k_n,
+                            'estimate': float(val),
+                            'seed': int(seed),
+                        })
+
+    df = pd.DataFrame.from_records(records)
+    df.to_csv(out_csv, index=False)
+    return df
+
+def run_mnist_faces_autoencoder(config, out_csv, run_train=True):
+    import subprocess
+    import numpy as np
+
+    records = []
+    data_dir = config.get('data_dir', 'data')
+
+    for k in config['bottleneck_dims']:
+        for noise in config['noise-levels']:  
+            for r in range(config['R']):
+                seed = config.get('base_seed', 0) + r
+
+                model_path = f'models/ae_k{k}_n{noise}_r{r}.pth'
+                latents_path = f'data/mnist_latents_k{k}_n{noise}_r{r}.npy'
+                recon_path = f'data/b{k}_n{noise}.npy'
+
+                os.makedirs(os.path.dirname(model_path) or '.', exist_ok=True)
+                os.makedirs(os.path.dirname(latents_path) or '.', exist_ok=True)
+
+                if run_train:
+                    cmd = [
+                        'python', '-m', 'src.models.train_faces_autoencoder',
+                        '--data-dir', data_dir,
+                        '--batch-size', str(config['batch_size']),
+                        '--hidden-dim', str(config.get('hidden_dim', 400)),
+                        '--bottleneck', str(k),
+                        '--epochs', str(config['epochs']),
+                        '--save-model', model_path,
+                        '--save-latents', latents_path,
+                        '--subset-size', str(config.get('mnist_subset_size', 0)),
+                        '--num-workers', str(config.get('num_workers', 0)),
+                        '--seed', str(seed),
+                        '--noise-levels', str(noise)   #new noise parameter
+                    ]
+                    print("NOISE DEBUG")
+                    print(noise)
+                    if config.get('cpu', False):
+                        cmd.append('--cpu')
+
+                    subprocess.check_call(cmd)
+
+                Z = np.load(latents_path)
+                #major change: run on the latent reconstructions, NOT the latent values themselves
+                X_recon = np.load(recon_path)
+                
+
+                for m in config['methods']:
+                    for k_n in config['neighbor_grid_K']:
+                        try:
+                            val = estimate(X_recon, method=m, k=k_n)
+                        except TypeError:
+                            try:
+                                val = estimate(X_recon, method=m)
                             except Exception:
                                 val = float('nan')
                         except Exception:
@@ -526,7 +602,7 @@ def main():
             'noise_levels': [0.0, 0.05],
             'R': 2,
             'neighbor_grid_K': [5, 10],
-            'methods': ['levina-bickel', 'twonn', 'corrint', 'danco', 'mind', 'fisher'],
+            'methods': ['levina-bickel', 'twonn', 'danco', 'mind', 'fisher'],
             'base_seed': 0,
         }
         mnist_config = {
@@ -536,35 +612,12 @@ def main():
             'epochs': 5,
             'batch_size': 128,
             'neighbor_grid_K': [5, 10],
-            'methods': ['levina-bickel', 'twonn', 'corrint', 'danco', 'mind', 'fisher'],
+            'methods': ['levina-bickel', 'twonn','danco', 'mind', 'fisher'],
             'data_dir': 'data',
             'base_seed': 0,
             'noise-levels': [0.0, 0.1, 0.2, 0.3]
         }
-        # noisy_mnist_config = {
-        #     'mnist_subset_size': 2000,
-        #     'bottleneck_dims': [10],
-        #     'R': 1,
-        #     'epochs': 5,
-        #     'batch_size': 128,
-        #     'neighbor_grid_K': [5, 10],
-        #     'methods': ['levina-bickel', 'twonn', 'corrint', 'danco', 'mind', 'fisher'],
-        #     'data_dir': 'data',
-        #     'base_seed': 0,
-        #     'noise_levels': [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3]
-        # }
-        # mnist_faces_config = {
-        #     'mnist_subset_size': 2000,
-        #     'bottleneck_dims': [2, 5, 10, 15, 20],
-        #     'R': 1,
-        #     'epochs': 5,
-        #     'batch_size': 128,
-        #     'neighbor_grid_K': [5, 10],
-        #     'methods': ['levina-bickel', 'twonn', 'corrint', 'danco', 'mind', 'fisher'],
-        #     'data_dir': 'data',
-        #     'base_seed': 0,
-        # }
-    # allow environment or CLI override for base seed (useful for Slurm arrays)
+
     env_base = os.environ.get('BASE_SEED')
     if env_base is not None:
         try:
