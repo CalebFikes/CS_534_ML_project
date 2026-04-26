@@ -46,7 +46,7 @@ def levina_bickel_mle(X, k=10):
     return np.nanmean(d_local)
 
 #use skdim implementations when avaliable:
-def twonn_wrapper(X):
+def twonn_wrapper(X): #no k
     if not SKDIM_AVAILABLE:
         raise RuntimeError("SkDim not available")
     
@@ -54,24 +54,27 @@ def twonn_wrapper(X):
     out = estimator.fit_transform(X)
     return float(out)
 
-def danco_wrapper(X):
+def danco_wrapper(X, k = 10):
+    #print(k)
     if not SKDIM_AVAILABLE:
         raise RuntimeError("SkDim not available")
-    estimator = id.DANCo()
+    estimator = id.DANCo(k = k)
     out = estimator.fit_transform(X)
     
     return float(out)
 
-def mind_wrapper(X):
+def mind_wrapper(X, k = 10):
+    #print(k)
     #scikit MiND_ML Implementation:
     if not SKDIM_AVAILABLE:
         raise RuntimeError("SkDim not available")
-    estimator = id.MiND_ML()
+    estimator = id.MiND_ML(k = k)
    
     out = estimator.fit_transform(X)
     return float(out)
 
 def fisher_wrapper(X):
+    #print("RUNNING FISHER")
     if not SKDIM_AVAILABLE:
         raise RuntimeError("SkDim not available")
     estimator = id.FisherS()
@@ -80,6 +83,8 @@ def fisher_wrapper(X):
     return float(out)
 
 def estimate(X, method='levina-bickel', **kwargs):
+
+    
     methods = {
         'levina-bickel': levina_bickel_mle,
         'twonn': twonn_wrapper,
@@ -89,8 +94,9 @@ def estimate(X, method='levina-bickel', **kwargs):
     }
     if method not in methods:
         raise ValueError(f"Unknown method: {method}")
-    
     if kwargs:
         return methods[method](X, **kwargs)
     else:
+        #print("RUN WITHOUT KWARGS") #uncomment to make sure kwargs go to appropriate methdos (this should be fisher and twonn)
+        #print(method)
         return methods[method](X)
