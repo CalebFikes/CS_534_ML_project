@@ -16,18 +16,13 @@ def sample_sphere(d, n, random_state=None):
 
 def sample_torus(d, n, random_state=None):
     rng = np.random.default_rng(random_state)
-    # simple d-dimensional torus: sample angles and map to 2d space per circle
-    # For convenience return shape (n, 2*d)
-    angles = rng.uniform(0, 2 * np.pi, size=(n, d))
-    R = 2.0
-    r = 0.5
-    coords = []
+    theta = rng.uniform(0, 2*np.pi, size=(n, d))
+
+    X = np.empty((n, 2*d))
     for j in range(d):
-        x = (R + r * np.cos(angles[:, j])) * np.cos(angles[:, j])
-        y = (R + r * np.cos(angles[:, j])) * np.sin(angles[:, j])
-        coords.append(x)
-        coords.append(y)
-    return np.vstack(coords).T
+        X[:, 2*j]   = np.cos(theta[:, j])
+        X[:, 2*j+1] = np.sin(theta[:, j])
+    return X
 
 
 def embed_via_random_orthonormal(X, D, random_state=None):

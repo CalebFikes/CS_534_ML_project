@@ -1,0 +1,6 @@
+/var/spool/slurmd/job153856/slurm_script: 4: source: not found
+/var/spool/slurmd/job153856/slurm_script: 4: conda: not found
+Traceback (most recent call last):
+  File "/local/scratch/cfikes/CS_534_ML_project/scripts/plot_results.py", line 15, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'

@@ -1,0 +1,5 @@
+Starting repair for results/synthetic_large.task0.csv (task 0) at Fri Apr 24 02:15:14 PM EDT 2026
+Running: /local/scratch/cfikes/miniconda3/envs/cs_534_gpu/bin/python scripts/experiments/repair_masked_ae.py --csv results/synthetic_large.task0.csv --out results/synthetic_large.task0.repaired.csv --max-samples 0
+Finished repair for results/synthetic_large.task0.csv at Fri Apr 24 06:59:22 PM EDT 2026
+Task 0 submitting plotting job dependent on array 153835
+Submitted batch job 153838

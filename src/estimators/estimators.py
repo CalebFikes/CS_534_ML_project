@@ -18,6 +18,7 @@ try:
 except Exception:
     FAISS_AVAILABLE = False
     faiss_knn_distances = None
+import inspect
 from sklearn.linear_model import LinearRegression
 
 try:
@@ -47,6 +48,77 @@ def _kneighbors_distances(X, k):
     dists, _ = nn.kneighbors(X)
     # drop self-distance 0
     return dists[:, 1:]
+
+
+def _kneighbors(X, k):
+    """Return (distances, indices) for k nearest neighbors (excluding self).
+
+    Distances are L2 distances (not squared). Indices are integers.
+    """
+    # Prefer FAISS if available
+    if FAISS_AVAILABLE and faiss_knn_distances is not None:
+        try:
+            use_gpu = TORCH_AVAILABLE and torch.cuda.is_available()
+            D, I = faiss_knn_distances(X.astype('float32'), k + 1, use_gpu=use_gpu)
+            # D is squared L2 distances from FAISS; convert to sqrt
+            D = np.sqrt(np.maximum(D, 0.0))
+            return D[:, 1:], I[:, 1:]
+        except Exception:
+            pass
+    nn = NearestNeighbors(n_neighbors=k+1, algorithm='auto').fit(X)
+    dists, inds = nn.kneighbors(X)
+    return dists[:, 1:], inds[:, 1:]
+
+
+def _call_fit_transform_pw_with_neighbors(est, X, k, neigh_idx):
+    """Attempt to call a pointwise fit_transform with precomputed neighbor indices.
+
+    Tries a few common keyword names for neighbor arguments. If none match
+    the estimator's signature, falls back to calling the estimator's
+    pointwise API with `n_neighbors` or the global `fit_transform`.
+    Returns the estimator output.
+    """
+    # ensure integer indices
+    neigh_idx = np.asarray(neigh_idx, dtype=np.int64)
+    # try common kwarg names
+    candidate_kw = ['neighbors', 'nbrs', 'neighbor_indices', 'indices', 'neigh_idx', 'nbr_idx', 'neighbors_idx']
+    func = None
+    if hasattr(est, 'fit_transform_pw'):
+        func = est.fit_transform_pw
+    elif hasattr(est, 'fit_transform_pointwise'):
+        func = est.fit_transform_pointwise
+
+    if func is None:
+        # no pointwise API: fallback to global fit_transform
+        return est.fit_transform(X)
+
+    sig = None
+    try:
+        sig = inspect.signature(func)
+        params = sig.parameters
+    except Exception:
+        params = {}
+
+    # try to find a kw that matches
+    for kw in candidate_kw:
+        if kw in params:
+            try:
+                return func(X, **{kw: neigh_idx})
+            except Exception:
+                pass
+
+    # try combined call with n_neighbors + neighbors
+    try:
+        return func(X, n_neighbors=int(k), neighbors=neigh_idx)
+    except Exception:
+        pass
+
+    # try calling with only n_neighbors
+    try:
+        return func(X, n_neighbors=int(k))
+    except Exception:
+        # last resort: global fit_transform
+        return est.fit_transform(X)
 
 def levina_bickel_mle(X, k=10):
     """Levina-Bickel MLE intrinsic dimension estimator.
@@ -85,67 +157,7 @@ def twonn(X):
         return float('nan')
     return float(1.0 / mean_log)
 
-def correlation_integral(X, n_r=20, r_min_quantile=0.01, r_max_quantile=0.2):
-    """Estimate correlation dimension by scaling of C(r).
-
-    Returns the estimated slope (dimension) using linear regression on the
-    log-log relation for radii between specified quantiles of pairwise distances.
-    """
-    n = X.shape[0]
-    from scipy.spatial.distance import pdist
-    # determine radii from pairwise distances quantiles (use pdist for quantiles)
-    if n < 2:
-        return np.nan
-    Dpairs = pdist(X)
-    if len(Dpairs) == 0:
-        return np.nan
-    r_min = np.quantile(Dpairs, r_min_quantile)
-    r_max = np.quantile(Dpairs, r_max_quantile)
-    if r_min <= 0:
-        r_min = np.nextafter(0, 1)
-    rs = np.linspace(r_min, r_max, n_r)
-    ns = []
-    # If FAISS is available, use its range_search to compute counts efficiently
-    if FAISS_AVAILABLE and 'faiss_knn_distances' in globals():
-        try:
-            from .faiss_helpers import faiss_range_counts
-            use_gpu = TORCH_AVAILABLE and torch.cuda.is_available()
-            counts = faiss_range_counts(X, rs, use_gpu=use_gpu)
-            for c in counts:
-                C = (2.0 * c) / (n * (n - 1))
-                ns.append(C)
-        except Exception:
-            # fallback to pairwise counting
-            for r in rs:
-                C = np.sum(Dpairs < r) * 2.0 / (n * (n - 1))
-                ns.append(C)
-    else:
-        for r in rs:
-            C = np.sum(Dpairs < r) * 2.0 / (n * (n - 1))
-            ns.append(C)
-        # compute radii between a small value and max pairwise distance
-        # get an approximate maximum distance using a few neighbors
-        D_approx = _kneighbors_distances(X, min(10, n - 1))
-        maxd = float(np.max(D_approx))
-        if not np.isfinite(maxd) or maxd <= 0:
-            return float('nan')
-        radii = np.logspace(np.log10(1e-6), np.log10(maxd), n_r)
-        counts = np.array([np.sum(Dpairs < r) for r in radii], dtype=float)
-        # correlation integral C(r) ~ counts / (n*(n-1)/2)
-        denom = (n * (n - 1) / 2)
-        if denom <= 0:
-            return float('nan')
-        C = counts / (denom + 1e-12)
-        # remove zero or non-finite entries before log
-        valid = (C > 0) & np.isfinite(C) & np.isfinite(radii)
-        if np.sum(valid) < 2:
-            return float('nan')
-        logs = np.log(radii[valid])
-        logC = np.log(C[valid])
-        slope, intercept = np.polyfit(logs, logC, 1)
-        return float(slope)
-
-def danco_wrapper(X, k=None):
+def danco_wrapper(X, k=None, D = 50):
     """DANCo wrapper. Accepts optional neighborhood size `k`.
 
     If `k` is provided (passed via kwargs from `estimate`), it is forwarded
@@ -154,8 +166,21 @@ def danco_wrapper(X, k=None):
     def _inner(X, k=10):
         if not SKDIM_AVAILABLE:
             raise RuntimeError("scikit-dimension (skdim) is required for DANCo")
-        estimator = id.DANCo(k=int(k))
-        out = estimator.fit_transform(X)
+        # Sanitize input: ensure numeric ndarray and replace non-finite values
+        X = np.asarray(X, dtype=float)
+        if not np.isfinite(X).all():
+            X = np.nan_to_num(X, nan=0.0, posinf=0.0, neginf=0.0)
+            try:
+                print('DANCo: warning - non-finite values detected and replaced in input')
+            except Exception:
+                pass
+        estimator = id.DANCo(k=int(k), D=int(D))
+        # prefer pointwise API with precomputed neighbors when available
+        try:
+            dists, inds = _kneighbors(X, int(k))
+            out = _call_fit_transform_pw_with_neighbors(estimator, X, int(k), inds)
+        except Exception:
+            out = estimator.fit_transform(X)
         try:
             return float(np.asarray(out).item())
         except Exception:
@@ -202,11 +227,12 @@ def local_pca_wrapper(X, k=None):
         # If a neighborhood size `k` is supplied, use the pointwise API
         # and aggregate the pointwise estimates into a scalar (mean).
         if k is not None:
-            if hasattr(est, 'fit_transform_pw'):
-                out = est.fit_transform_pw(X, n_neighbors=int(k))
+            try:
+                dists, inds = _kneighbors(X, int(k))
+                out = _call_fit_transform_pw_with_neighbors(est, X, int(k), inds)
                 arr = np.asarray(out)
                 return float(arr.mean())
-            else:
+            except Exception:
                 # fallback to global estimator
                 out = est.fit_transform(X)
                 try:
@@ -240,7 +266,11 @@ def mind_wrapper(X, k=None):
         else:
             raise RuntimeError("MiND estimator not found in skdim")
         estimator = Est(k=int(k))
-        out = estimator.fit_transform(X)
+        try:
+            dists, inds = _kneighbors(X, int(k))
+            out = _call_fit_transform_pw_with_neighbors(estimator, X, int(k), inds)
+        except Exception:
+            out = estimator.fit_transform(X)
         try:
             return float(np.asarray(out).item())
         except Exception:

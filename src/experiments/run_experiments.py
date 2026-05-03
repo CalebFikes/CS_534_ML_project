@@ -269,9 +269,9 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
             rep_label = str(task_id) if task_id is not None else str(r)
             seed = int(config.get('base_seed', 0)) + int(r)
             model_path = f'models/ae_k{k}_r{rep_label}.pth'
-            latents_path = f'data/mnist_latents_k{k}_r{rep_label}.npy'
+            reconstructions_path = f'data/mnist_reconstructions_k{k}_r{rep_label}.npy'
             os.makedirs(os.path.dirname(model_path) or '.', exist_ok=True)
-            os.makedirs(os.path.dirname(latents_path) or '.', exist_ok=True)
+            os.makedirs(os.path.dirname(reconstructions_path) or '.', exist_ok=True)
 
             # Log start of MNIST replicate
             import datetime as _dt
@@ -288,7 +288,8 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
                     '--epochs', str(config['epochs']),
                     '--lr', str(config.get('ae_lr', 1e-3)),
                     '--save-model', model_path,
-                    '--save-latents', latents_path,
+                    '--save-latents', reconstructions_path,
+                    '--save-reconstructions', reconstructions_path,
                     '--subset-size', str(config.get('mnist_subset_size', 0)),
                     '--num-workers', str(config.get('num_workers', 0)),
                     '--seed', str(seed),
@@ -299,7 +300,7 @@ def run_mnist_autoencoder(config, out_csv, run_train=True):
                 t_train = time.time() - t0
                 print(f"[AE TRAIN COMPLETE] {_dt.datetime.now().isoformat()} bottleneck={k} replicate={r} dur={t_train:.1f}s seed={seed}", flush=True)
 
-            Z = np.load(latents_path)
+            Z = np.load(reconstructions_path)
             noise_levels = config.get('noise_levels', [0.0])
             for sigma in noise_levels:
                 # deterministic per-replicate noise using base seed
@@ -860,6 +861,8 @@ def main():
     parser.add_argument('--paired', action='store_true', help='treat dims and sigmas as paired lists (zipped)')
     parser.add_argument('--workers', type=int, default=None)
     parser.add_argument('--base-seed', type=int, default=None, help='optional base seed override')
+    parser.add_argument('--n-samples', type=int, default=None, help='override synthetic dataset sample size (n_samples)')
+    parser.add_argument('--mnist-subset-size', type=int, default=None, help='override MNIST subset size used for AE training')
     args = parser.parse_args()
 
     # default configurations for different experiment sizes
@@ -872,7 +875,7 @@ def main():
             'noise_levels': [0.0, 1.0],
             'R': 1,
             'neighbor_grid_K': [3, 5],
-            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher', 'masked-ae'],
+            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher'],
             'base_seed': 0,
         }
         mnist_config = {
@@ -882,7 +885,7 @@ def main():
             'epochs': 5,
             'batch_size': 128,
             'neighbor_grid_K': [3, 5],
-            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher', 'masked-ae'],
+            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher'],
             'data_dir': 'data',
             'base_seed': 0,
             'noise_levels': [0.0, 1.0]
@@ -896,7 +899,7 @@ def main():
             'noise_levels': list(np.linspace(0.0, 1.0, 5)),
             'R': 4,
             'neighbor_grid_K': [3, 5, 7, 10, 15],
-            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher', 'masked-ae'],
+            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher'],
             'base_seed': 0,
         }
         mnist_config = {
@@ -907,7 +910,7 @@ def main():
             'ae_lr': 5e-5,
             'batch_size': 128,
             'neighbor_grid_K': [3, 5, 7, 10, 15],
-            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher', 'masked-ae'],
+            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher'],
             'data_dir': 'data',
             'base_seed': 0,
             'noise_levels': list(np.linspace(0.0, 1.0, 5)),
@@ -921,7 +924,7 @@ def main():
             'noise_levels': list(np.linspace(0.0, 1.0, 10)),
             'R': 10,
             'neighbor_grid_K': [3, 4, 5, 6, 7, 8, 10, 12, 15, 18],
-            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher', 'masked-ae'],
+            'methods': ['levina-bickel', 'twonn', 'lPCA', 'danco', 'mind', 'fisher'],
             'base_seed': 0,
         }
         mnist_config = {
@@ -973,6 +976,18 @@ def main():
     if args.base_seed is not None:
         syn_config['base_seed'] = args.base_seed
         mnist_config['base_seed'] = args.base_seed
+
+    # optional CLI overrides for sample sizes
+    if getattr(args, 'n_samples', None) is not None:
+        try:
+            syn_config['n_samples'] = int(args.n_samples)
+        except Exception:
+            pass
+    if getattr(args, 'mnist_subset_size', None) is not None:
+        try:
+            mnist_config['mnist_subset_size'] = int(args.mnist_subset_size)
+        except Exception:
+            pass
 
     # If running inside a Slurm array task, make each worker run exactly one
     # replicate and use the array task id to disambiguate saved model/latents

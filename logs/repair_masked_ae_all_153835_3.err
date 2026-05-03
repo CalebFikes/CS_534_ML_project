@@ -1,0 +1,4 @@
+INFO:repair_masked_ae:torch_available=True cuda_available=True
+INFO:repair_masked_ae:No SMAE rows needing repair found.
+INFO:repair_masked_ae:No rows repaired.
+INFO:repair_masked_ae:Wrote repaired CSV to results/synthetic_large.task3.repaired.csv

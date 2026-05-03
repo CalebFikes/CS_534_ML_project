@@ -28,4 +28,4 @@ conda activate cs_534_gpu
 cd /local/scratch/cfikes/CS_534_ML_project || exit 1
 
 # Run the experiment driver in large mode (worker only)
-python -m src.experiments.run_experiments --mode large --workers ${SLURM_CPUS_PER_TASK:-1} --base-seed ${BASE_SEED:-0}
+python -m src.experiments.run_experiments --mode large --workers ${SLURM_CPUS_PER_TASK:-1} --base-seed ${BASE_SEED:-0} --n-samples 5000 --mnist-subset-size 5000

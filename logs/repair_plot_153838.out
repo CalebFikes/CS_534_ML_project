@@ -1,0 +1,11 @@
+Running plotting: /local/scratch/cfikes/miniconda3/envs/cs_534_gpu/bin/python scripts/plot_results.py --size large
+Wrote /local/scratch/cfikes/CS_534_ML_project/results/figs_large/synthetic_k_sensitivity_sphere.png
+Wrote /local/scratch/cfikes/CS_534_ML_project/results/figs_large/synthetic_k_sensitivity_torus.png
+Wrote /local/scratch/cfikes/CS_534_ML_project/results/figs_large/sphere_est_vs_d_grid.png
+Wrote /local/scratch/cfikes/CS_534_ML_project/results/figs_large/torus_est_vs_d_grid.png
+Wrote /local/scratch/cfikes/CS_534_ML_project/results/figs_large/sphere_k_tracks.png
+Wrote /local/scratch/cfikes/CS_534_ML_project/results/figs_large/torus_k_tracks.png
+Wrote /local/scratch/cfikes/CS_534_ML_project/results/figs_large/mnist_k_sensitivity.png
+Wrote /local/scratch/cfikes/CS_534_ML_project/results/figs_large/mnist_est_vs_bottleneck_grid.png
+Wrote /local/scratch/cfikes/CS_534_ML_project/results/figs_large/mnist_k_tracks.png
+Plotting finished at Fri Apr 24 11:29:38 PM EDT 2026

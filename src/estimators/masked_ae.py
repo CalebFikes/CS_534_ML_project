@@ -31,10 +31,12 @@ else:
             self.w = nn.Parameter(0.01 * torch.randn(nlatent))
 
         def forward(self, x):
-            z = self.encoder(x)
-            z = z * self.w
+            h = self.encoder(x)          # unmasked latent
+            z = h * self.w               # masked latent
             x_hat = self.decoder(z)
-            return x_hat, z
+            return x_hat, z, h
+    
+    import time as _time
 
 
     def _piecewise_breakpoint(xs, ys):
@@ -129,15 +131,18 @@ else:
         base_model = AE(nambient=D, nlatent=nlatent, nhidden=nhidden).to(device)
         opt_pre = torch.optim.Adam(base_model.parameters(), lr=pretrain_lr)
         for ep in range(pretrain_epochs):
+            t_ep = _time.time()
             base_model.train()
             for (batch,) in dl:
                 batch = batch.to(device)
                 opt_pre.zero_grad()
-                x_hat, z = base_model(batch)
+                x_hat, z, h = model(batch)
                 recon = F.mse_loss(x_hat, batch.view(batch.size(0), -1), reduction='mean')
                 loss = recon
                 loss.backward()
                 opt_pre.step()
+            ep_elapsed = _time.time() - t_ep
+            logger.info(f"[masked-ae] pretrain epoch {ep+1}/{pretrain_epochs} time={ep_elapsed:.2f}s device={device}")
 
         # save pretrained state
         pretrained_state = base_model.state_dict()
@@ -149,19 +154,20 @@ else:
             model = AE(nambient=D, nlatent=nlatent, nhidden=nhidden).to(device)
             model.load_state_dict(pretrained_state)
             opt = torch.optim.Adam(model.parameters(), lr=sweep_lr)
-
             for ep in range(sweep_epochs):
+                t_ep = _time.time()
                 model.train()
                 for (batch,) in dl:
                     batch = batch.to(device)
                     opt.zero_grad()
-                    x_hat, z = model(batch)
+                    x_hat, z, h = model(batch)
                     recon = F.mse_loss(x_hat, batch.view(batch.size(0), -1), reduction='mean')
-                    # penalize the masked activations (mean L1 over batch and latents)
-                    spars = torch.mean(torch.abs(z * model.w))
+                    spars = torch.mean(torch.abs(z))   # equals mean |w * h|
                     loss = recon + lam * spars
                     loss.backward()
                     opt.step()
+                ep_elapsed = _time.time() - t_ep
+                logger.info(f"[masked-ae] sweep lam={lam} epoch {ep+1}/{sweep_epochs} time={ep_elapsed:.2f}s device={device}")
 
             # evaluate reconstruction error (mean per-sample MSE)
             model.eval()
@@ -182,7 +188,7 @@ else:
                 w_min, w_max, w_mean = float(w.min()), float(w.max()), float(w.mean())
             except Exception:
                 w_min = w_max = w_mean = None
-            logger.debug(f"[masked-ae DEBUG] lam={lam} recon_mean_per_sample={total_recon:.6g} active={active} w_min={w_min} w_max={w_max} w_mean={w_mean}")
+            logger.debug(f"[masked-ae DEBUG] lam={lam} recon_mean_per_sample={total_recon:.6g} w_min={w_min} w_max={w_max} w_mean={w_mean}")
 
         # unpack
         lams, recons, ws = zip(*results)
@@ -190,6 +196,11 @@ else:
         recons = np.asarray(recons)
         ws = [np.asarray(v) for v in ws]
 
+        # compute simple active counts (non-zero mask entries) for diagnostics
+        try:
+            acts = np.asarray([int((wv > 0).sum()) for wv in ws], dtype=int)
+        except Exception:
+            acts = np.zeros(len(ws), dtype=int)
         # DEBUG: report arrays that go into Kneedle
         logger.debug(f"[masked-ae DEBUG] lams={lams.tolist()} acts={acts.tolist()} recons={recons.tolist()}")
 
@@ -226,6 +237,7 @@ else:
             pass
         opt = torch.optim.Adam(model.parameters(), lr=lr)
         for ep in range(epochs):
+            t_ep = _time.time()
             model.train()
             for (batch,) in dl:
                 batch = batch.to(device)
@@ -236,6 +248,8 @@ else:
                 loss = recon + lam_bp * spars
                 loss.backward()
                 opt.step()
+            ep_elapsed = _time.time() - t_ep
+            logger.info(f"[masked-ae] retrain epoch {ep+1}/{epochs} time={ep_elapsed:.2f}s device={device}")
 
         # evaluate final active latents
         model.eval()

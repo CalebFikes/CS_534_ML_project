@@ -1,0 +1,75 @@
+Starting large worker on zuber at Fri May  1 12:09:31 PM EDT 2026; workdir=/local/scratch/cfikes/CS_534_ML_project; user=cfikes; task=3
+large
+Running synthetic large experiments...
+[TASK START] 2026-05-01T12:09:35.418417 manifold=sphere d=5 sigma=0.0 n=60000 seed=3
+[TASK START] 2026-05-01T12:09:35.418530 manifold=sphere d=5 sigma=0.25 n=60000 seed=3
+[TASK START] 2026-05-01T12:09:35.418690 manifold=sphere d=5 sigma=0.5 n=60000 seed=3
+[TASK START] 2026-05-01T12:09:35.418714 manifold=sphere d=5 sigma=0.75 n=60000 seed=3
+[TASK START] 2026-05-01T12:09:35.418900 manifold=sphere d=7 sigma=0.0 n=60000 seed=3
+[TASK START] 2026-05-01T12:09:35.418903 manifold=sphere d=5 sigma=1.0 n=60000 seed=3
+[EST DONE] 2026-05-01T12:09:42.832650 estimator=Levina-Bickel k=3 dur=3.503s seed=3
+[EST DONE] 2026-05-01T12:09:44.730716 estimator=Levina-Bickel k=3 dur=4.507s seed=3
+[EST DONE] 2026-05-01T12:09:45.744202 estimator=Levina-Bickel k=3 dur=4.936s seed=3
+[EST DONE] 2026-05-01T12:09:46.294297 estimator=Levina-Bickel k=3 dur=5.211s seed=3
+[EST DONE] 2026-05-01T12:09:46.563479 estimator=Levina-Bickel k=3 dur=5.347s seed=3
+[EST DONE] 2026-05-01T12:09:47.114430 estimator=Levina-Bickel k=5 dur=4.282s seed=3
+[EST DONE] 2026-05-01T12:09:50.172948 estimator=Levina-Bickel k=5 dur=5.442s seed=3
+[EST DONE] 2026-05-01T12:09:51.714291 estimator=Levina-Bickel k=5 dur=5.970s seed=3
+[EST DONE] 2026-05-01T12:09:52.056725 estimator=Levina-Bickel k=7 dur=4.942s seed=3
+[EST DONE] 2026-05-01T12:09:52.600706 estimator=Levina-Bickel k=5 dur=6.306s seed=3
+[EST DONE] 2026-05-01T12:09:53.045004 estimator=Levina-Bickel k=5 dur=6.481s seed=3
+[EST DONE] 2026-05-01T12:09:56.322694 estimator=Levina-Bickel k=7 dur=6.150s seed=3
+[EST DONE] 2026-05-01T12:09:57.764602 estimator=Levina-Bickel k=10 dur=5.708s seed=3
+[EST DONE] 2026-05-01T12:09:58.487816 estimator=Levina-Bickel k=7 dur=6.773s seed=3
+[EST DONE] 2026-05-01T12:09:59.715856 estimator=Levina-Bickel k=7 dur=7.115s seed=3
+[EST DONE] 2026-05-01T12:10:00.356221 estimator=Levina-Bickel k=7 dur=7.311s seed=3
+[EST DONE] 2026-05-01T12:10:03.440175 estimator=Levina-Bickel k=10 dur=7.117s seed=3
+[EST DONE] 2026-05-01T12:10:03.949927 estimator=Levina-Bickel k=3 dur=14.270s seed=3
+[EST DONE] 2026-05-01T12:10:05.823770 estimator=Levina-Bickel k=15 dur=8.059s seed=3
+[EST DONE] 2026-05-01T12:10:06.272217 estimator=Levina-Bickel k=10 dur=7.784s seed=3
+[EST DONE] 2026-05-01T12:10:08.040646 estimator=Levina-Bickel k=10 dur=8.325s seed=3
+[EST DONE] 2026-05-01T12:10:08.831736 estimator=TwoNN (no-k) dur=3.008s seed=3
+[EST DONE] 2026-05-01T12:10:08.925670 estimator=Levina-Bickel k=10 dur=8.569s seed=3
+[EST DONE] 2026-05-01T12:10:11.801208 estimator=Levina-Bickel k=15 dur=8.361s seed=3
+[EST DONE] 2026-05-01T12:10:15.325415 estimator=Levina-Bickel k=15 dur=9.053s seed=3
+[EST DONE] 2026-05-01T12:10:15.724568 estimator=TwoNN (no-k) dur=3.923s seed=3
+[EST DONE] 2026-05-01T12:10:17.571438 estimator=Levina-Bickel k=15 dur=9.531s seed=3
+[EST DONE] 2026-05-01T12:10:18.669123 estimator=Levina-Bickel k=15 dur=9.743s seed=3
+[EST DONE] 2026-05-01T12:10:20.171080 estimator=TwoNN (no-k) dur=4.846s seed=3
+[EST DONE] 2026-05-01T12:10:20.969219 estimator=Levina-Bickel k=5 dur=17.019s seed=3
+[EST DONE] 2026-05-01T12:10:21.847091 estimator=TwoNN (no-k) dur=4.276s seed=3
+[EST DONE] 2026-05-01T12:10:23.057423 estimator=TwoNN (no-k) dur=4.388s seed=3
+[EST DONE] 2026-05-01T12:10:38.693293 estimator=Levina-Bickel k=7 dur=17.724s seed=3
+[EST DONE] 2026-05-01T12:10:54.745315 estimator=Levina-Bickel k=10 dur=16.052s seed=3
+[EST DONE] 2026-05-01T12:11:14.281590 estimator=Levina-Bickel k=15 dur=19.536s seed=3
+[EST DONE] 2026-05-01T12:11:25.218841 estimator=TwoNN (no-k) dur=10.937s seed=3
+[EST DONE] 2026-05-01T12:11:41.550358 estimator=lPCA k=3 dur=46.256s seed=3
+[EST DONE] 2026-05-01T12:11:44.960128 estimator=lPCA k=3 dur=43.516s seed=3
+[EST DONE] 2026-05-01T12:12:01.305307 estimator=lPCA k=3 dur=49.260s seed=3
+[EST DONE] 2026-05-01T12:12:01.947420 estimator=lPCA k=3 dur=50.011s seed=3
+[EST DONE] 2026-05-01T12:12:02.834466 estimator=lPCA k=3 dur=49.435s seed=3
+[EST DONE] 2026-05-01T12:12:28.649596 estimator=lPCA k=5 dur=47.099s seed=3
+[EST DONE] 2026-05-01T12:12:33.580955 estimator=lPCA k=5 dur=48.621s seed=3
+[EST DONE] 2026-05-01T12:12:52.744586 estimator=lPCA k=5 dur=51.439s seed=3
+[EST DONE] 2026-05-01T12:12:53.812323 estimator=lPCA k=5 dur=51.865s seed=3
+[EST DONE] 2026-05-01T12:12:54.456584 estimator=lPCA k=5 dur=51.622s seed=3
+[EST DONE] 2026-05-01T12:13:18.559981 estimator=lPCA k=7 dur=49.910s seed=3
+[EST DONE] 2026-05-01T12:13:24.308533 estimator=lPCA k=7 dur=50.727s seed=3
+[EST DONE] 2026-05-01T12:13:29.022050 estimator=lPCA k=3 dur=62.808s seed=3
+[EST DONE] 2026-05-01T12:13:47.852229 estimator=lPCA k=7 dur=55.107s seed=3
+[EST DONE] 2026-05-01T12:13:49.890303 estimator=lPCA k=7 dur=55.434s seed=3
+[EST DONE] 2026-05-01T12:13:51.629136 estimator=lPCA k=7 dur=57.817s seed=3
+[EST DONE] 2026-05-01T12:14:13.466421 estimator=lPCA k=10 dur=54.906s seed=3
+[EST DONE] 2026-05-01T12:14:19.323962 estimator=lPCA k=10 dur=55.015s seed=3
+[EST DONE] 2026-05-01T12:14:41.519241 estimator=lPCA k=5 dur=72.497s seed=3
+[EST DONE] 2026-05-01T12:15:43.843340 estimator=lPCA k=7 dur=62.324s seed=3
+[EST DONE] 2026-05-01T12:16:18.193252 estimator=lPCA k=10 dur=150.341s seed=3
+[EST DONE] 2026-05-01T12:16:29.886353 estimator=lPCA k=10 dur=158.257s seed=3
+[EST DONE] 2026-05-01T12:16:57.400980 estimator=lPCA k=10 dur=187.511s seed=3
+[EST DONE] 2026-05-01T12:18:57.530589 estimator=lPCA k=15 dur=120.129s seed=3
+[EST DONE] 2026-05-01T12:19:06.402271 estimator=lPCA k=15 dur=156.516s seed=3
+[EST DONE] 2026-05-01T12:19:11.643604 estimator=lPCA k=15 dur=173.450s seed=3
+[EST DONE] 2026-05-01T12:19:25.730149 estimator=lPCA k=10 dur=221.887s seed=3
+[EST DONE] 2026-05-01T12:19:27.617934 estimator=lPCA k=15 dur=308.294s seed=3
+[EST DONE] 2026-05-01T12:21:53.802214 estimator=lPCA k=15 dur=460.336s seed=3
+[EST DONE] 2026-05-01T12:25:49.350206 estimator=lPCA k=15 dur=383.620s seed=3

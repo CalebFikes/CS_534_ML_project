@@ -1,0 +1,3 @@
+Starting repair for results/mnist_large.task3.csv (task 7) at Wed Apr 22 10:46:42 PM EDT 2026
+Running: /local/scratch/cfikes/miniconda3/envs/cs_534_gpu/bin/python scripts/experiments/repair_masked_ae.py --csv results/mnist_large.task3.csv --out results/mnist_large.task3.repaired.csv --max-samples 0
+Finished repair for results/mnist_large.task3.csv at Wed Apr 22 10:46:46 PM EDT 2026

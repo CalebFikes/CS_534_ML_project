@@ -33,6 +33,8 @@ class AE(nn.Module):
         )
 
     def forward(self, x):
+        #send x to GPU
+        x = x.to(next(self.parameters()).device)
         z = self.encoder(x)
         x_hat = self.decoder(z)
         return x_hat
@@ -51,10 +53,13 @@ def load_mnist(data_path):
     if X.ndim == 3:
         N, H, W = X.shape
         X = X.reshape(N, H * W)
+    
+    if X.max() > 1.0:
+        X = X / 255.0
     return X.astype(np.float32)
 
 
-def train_ae(X, bottleneck, epochs=50, lr=5e-5, batch_size=128, device=None):
+def train_ae(X, bottleneck, epochs=100, lr=5e-5, batch_size=128, device=None):
     if device is None:
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     n, D = X.shape
@@ -110,31 +115,40 @@ def fig_b(X, outdir, subset, **mask_kwargs):
     if subset is not None and subset > 0:
         X = X[:subset]
     debug = masked_ae_estimate(X, return_debug=True, **mask_kwargs)
-    lams = debug.get('lams') or debug.get('lambdas')
-    recons = debug.get('recons')
+    lams = debug.get('lams') if debug.get('lams') is not None else debug.get('lambdas')
+    recons = debug.get('recons') if debug.get('recons') is not None else debug.get('recons')
     lam_bp = debug.get('lam_bp')
     w_sorted = np.sort(debug.get('w_final', np.array([])))[::-1]
     est_active = int(debug.get('meta', {}).get('est_active', len(w_sorted)//2))
 
-    # plot MSE vs lambda
-    fig, ax = plt.subplots(1, 2, figsize=(10, 4))
-    ax[0].plot(lams, recons, '-o')
-    ax[0].set_xscale('log')
-    ax[0].set_xlabel('lambda')
-    ax[0].set_ylabel('reconstruction MSE')
-    if lam_bp is not None:
-        ax[0].axvline(lam_bp, color='C1', linestyle='--', label=f'lam_bp={lam_bp:.3g}')
-        ax[0].legend()
+    # two vertically aligned subplots: top = MSE vs lambda, bottom = abs(w) vs ordered index
+    fig, axes = plt.subplots(1, 2, figsize=(8, 5), sharex=False)
+    ax_top, ax_bot = axes
 
-    # plot sorted abs(w)
-    ax[1].plot(np.arange(1, len(w_sorted) + 1), -np.abs(w_sorted), marker='o')
-    ax[1].set_xlabel('sorted index')
-    ax[1].set_ylabel('-abs(w)')
-    ax[1].axvline(est_active, color='C1', linestyle='--', label=f'est_active={est_active}')
-    ax[1].legend()
+    # Top: MSE vs lambda (log-x)
+    ax_top.plot(lams, recons, '-o', color='C0')
+    ax_top.set_xscale('log')
+    ax_top.set_xlabel('lambda')
+    ax_top.set_ylabel('reconstruction MSE')
+    ax_top.grid(True, which='both', ls='--', alpha=0.4)
+    if lam_bp is not None:
+        ax_top.axvline(lam_bp, color='C1', linestyle='--', label=f'lam_bp={lam_bp:.3g}')
+        ax_top.legend()
+
+    # Bottom: abs(w) vs sorted index (descending)
+    indices = np.arange(1, len(w_sorted) + 1)
+    ax_bot.plot(indices, np.abs(w_sorted), marker='o', color='C2')
+    ax_bot.set_xlabel('sorted index (descending)')
+    ax_bot.set_ylabel('abs(w)')
+    ax_bot.grid(True, ls='--', alpha=0.4)
+    # vertical line at estimated active count
+    if est_active is not None and est_active > 0:
+        ax_bot.axvline(est_active, color='C1', linestyle='--', label=f'est_active={est_active}')
+        ax_bot.legend()
 
     fig.suptitle('masked-AE sweep and mask knee')
     out = os.path.join(outdir, 'masked_ae_sweep_and_knee.png')
+    fig.tight_layout(rect=[0, 0.03, 1, 0.95])
     fig.savefig(out, dpi=150, bbox_inches='tight')
     plt.close(fig)
     print(f'Wrote {out}')
@@ -145,7 +159,7 @@ def main():
     p.add_argument('--data', default='dataset/mnist.npz')
     p.add_argument('--outdir', default='results/figs_large')
     p.add_argument('--bottlenecks', default='5,7,9,12,15')
-    p.add_argument('--ae-epochs', type=int, default=50)
+    p.add_argument('--ae-epochs', type=int, default=100)
     p.add_argument('--ae-lr', type=float, default=5e-5)
     p.add_argument('--subset', type=int, default=2000)
     p.add_argument('--run-masked', action='store_true')

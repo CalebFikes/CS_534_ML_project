@@ -1,0 +1,3 @@
+/var/spool/slurmd/job153845/slurm_script: 4: source: not found
+/var/spool/slurmd/job153845/slurm_script: 4: conda: not found
+/var/spool/slurmd/job153845/slurm_script: 4: python: not found

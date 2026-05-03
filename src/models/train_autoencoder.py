@@ -61,6 +61,7 @@ def main():
     parser.add_argument('--epochs', type=int, default=5)
     parser.add_argument('--save-model', required=True)
     parser.add_argument('--save-latents', required=True)
+    parser.add_argument('--save-reconstructions', default='')
     parser.add_argument('--lr', type=float, default=1e-3)
     parser.add_argument('--save-loss', default='')
     parser.add_argument('--subset-size', type=int, default=0)
@@ -171,7 +172,7 @@ def main():
     os.makedirs(os.path.dirname(args.save_latents) or '.', exist_ok=True)
     np.save(args.save_latents, Z)
     
-    #save the reconstructions--what we want since this will give us the dimension-reconstructed examples:
+    # save the reconstructions -- also allow user to specify exact path
     with torch.no_grad():
         X_recon = []
         for (batch,) in DataLoader(ds, batch_size=256):
@@ -180,15 +181,19 @@ def main():
             x_hat = model.decoder(z)
             X_recon.append(x_hat.cpu().numpy())
         X_recon = np.concatenate(X_recon, axis=0)
-        
-    #Michael: ChatGPT helped write this save
-    # ensure a directory is used for saving reconstructions
-    base_dir = args.save_dataset or '.'
-    save_name = f"b{args.bottleneck}_n{args.noise_levels}.npy"
-    save_path = os.path.join(base_dir, save_name)
 
-    os.makedirs(base_dir, exist_ok=True)
-    np.save(save_path, X_recon)
+    # If an explicit path was requested, save there; otherwise use legacy
+    # directory-based name under `save_dataset` for backward compatibility.
+    if args.save_reconstructions:
+        recon_path = args.save_reconstructions
+        os.makedirs(os.path.dirname(recon_path) or '.', exist_ok=True)
+        np.save(recon_path, X_recon)
+    else:
+        base_dir = args.save_dataset or '.'
+        save_name = f"b{args.bottleneck}_n{args.noise_levels}.npy"
+        save_path = os.path.join(base_dir, save_name)
+        os.makedirs(base_dir, exist_ok=True)
+        np.save(save_path, X_recon)
     
     # save per-epoch losses if requested
     if args.save_loss:

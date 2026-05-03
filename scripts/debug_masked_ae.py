@@ -124,12 +124,51 @@ def run_lambda_sweep(X, nlatent=64, nhidden=256, lambdas=None,
     plt.close(fig)
 
     # run kneedle on log_lams -> acts
+    # determine breakpoint via piecewise fit on MSE vs lambda
     try:
-        bp_log = mdae._kneedle(log_lams, acts)
-        lam_bp = float(10 ** bp_log)
+        order = np.argsort(lams)
+        x_s = lams[order]
+        y_s = recons[order]
+
+        # enforce monotone increasing recon curve (isotonic) to reduce wiggles
+        try:
+            from sklearn.isotonic import IsotonicRegression
+            ir = IsotonicRegression(increasing=True)
+            y_iso_s = ir.fit_transform(x_s, y_s)
+        except Exception:
+            y_iso_s = np.maximum.accumulate(y_s)
+
+        bp = mdae._piecewise_breakpoint(x_s, y_iso_s)
+        lam_bp = float(bp)
     except Exception:
-        bp_log = float(log_lams[len(log_lams) // 2])
-        lam_bp = float(10 ** bp_log)
+        lam_bp = float(lams[len(lams) // 2])
+
+    # draw vertical line at detected breakpoint on the plot (lambda on x-axis)
+    try:
+        fig, ax1 = plt.subplots()
+        ax1.plot(lams, acts, marker='o', label='active latents', color='C0')
+        ax1.set_xscale('log')
+        ax1.set_xlabel('lambda')
+        ax1.set_ylabel('active latents', color='C0')
+        ax1.tick_params(axis='y', labelcolor='C0')
+        ax1.axvline(lam_bp, color='k', linestyle='--', label=f'break@{lam_bp:.3g}')
+
+        ax2 = ax1.twinx()
+        ax2.plot(lams, recons, marker='x', label='recon error', color='C1')
+        ax2.set_xscale('log')
+        ax2.set_ylabel('recon error', color='C1')
+        ax2.tick_params(axis='y', labelcolor='C1')
+        plt.title('masked-AE sweep: active latents and recon (with breakpoint)')
+        ax1.legend(loc='upper left')
+        plt.tight_layout()
+        sweep_png = os.path.join(outdir, f'masked_ae_kneedle_input_{ts}.png')
+        plt.savefig(sweep_png)
+        plt.close(fig)
+    except Exception:
+        pass
+
+    # print the detected breakpoint
+    print(f"Detected breakpoint: lam_bp={lam_bp:.6g}")
 
     # retrain at lam_bp to get final w
     model = mdae.AE(nambient=D, nlatent=nlatent, nhidden=nhidden).to(device)
@@ -141,7 +180,7 @@ def run_lambda_sweep(X, nlatent=64, nhidden=256, lambdas=None,
             opt.zero_grad()
             x_hat, z = model(batch)
             recon = torch.nn.functional.mse_loss(x_hat, batch.view(batch.size(0), -1), reduction='mean')
-            spars = torch.norm(model.w, 1)
+            spars = torch.mean(torch.abs(z * model.w))
             loss = recon + lam_bp * spars
             loss.backward()
             opt.step()
@@ -149,33 +188,85 @@ def run_lambda_sweep(X, nlatent=64, nhidden=256, lambdas=None,
     model.eval()
     with torch.no_grad():
         w_final = model.w.detach().cpu().abs().numpy()
-    active_final = int((w_final > threshold).sum())
 
-    # plot sorted w with threshold line
+    # use Kneedle on -abs(w_sorted) vs sorted index to pick final estimate
     w_sorted = np.sort(w_final)[::-1]
-    fig2, ax = plt.subplots()
-    ax.plot(np.arange(1, len(w_sorted) + 1), w_sorted, marker='o')
-    ax.axhline(threshold, color='r', linestyle='--', label=f'threshold={threshold}')
-    ax.set_xlabel('latent index (sorted)')
-    ax.set_ylabel('abs(w)')
-    ax.set_title(f'sorted mask values at lam={lam_bp:.4g} (active={active_final})')
-    ax.legend()
-    plt.tight_layout()
-    mask_png = os.path.join(outdir, f'masked_ae_sorted_mask_{ts}.png')
-    plt.savefig(mask_png)
-    plt.close(fig2)
+    idxs = np.arange(len(w_sorted), dtype=float)
+    ys_k = -w_sorted  # as specified: -abs(w) vs sorted index
+
+    def _kneedle(xs, ys):
+        xs = np.asarray(xs, dtype=float)
+        ys = np.asarray(ys, dtype=float)
+        if xs.size == 0:
+            return float('nan')
+        order = np.argsort(xs)
+        xs_s = xs[order]
+        ys_s = ys[order]
+        if np.unique(xs_s).size < 2:
+            return float(xs_s[0])
+
+        def _norm(a):
+            a_min = a.min()
+            a_max = a.max()
+            if a_max <= a_min:
+                return np.zeros_like(a)
+            return (a - a_min) / (a_max - a_min)
+
+        x_n = _norm(xs_s)
+        y_n = _norm(ys_s)
+
+        decreasing = y_n[0] > y_n[-1]
+        if decreasing:
+            score = x_n - y_n
+        else:
+            score = y_n - x_n
+
+        if score.size >= 3:
+            kernel = np.ones(3) / 3.0
+            score_smooth = np.convolve(score, kernel, mode='same')
+        else:
+            score_smooth = score
+
+        idx = int(np.argmax(score_smooth))
+        return float(xs_s[idx])
+
+    try:
+        bp_idx = _kneedle(idxs, ys_k)
+        # map bp_idx (x-coordinate) to integer count (1-based)
+        est_count = int(np.round(bp_idx)) + 1
+    except Exception:
+        est_count = int(len(w_sorted) // 2)
+
+    # plot sorted w with vertical line at selected index
+    try:
+        fig2, ax = plt.subplots()
+        ax.plot(idxs + 1, w_sorted, marker='o')
+        ax.axvline(bp_idx + 1, color='k', linestyle='--', label=f'knee@{int(bp_idx)+1}')
+        ax.set_xlabel('latent index (sorted)')
+        ax.set_ylabel('abs(w)')
+        ax.set_title(f'sorted mask values at lam={lam_bp:.4g} (est_active={est_count})')
+        ax.legend()
+        plt.tight_layout()
+        mask_png = os.path.join(outdir, f'masked_ae_sorted_mask_{ts}.png')
+        plt.savefig(mask_png)
+        plt.close(fig2)
+    except Exception:
+        mask_png = os.path.join(outdir, f'masked_ae_sorted_mask_{ts}.png')
 
     # save final mask values and metadata
+    try:
+        bp_log = float(np.log10(lam_bp)) if lam_bp > 0 else float('nan')
+    except Exception:
+        bp_log = float('nan')
     meta = {
         'lam_bp': float(lam_bp),
-        'bp_log': float(bp_log),
-        'active_final': int(active_final),
+        'bp_log': bp_log,
+        'est_active': int(est_count),
         'threshold': float(threshold),
         'nlatent': int(nlatent),
         'nhidden': int(nhidden),
     }
     np.savez(os.path.join(outdir, f'masked_ae_result_{ts}.npz'), w_final=w_final, w_sorted=w_sorted, meta=meta)
-
     return {
         'sweep_png': sweep_png,
         'mask_png': mask_png,
@@ -183,7 +274,7 @@ def run_lambda_sweep(X, nlatent=64, nhidden=256, lambdas=None,
         'npz_result': os.path.join(outdir, f'masked_ae_result_{ts}.npz'),
         'lam_bp': lam_bp,
         'bp_log': bp_log,
-        'active_final': active_final,
+        'est_active': int(est_count),
     }
 
 
@@ -203,6 +294,10 @@ def main():
     p.add_argument('--threshold', type=float, default=1e-3)
     p.add_argument('--lambdas', type=str, default=None,
                    help='comma-separated list of lambda values (overrides default logspace)')
+    p.add_argument('--pretrain-epochs', type=int, default=50)
+    p.add_argument('--pretrain-lr', type=float, default=1e-4)
+    p.add_argument('--sweep-epochs', type=int, default=25)
+    p.add_argument('--sweep-lr', type=float, default=1e-5)
     p.add_argument('--outdir', type=str, default='results/debug')
     args = p.parse_args()
 
@@ -221,7 +316,9 @@ def main():
 
     out = run_lambda_sweep(X, nlatent=args.nlatent, nhidden=args.nhidden, lambdas=lambdas,
                            lr=args.lr, epochs=args.epochs, batch_size=args.batch_size,
-                           threshold=args.threshold, device=None, outdir=args.outdir)
+                           threshold=args.threshold, pretrain_epochs=args.pretrain_epochs,
+                           pretrain_lr=args.pretrain_lr, sweep_epochs=args.sweep_epochs,
+                           sweep_lr=args.sweep_lr, device=None, outdir=args.outdir)
 
     print('Wrote:', out)
 

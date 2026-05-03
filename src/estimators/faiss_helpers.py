@@ -1,3 +1,57 @@
+"""Faiss-based k-nearest neighbor helpers with graceful CPU fallback.
+
+Provides a small wrapper around faiss to compute k-NN (distances and
+indices). If Faiss or GPU support isn't available, the functions will
+raise ImportError so callers can fall back to sklearn.
+"""
+import numpy as np
+
+FAISS_AVAILABLE = False
+_FAISS_HAS_GPU = False
+try:
+    import faiss
+    FAISS_AVAILABLE = True
+    try:
+        # presence of StandardGpuResources indicates GPU support in the build
+        _ = faiss.StandardGpuResources()
+        _FAISS_HAS_GPU = True
+    except Exception:
+        _FAISS_HAS_GPU = False
+except Exception:
+    faiss = None
+
+
+def faiss_knn_distances(X, k, use_gpu=False):
+    """Compute k-NN distances and indices for X using Faiss.
+
+    X: float32 ndarray shape (n, d)
+    k: number of neighbors to return (including self when searching)
+    use_gpu: attempt to run on GPU if available
+
+    Returns (D, I) where D is squared L2 distances (n, k) and I are indices.
+    """
+    if not FAISS_AVAILABLE:
+        raise ImportError('faiss not available')
+    if X.dtype != np.float32:
+        X = X.astype('float32')
+    n, d = X.shape
+    # build CPU index
+    index = faiss.IndexFlatL2(d)
+    if use_gpu and _FAISS_HAS_GPU:
+        try:
+            res = faiss.StandardGpuResources()
+            index = faiss.index_cpu_to_gpu(res, 0, index)
+        except Exception:
+            # fallback to CPU index
+            pass
+    index.add(X)
+    # search returns squared L2 distances
+    D, I = index.search(X, k)
+    return D, I
+
+
+def faiss_available_with_gpu():
+    return FAISS_AVAILABLE and _FAISS_HAS_GPU
 try:
     import faiss
     FAISS_AVAILABLE = True

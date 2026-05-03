@@ -1,0 +1,3 @@
+Starting repair for results/synthetic_large.task0.csv (task 0) at Wed Apr 22 01:04:11 PM EDT 2026
+Running: /local/scratch/cfikes/miniconda3/envs/cs_534_gpu/bin/python scripts/experiments/repair_masked_ae.py --csv results/synthetic_large.task0.csv --out results/synthetic_large.task0.repaired.csv --max-samples 0
+Finished repair for results/synthetic_large.task0.csv at Wed Apr 22 05:27:13 PM EDT 2026
